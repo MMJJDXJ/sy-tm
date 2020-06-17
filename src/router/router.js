@@ -6,6 +6,8 @@ import Cart from '../views/Cart.vue'
 import Product from '../views/Product.vue'
 import Classify from '../views/Classify.vue'
 import Enter from '../views/Enter.vue'
+import Search from '../views/Search.vue'
+
 
 const routes = [{
     path: '/cartPath',
@@ -26,6 +28,11 @@ const routes = [{
     path: '/enterPath',
     component: Enter
   },
+
+  {
+    path: '/searchPath',
+    component: Search
+  }
 ]
 
 const router = new VueRouter({
