@@ -6,7 +6,7 @@
           <img src="../images/arrow-left-zd.png" alt @click="cartBack" />
         </div>
         <div class="shopping-car">
-          <span>购物车</span>
+          <span>购物车({{carList.length}})</span>
         </div>
         <div></div>
       </div>
@@ -15,7 +15,12 @@
     <div v-for="(item,index) in carList" :key="index">
       <div class="car-top">
         <div class="car-top-left">
-          <input type="checkbox" class="checkbox" />
+         <input
+                    type="checkbox"
+                    :id="item.shopName"
+                    :checked="item.checked"
+                    @change="checkMe(index)"
+                  />
           <img src="../images/tianmao-zd.png" alt class="tm-logo" />
           <div class="shop-name">{{item.shopName}}</div>
           <img src="../images/arrow-right-zd.png" alt class="arrow-right" />
@@ -25,7 +30,12 @@
       </div>
       <div class="car-bottom">
         <div class="car-bottom-l">
-          <input type="checkbox" class="checkbox" />
+           <input
+                    type="checkbox"
+                    :id="item.shopName"
+                    :checked="item.checked"
+                    @change="checkMe(index)"
+                  />
         </div>
 
         <div class="car-bottom-r">
@@ -35,9 +45,7 @@
             <div class="coudan">凑单</div>
             <img src="../images/arrow-right-zd.png" alt class="arrow-right" />
           </div>
-          <!-- <div class="car-bottom-l">
-          <input type="checkbox" class="checkbox" />
-          </div>-->
+
           <div class="car-bottom-r-b">
             <div>
               <img :src="item.img" alt class="image" />
@@ -62,8 +70,9 @@
           </div>
         </div>
         <div v-if="item.cancel"></div>
-        <div class="cancel" @click="del"  v-else>删除</div>
+        <div class="cancel" @click="del" v-else>删除</div>
       </div>
+
     </div>
 
     <!-- 遮罩部分 -->
@@ -75,9 +84,7 @@
 
     <div class="overlay" v-if="overlayShow2">
       <div class="overlay2-content">
-        <div class="overlay2-content-sure">
-          确定要删除这个宝贝吗?
-        </div>
+        <div class="overlay2-content-sure">确定要删除这个宝贝吗?</div>
         <div class="cancel-sure">
           <div class="overlay2-content-cancel" @click="cancel2">取消</div>
           <div class="overlay2-content-cancel" @click="sure">确定</div>
@@ -88,10 +95,11 @@
 
 
 
+
     <!-- 底部计算部分 -->
     <div class="count-wrap">
       <div class="count-l">
-        <input type="checkbox" />
+        <input type="checkbox" v-model="checked" id="all">
         <span>全选</span>
       </div>
 
@@ -111,11 +119,13 @@
     <div class="youlike-a">
       <div v-for="(item2,index2) in carList" :key="index2" class="youlike-b">
         <div class="youlike-content">
-          <div class="youlike-content-img"><img :src="item2.img"  /></div>
+          <div class="youlike-content-img">
+            <img :src="item2.img" />
+          </div>
           <div class="youlike-text">{{item2.disc}}</div>
-           <div class="youlike-price-people">
-          <span class="youlike-price">¥  {{item2.price}}</span>
-          <span class="youlike-people">{{item2.people}}人已购买</span>
+          <div class="youlike-price-people">
+            <span class="youlike-price">¥ {{item2.price}}</span>
+            <span class="youlike-people">{{item2.people}}人已购买</span>
           </div>
         </div>
       </div>
@@ -127,10 +137,11 @@
 <script>
 export default {
   data() {
-    return { 
-    
+    return {
       overlayShow: false,
-       overlayShow2: false,
+      overlayShow2: false,
+      isCheck:false,
+      checked:"",
       carList: [
         {
           num: 1,
@@ -140,7 +151,8 @@ export default {
           price: 1238,
           people: 41,
           show: true,
-          cancel:true
+          cancel: true, 
+          checked:false
         },
 
         {
@@ -151,7 +163,8 @@ export default {
           price: 126,
           people: 32,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         },
 
         {
@@ -162,7 +175,8 @@ export default {
           price: 117,
           people: 435,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         },
 
         {
@@ -173,7 +187,8 @@ export default {
           price: 77,
           people: 63,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         },
 
         {
@@ -184,7 +199,8 @@ export default {
           price: 226,
           people: 55,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         },
 
         {
@@ -195,7 +211,8 @@ export default {
           price: 1238,
           people: 41,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         },
 
         {
@@ -206,7 +223,8 @@ export default {
           price: 28,
           people: 456,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         },
 
         {
@@ -217,7 +235,8 @@ export default {
           price: 49,
           people: 435,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         },
 
         {
@@ -228,7 +247,8 @@ export default {
           price: 298,
           people: 429,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         },
 
         {
@@ -239,7 +259,8 @@ export default {
           price: 65,
           people: 466,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         },
 
         {
@@ -250,7 +271,8 @@ export default {
           price: 50,
           people: 55,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         },
 
         {
@@ -261,7 +283,8 @@ export default {
           price: 159,
           people: 223,
           show: true,
-          cancel:true
+          cancel: true,
+          checked:false
         }
       ]
     };
@@ -273,12 +296,11 @@ export default {
 
     minus(item, index) {
       if (item.num < 2) {
-        let that=this;
-         this.overlayShow = true;
-         setTimeout(function(){
-              that.overlayShow=false;
-         },1800)
-
+        let that = this;
+        this.overlayShow = true;
+        setTimeout(function() {
+          that.overlayShow = false;
+        }, 1800);
       } else {
         item.num--;
       }
@@ -289,24 +311,41 @@ export default {
     },
 
     edit(item, index) {
-      
-    item.show = !item.show;
-    item.cancel=!item.cancel
+      item.show = !item.show;
+      item.cancel = !item.cancel;
     },
 
-    del(item,index){
-       this.overlayShow2= true
+    del(item, index) {
+      this.overlayShow2 = true;
     },
 
-    cancel2(item,index){
-      this.overlayShow2=false
+    cancel2(item, index) {
+      this.overlayShow2 = false;
     },
 
-    sure(item,index){
-      this.carList.splice(index,1);
-      this.overlayShow2=false
+    sure(item, index) {
+      this.carList.splice(index, 1);
+      this.overlayShow2 = false;
+    },
 
+ checkMe(index) {
+      // console.log(event)
+      if (event.target.checked) {
+        this.carList[index].checked = true;
+        // console.log(this.carList);
+      } else {
+        this.carList[index].checked = false;
+      }
+      for (let i = 0; i < this.carList.length; i++) {
+        if (this.carList[i].checked == false) {
+          return (this.isCheck = true);
+        }
+      }
+      this.isCheck = false;
     }
+ 
+
+    //  商品结算
   }
 };
 </script>
@@ -315,16 +354,16 @@ export default {
 <style>
 
 /* 删除的遮罩部分 */
-.overlay2-content{
+.overlay2-content {
   width: 300px;
   height: 96px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(244,244, 244);
+  background-color: rgb(244, 244, 244);
   border-radius: 8px;
 }
 
-.overlay2-content-sure{
+.overlay2-content-sure {
   width: 300px;
   height: 48px;
   display: flex;
@@ -332,11 +371,11 @@ export default {
   justify-content: center;
 }
 
-.cancel-sure{
+.cancel-sure {
   display: flex;
   flex-direction: row;
 }
-.overlay2-content-cancel{
+.overlay2-content-cancel {
   width: 150px;
   height: 48px;
   display: flex;
@@ -344,15 +383,8 @@ export default {
   justify-content: center;
   font-size: 18px;
   font-weight: bold;
-  color: rgb(95,100,108);
+  color: rgb(95, 100, 108);
 }
-
-
-
-
-
-
-
 
 .cartRouter {
   position: fixed;
@@ -381,7 +413,7 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: rgb(242,242,242);
+  background-color: rgb(242, 242, 242);
 }
 .youlike {
   width: 100%;
@@ -402,27 +434,27 @@ export default {
   height: 280px;
   border-radius: 8px;
   margin: 12px;
-  background-color: rgb(255,255,255);
+  background-color: rgb(255, 255, 255);
 }
 
-.youlike-content-img img{
+.youlike-content-img img {
   width: 180px;
   height: 180px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
 }
 
-.youlike-price-people{
+.youlike-price-people {
   margin-top: 8px;
   margin-left: 8px;
 }
 
-.youlike-price{
+.youlike-price {
   color: rgb(255, 85, 0);
 }
 
-.youlike-people{
-  font-size:12px;
+.youlike-people {
+  font-size: 12px;
   margin-left: 5px;
   color: rgb(181, 181, 181);
 }
@@ -448,6 +480,10 @@ export default {
 
 .count-l {
   margin-left: 8px;
+  display: flex;
+  flex-direction: row;
+    text-align: center;
+  align-items: center;
 }
 .count-l span {
   margin-left: 8px;
