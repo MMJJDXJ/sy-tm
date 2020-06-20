@@ -15,27 +15,28 @@
     <div v-for="(item,index) in carList" :key="index">
       <div class="car-top">
         <div class="car-top-left">
-         <input
-                    type="checkbox"
-                    :id="item.shopName"
-                    :checked="item.checked"
-                    @change="checkMe(index)"
-                  />
+          <input
+            type="checkbox"
+            :id="item.shopName"
+            :checked="item.checked"
+            @change="checkMe(index)"
+          >
           <img src="../images/tianmao-zd.png" alt class="tm-logo" />
           <div class="shop-name">{{item.shopName}}</div>
           <img src="../images/arrow-right-zd.png" alt class="arrow-right" />
         </div>
         <div class="edit" @click="edit(item,index)" v-if="item.show">编辑</div>
         <div class="edit" @click="edit(item,index)" v-else>完成</div>
+       
       </div>
       <div class="car-bottom">
         <div class="car-bottom-l">
-           <input
-                    type="checkbox"
-                    :id="item.shopName"
-                    :checked="item.checked"
-                    @change="checkMe(index)"
-                  />
+          <input
+            type="checkbox"
+            :id="item.shopName"
+            :checked="item.checked"
+            @change="checkMe(index)"
+          />
         </div>
 
         <div class="car-bottom-r">
@@ -72,7 +73,6 @@
         <div v-if="item.cancel"></div>
         <div class="cancel" @click="del" v-else>删除</div>
       </div>
-
     </div>
 
     <!-- 遮罩部分 -->
@@ -92,20 +92,21 @@
       </div>
     </div>
 
-
-
-
-
     <!-- 底部计算部分 -->
     <div class="count-wrap">
       <div class="count-l">
-        <input type="checkbox" v-model="checked" id="all">
+        <input type="checkbox" name="checkall" id="checkall2" :checked="isCheck" @change="allCheck" />
+        <label for="checkall2"></label>
         <span>全选</span>
       </div>
 
       <div class="total-r">
-        <div>合计:</div>
-        <div class="total">结算</div>
+        <div>
+          <span class="total-r-c">合计:</span>
+          <span class="total-r-a">¥{{total}}</span>
+          <span class="total-r-b">.00</span>
+        </div>
+        <div class="total">结算({{count}})</div>
       </div>
     </div>
 
@@ -136,12 +137,38 @@
 
 <script>
 export default {
+  computed: {
+    total() {
+      var totalNum = 0;
+      for (let i = 0; i < this.carList.length; i++) {
+        if (this.carList[i].checked == true) {
+          totalNum = totalNum + this.carList[i].price * this.carList[i].num;
+        }
+      }
+      if (totalNum == 0) {
+        return 0.0;
+      } else {
+        return totalNum;
+      }
+    },
+
+    count() {
+      var count = 0;
+      for (let i = 0; i < this.carList.length; i++) {
+        if (this.carList[i].checked == true) {
+          count++;
+        }
+      }
+      return count;
+    }
+  },
+
   data() {
     return {
       overlayShow: false,
       overlayShow2: false,
-      isCheck:false,
-      checked:"",
+      isCheck: false,
+      checked: "",
       carList: [
         {
           num: 1,
@@ -151,8 +178,8 @@ export default {
           price: 1238,
           people: 41,
           show: true,
-          cancel: true, 
-          checked:false
+          cancel: true,
+          checked: false
         },
 
         {
@@ -164,7 +191,7 @@ export default {
           people: 32,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         },
 
         {
@@ -176,7 +203,7 @@ export default {
           people: 435,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         },
 
         {
@@ -188,7 +215,7 @@ export default {
           people: 63,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         },
 
         {
@@ -200,7 +227,7 @@ export default {
           people: 55,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         },
 
         {
@@ -212,7 +239,7 @@ export default {
           people: 41,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         },
 
         {
@@ -224,7 +251,7 @@ export default {
           people: 456,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         },
 
         {
@@ -236,7 +263,7 @@ export default {
           people: 435,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         },
 
         {
@@ -248,7 +275,7 @@ export default {
           people: 429,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         },
 
         {
@@ -260,7 +287,7 @@ export default {
           people: 466,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         },
 
         {
@@ -272,7 +299,7 @@ export default {
           people: 55,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         },
 
         {
@@ -284,7 +311,7 @@ export default {
           people: 223,
           show: true,
           cancel: true,
-          checked:false
+          checked: false
         }
       ]
     };
@@ -328,7 +355,7 @@ export default {
       this.overlayShow2 = false;
     },
 
- checkMe(index) {
+    checkMe(index) {
       // console.log(event)
       if (event.target.checked) {
         this.carList[index].checked = true;
@@ -338,12 +365,26 @@ export default {
       }
       for (let i = 0; i < this.carList.length; i++) {
         if (this.carList[i].checked == false) {
-          return (this.isCheck = true);
+          return (this.isCheck = false);
         }
       }
-      this.isCheck = false;
+      
+      this.isCheck = true;
+    },
+
+    allCheck(e) {
+      if (e.target.checked) {
+        this.isCheck = true;
+        for (let i = 0; i < this.carList.length; i++) {
+          this.carList[i].checked = true;
+        }
+      } else {
+        this.isCheck = false;
+        for (let i = 0; i < this.carList.length; i++) {
+          this.carList[i].checked = false;
+        }
+      }
     }
- 
 
     //  商品结算
   }
@@ -482,7 +523,7 @@ export default {
   margin-left: 8px;
   display: flex;
   flex-direction: row;
-    text-align: center;
+  text-align: center;
   align-items: center;
 }
 .count-l span {
@@ -494,6 +535,23 @@ export default {
   text-align: center;
   align-items: center;
 }
+
+.total-r-a {
+  color: rgb(255, 85, 0);
+  margin-left: 5px;
+  font-size: 16px;
+}
+
+.total-r-b {
+  color: rgb(255, 85, 0);
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.total-r-c {
+  font-size: 14px;
+}
+
 .total {
   width: 115px;
   height: 55px;

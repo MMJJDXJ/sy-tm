@@ -13,7 +13,14 @@ import { Swipe, SwipeItem } from "vant";
 Vue.use(Swipe);
 Vue.use(SwipeItem);
 
+import { Checkbox, CheckboxGroup } from 'vant';
 
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
+
+import { SwipeCell } from 'vant';
+
+Vue.use(SwipeCell);
 
 new Vue({
   router,
