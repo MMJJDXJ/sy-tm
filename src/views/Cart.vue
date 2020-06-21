@@ -15,19 +15,20 @@
     <div v-for="(item,index) in carList" :key="index">
       <div class="car-top">
         <div class="car-top-left">
-          <input
-            type="checkbox"
-            :id="item.shopName"
-            :checked="item.checked"
-            @change="checkMe(index)"
-          >
+          <label class="checkBox">
+            <input
+              type="checkbox"
+              :id="item.shopName"
+              :checked="item.checked"
+              @change="checkMe(index)"
+            />
+          </label>
           <img src="../images/tianmao-zd.png" alt class="tm-logo" />
           <div class="shop-name">{{item.shopName}}</div>
           <img src="../images/arrow-right-zd.png" alt class="arrow-right" />
         </div>
         <div class="edit" @click="edit(item,index)" v-if="item.show">编辑</div>
         <div class="edit" @click="edit(item,index)" v-else>完成</div>
-       
       </div>
       <div class="car-bottom">
         <div class="car-bottom-l">
@@ -40,12 +41,12 @@
         </div>
 
         <div class="car-bottom-r">
-          <div class="car-bottom-r-t">
+          <!-- <div class="car-bottom-r-t">
             <img src="../images/manjian-zd.png" alt class="manjian" />
             <div class="manjian-text">6.16-6.20每满300减40，可跨店</div>
             <div class="coudan">凑单</div>
             <img src="../images/arrow-right-zd.png" alt class="arrow-right" />
-          </div>
+          </div>-->
 
           <div class="car-bottom-r-b">
             <div>
@@ -55,9 +56,9 @@
               <div class="disc">
                 <span>{{item.disc}}</span>
               </div>
-              <div>
+              <!-- <div>
                 <img src="../images/618-zd.png" alt class="sex-one-eight" />
-              </div>
+              </div>-->
               <div class="baojia">15天保价</div>
               <div class="price-wrap">
                 <div class="price">¥{{item.price}}</div>
@@ -169,6 +170,7 @@ export default {
       overlayShow2: false,
       isCheck: false,
       checked: "",
+      transitionName: "slide",
       carList: [
         {
           num: 1,
@@ -368,7 +370,7 @@ export default {
           return (this.isCheck = false);
         }
       }
-      
+
       this.isCheck = true;
     },
 
@@ -394,6 +396,20 @@ export default {
 
 <style>
 
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  -webkit-appearance: none;
+  border: 1px solid #c9c9c9;
+  border-radius: 50%;
+  outline: none;
+}
+
+input[type="checkbox"]:checked {
+  background: url("../images/checkbox-zd.png") no-repeat center;
+}
 /* 删除的遮罩部分 */
 .overlay2-content {
   width: 300px;
@@ -657,7 +673,7 @@ export default {
 
 .car-bottom {
   width: 100%;
-  height: 230px;
+  height: 160px;
   display: flex;
   flex-direction: row;
   border-bottom: 20px solid rgb(238, 238, 238);
@@ -667,7 +683,9 @@ export default {
 }
 
 .car-bottom-l {
-  line-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 8px;
 }
 
@@ -697,12 +715,12 @@ export default {
 }
 
 .image {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
 }
 
 .car-bottom-r-b {
-  padding-top: 35px;
+  padding-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -767,7 +785,7 @@ export default {
 
 .cancel {
   width: 50px;
-  height: 180px;
+  height: 160px;
   background-color: red;
   position: absolute;
   bottom: 0;
@@ -776,5 +794,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 </style>
