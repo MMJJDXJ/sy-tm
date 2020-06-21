@@ -17,7 +17,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .searchRouter {
   position: fixed;
   top: 0;

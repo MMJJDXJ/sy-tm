@@ -167,7 +167,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .cartRouter {
   position: fixed;
   top: 0;

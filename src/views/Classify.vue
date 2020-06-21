@@ -17,7 +17,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .classifyRouter {
   position: fixed;
   top: 0;
