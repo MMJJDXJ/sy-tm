@@ -14,7 +14,6 @@ Vue.use(Swipe);
 Vue.use(SwipeItem);
 
 
-
 new Vue({
   router,
   store,
