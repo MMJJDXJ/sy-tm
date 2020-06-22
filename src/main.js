@@ -17,6 +17,10 @@ import { SwipeCell } from 'vant';
 
 Vue.use(SwipeCell);
 
+import { Button } from 'vant';
+
+Vue.use(Button);
+
 
 
 new Vue({

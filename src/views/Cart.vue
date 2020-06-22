@@ -40,37 +40,35 @@
           />
         </div>
 
-        <div class="car-bottom-r">
-          <!-- <div class="car-bottom-r-t">
-            <img src="../images/manjian-zd.png" alt class="manjian" />
-            <div class="manjian-text">6.16-6.20每满300减40，可跨店</div>
-            <div class="coudan">凑单</div>
-            <img src="../images/arrow-right-zd.png" alt class="arrow-right" />
-          </div>-->
-
-          <div class="car-bottom-r-b">
-            <div>
-              <img :src="item.img" alt class="image" />
-            </div>
-            <div>
-              <div class="disc">
-                <span>{{item.disc}}</span>
+        <!-- 左移删除 -->
+        <van-swipe-cell>
+          <div class="car-bottom-r">
+            <div class="car-bottom-r-b">
+              <div>
+                <img :src="item.img" alt class="image" />
               </div>
-              <!-- <div>
-                <img src="../images/618-zd.png" alt class="sex-one-eight" />
-              </div>-->
-              <div class="baojia">15天保价</div>
-              <div class="price-wrap">
-                <div class="price">¥{{item.price}}</div>
-                <div class="count">
-                  <span class="minus" @click="minus(item,index)">-</span>
-                  <span>{{item.num}}</span>
-                  <span class="plus" @click="plus(item,index)">+</span>
+              <div>
+                <div class="disc">
+                  <span>{{item.disc}}</span>
+                </div>
+
+                <div class="baojia">15天保价</div>
+                <div class="price-wrap">
+                  <div class="price">¥{{item.price}}</div>
+                  <div class="count">
+                    <span class="minus" @click="minus(item,index)">-</span>
+                    <span>{{item.num}}</span>
+                    <span class="plus" @click="plus(item,index)">+</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+          <template #right>
+            <van-button square text="删除" type="danger" class="delete-button" @click="del" />
+          </template>
+        </van-swipe-cell>
+
         <div v-if="item.cancel"></div>
         <div class="cancel" @click="del" v-else>删除</div>
       </div>
@@ -138,6 +136,7 @@
 
 <script>
 export default {
+  //  商品结算
   computed: {
     total() {
       var totalNum = 0;
@@ -170,7 +169,6 @@ export default {
       overlayShow2: false,
       isCheck: false,
       checked: "",
-      transitionName: "slide",
       carList: [
         {
           num: 1,
@@ -323,6 +321,7 @@ export default {
       this.$router.go(-1);
     },
 
+    // 商品数量加减
     minus(item, index) {
       if (item.num < 2) {
         let that = this;
@@ -348,7 +347,7 @@ export default {
       this.overlayShow2 = true;
     },
 
-    cancel2(item, index) {
+    cancel2() {
       this.overlayShow2 = false;
     },
 
@@ -357,11 +356,10 @@ export default {
       this.overlayShow2 = false;
     },
 
+    // 单选与全选
     checkMe(index) {
-      // console.log(event)
       if (event.target.checked) {
         this.carList[index].checked = true;
-        // console.log(this.carList);
       } else {
         this.carList[index].checked = false;
       }
@@ -370,7 +368,6 @@ export default {
           return (this.isCheck = false);
         }
       }
-
       this.isCheck = true;
     },
 
@@ -387,16 +384,12 @@ export default {
         }
       }
     }
-
-    //  商品结算
   }
 };
 </script>
 
-
 <style>
-
-
+/* 复选框样式 */
 input[type="checkbox"] {
   width: 20px;
   height: 20px;
@@ -671,6 +664,7 @@ input[type="checkbox"]:checked {
   margin-right: 8px;
 }
 
+/* 下部 */
 .car-bottom {
   width: 100%;
   height: 160px;
@@ -734,13 +728,6 @@ input[type="checkbox"]:checked {
   flex-direction: column;
 }
 
-.sex-one-eight {
-  width: 25px;
-  height: 13px;
-  margin-left: 20px;
-  margin-top: 10px;
-}
-
 .baojia {
   width: 52px;
   font-size: 12px;
@@ -784,16 +771,26 @@ input[type="checkbox"]:checked {
 }
 
 .cancel {
-  width: 50px;
-  height: 160px;
-  background-color: red;
+  width: 58px;
+  height: 134px;
+  background-color: rgb(255, 85, 0);
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 0;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
+.van-button--danger {
+  background: rgb(255, 85, 0);
+  border: 0;
+}
+.delete-button {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
