@@ -3,7 +3,7 @@
     <!-- 天猫导航栏-->
     <div class="tm-header-lj">
       <div class="header-top-lj">
-        <div class="header-threeheng-lj">
+        <div :class="{'header-threeheng-lj':isThreeheng , 'header-threeheng-lj2':!isThreeheng}">
           <a
             href="https://www.tmall.com/wow/car/act/navtab?pos=5&acm=201803150.1003.2.3323494&scm=1003.2.201803150.OTHER_1523452695069_3323494#mui-nav-category"
           >
@@ -11,15 +11,15 @@
           </a>
         </div>
 
-        <div class="header-tmall-lj">
+        <div :class="{'header-tmall-lj':isTmall , 'header-tmall-lj2':!isTmall}">
           <img src="../images/TMALL-lj.png" alt />
         </div>
 
-        <div @click="enterBtn" class="header-enter-lj">登录</div>
+        <div @click="enterBtn" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}">登录</div>
       </div>
 
-      <div class="tm-search-lj">
-        <div @click="searchBtn" class="search-input-lj">
+      <div :class="{'tm-search-lj':isSearch , 'tm-search-lj2':!isSearch}">
+        <div @click="searchBtn" :class="{'search-input-lj':isInput , 'search-input-lj2':!isInput}">
           <img src="../images/search-lj.png" alt />
           <span>搜索商品、品牌</span>
         </div>
@@ -656,14 +656,20 @@
   </div>
 </template>
 
+
 <script>
 export default {
   data() {
     return {
-      show: false
+      show: false,
+      isThreeheng: false,
+      isEnter: false,
+      isTmall: false,
+      isSearch: false,
+      isInput: false
     };
   },
-  
+
   created() {
     window.addEventListener("scroll", this.handleScroll, true);
   },
@@ -685,50 +691,29 @@ export default {
     searchBtn() {
       this.$router.push("searchPath");
     },
-    // 导航栏过渡动画
-    leave() {
-      let left = document.querySelector(".header-threeheng-lj");
-      let right = document.querySelector(".header-enter-lj");
-      let tmall = document.querySelector(".header-tmall-lj");
-      let search = document.querySelector(".tm-search-lj");
-      let input = document.querySelector(".search-input-lj");
-      let header = document.querySelector(".tm-search-lj");
-
-      left.style.transform = "translateY(5px)";
-      right.style.transform = "translateY(4px)";
-      tmall.style.transform = "scale(0) translateY(-50px)";
-      tmall.style.height = "0px";
-      input.style.transform = " scaleX(0.8) translateY(-34px)";
-      header.style.height = "3px";
-    },
-
-    enter() {
-      let left = document.querySelector(".header-threeheng-lj");
-      let right = document.querySelector(".header-enter-lj");
-      let tmall = document.querySelector(".header-tmall-lj");
-      let search = document.querySelector(".tm-search-lj");
-      let input = document.querySelector(".search-input-lj");
-      let header = document.querySelector(".tm-search-lj");
-
-      left.style.transform = "translateY(0px)";
-      right.style.transform = "translateY(0px)";
-      tmall.style.transform = "scale(1)";
-      tmall.style.height = "25px";
-      input.style.transform = " scaleX(1) translateY(0px)";
-      header.style.height = "36px";
-    },
 
     // 监听滚动条事件
     handleScroll() {
-      let scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop;
-      scrollTop > 10 ? this.leave() : this.enter();
+      let scrollTop = document.documentElement.scrollTop;
+      if (scrollTop > 18) {
+        this.isThreeheng = true;
+        this.isEnter = true;
+        this.isTmall = true;
+        this.isSearch = true;
+        this.isInput = true;
+      } else {
+        this.isThreeheng = false;
+        this.isEnter = false;
+        this.isTmall = false;
+        this.isSearch = false;
+        this.isInput = false;
+      }
       scrollTop > 288 ? (this.show = true) : (this.show = false);
     },
 
     // 点击回到TMD顶部按钮
     toTopBtn() {
-      let top = document.documentElement.scrollTop || document.body.scrollTop;
+      let top = document.documentElement.scrollTop;
       const timeTop = setInterval(() => {
         document.body.scrollTop = document.documentElement.scrollTop = top -= 88;
         if (top <= 0) {
@@ -766,23 +751,59 @@ export default {
 }
 
 .header-threeheng-lj {
-  margin-top: 3px;
+  margin-top: 2px;
+  margin-left: 1px;
+  transform: translateY(5px);
+  transition: all 0.36s;
+}
+
+.header-threeheng-lj2 {
+  margin-top: 2px;
+  margin-left: 1px;
+  transform: translateY(0px);
   transition: all 0.36s;
 }
 
 .header-tmall-lj {
   transition: all 0.36s;
+  transform: scale(0) translateY(-50px);
+  height: 0px;
+}
+
+.header-tmall-lj2 {
+  transition: all 0.36s;
+  transform: scale(1);
+  height: 25px;
 }
 
 .header-tmall-lj img {
   width: 118.5px;
   height: 20.5px;
+  margin-top: 2px;
+  margin-left: 3px;
+}
+
+.header-tmall-lj2 img {
+  width: 118.5px;
+  height: 20.5px;
+  margin-top: 2px;
+  margin-left: 3px;
 }
 
 .header-enter-lj {
   font-size: 14px;
+  margin-top: -1px;
   transition: all 0.36s;
   color: #fff;
+  transform: translateY(4px);
+}
+
+.header-enter-lj2 {
+  font-size: 14px;
+  margin-top: -1px;
+  transition: all 0.36s;
+  color: #fff;
+  transform: translateY(0px);
 }
 
 .tm-search-lj {
@@ -792,6 +813,17 @@ export default {
   justify-content: space-around;
   background: rgb(255, 0, 54);
   transition: all 0.36s;
+  height: 3px;
+}
+
+.tm-search-lj2 {
+  padding: 0 10px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: rgb(255, 0, 54);
+  transition: all 0.36s;
+  height: 36px;
 }
 
 .search-input-lj {
@@ -805,9 +837,28 @@ export default {
   font-size: 14px;
   color: #bbbbbb;
   transition: all 0.36s;
+  transform: scaleX(0.8) translateY(-34px);
+}
+
+.search-input-lj2 {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 14px;
+  color: #bbbbbb;
+  transition: all 0.36s;
+  transform: scaleX(1) translateY(0px);
 }
 
 .search-input-lj img {
+  padding: 10px;
+}
+
+.search-input-lj2 img {
   padding: 10px;
 }
 
