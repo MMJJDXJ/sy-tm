@@ -7,9 +7,14 @@ import Product from '../views/Product.vue'
 import Classify from '../views/Classify.vue'
 import Enter from '../views/Enter.vue'
 import Search from '../views/Search.vue'
+import Index from '../views/Index.vue'
 
 
 const routes = [{
+    path: '/',
+    component: Index
+  }, 
+  {
     path: '/cartPath',
     component: Cart
   },

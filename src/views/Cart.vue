@@ -388,7 +388,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* 复选框样式 */
 input[type="checkbox"] {
   width: 20px;
