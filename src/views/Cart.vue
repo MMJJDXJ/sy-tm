@@ -484,8 +484,8 @@ input[type="checkbox"]:checked {
 .youlike-content {
   width: 170px;
   height: 280px;
-  border-radius: 8px;
-  margin-left: 8px;
+  border-radius:8px;
+  margin-left: 7px;
   margin-top: 10px;
 
   background-color: rgb(255, 255, 255);
