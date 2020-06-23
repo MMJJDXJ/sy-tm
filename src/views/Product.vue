@@ -1,22 +1,24 @@
 <template>
   <div class="productRouter">
     <!-- 商品 评价 详情 -->
-    <div class="top-table-zy">
+    <div class="top-table-zy" id="top-table-zy">
       <div class="return-zy">
         <img src="../images/return.png" alt @click="productBack" />
       </div>
       <div class="search-zy">
         <img src="../images/searchimg.png" alt />
       </div>
-      <div class="toptext-zy">商品</div>
-      <div class="toptext-zy">评价</div>
-      <div class="toptext-zy">详情</div>
+      <div class="toptext-zy" @click="zyselect(1)" :class="{myActive:itemIndex==1}">商品</div>
+      <div class="toptext-zy" @click="zyselect(2)" :class="{myActive:itemIndex==2}">评价</div>
+      <div class="toptext-zy" @click="zyselect(3)" :class="{myActive:itemIndex==3}">详情</div>
+
       <div class="edit-zy">
         <img src="../images/edit-zy.png" alt />
       </div>
       <div class="shoppingcar-zy">
         <img src="../images/shoppingcar.png" alt />
       </div>
+
     </div>
 
     <!-- 中间的body -->
@@ -106,7 +108,7 @@
       <table class="middle-table3-zy">
         <tr>
           <td style="color: #999999;font-size: 12px;">物流</td>
-          <td style="font-size: 12px;">至沧浪区：30分钟内付款，预计6月21日送达，可选送货时间</td>
+          <td style="font-size: 12px;">至沧浪区：30分钟内付款，预计6月29日送达，可选送货时间</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -310,6 +312,8 @@
       <br />
       <div class="double-zy">"加倍柔韧厚实，足量足分更耐用"</div>
 
+      <!--  -->
+
       <div class="line-beforeimg-zy"></div>
 
       <table>
@@ -384,23 +388,31 @@
           </tr>
         </table>
 
-        <p style="font-size: 12px;margin-left: 10px;margin-top: 10px;">23:00前付款，预计6月23日送达</p>
+        <p style="font-size: 12px;margin-left: 10px;margin-top: 10px;">23:00前付款，预计6月29日送达</p>
         <div class="shadowline-zy"></div>
 
-        <table style="font-size: 13px;margin-left: 10px;margin-top: 10px;">
+        <table style class="numTable-zy">
           <tr>
             <td style="width: 280px;">购买数量</td>
             <td>
-              <span>-</span>
-              1
-              <span>+</span>
+              <div class="numdiv">-</div>
+            </td>
+            <!-- <span class="minus" @click="minus()">-</span>
+              <span>{{item.num}}</span>
+            <span class="plus" @click="plus()">+</span>-->
+
+            <td>
+              <div class="numdiv">1</div>
+            </td>
+            <td>
+              <div class="numdiv">+</div>
             </td>
           </tr>
         </table>
 
         <div class="shadowline-zy"></div>
       </div>
-      <div class="sure—zy">确定</div>
+      <div class="sure—zy" @click="cancelBtn">确定</div>
     </div>
 
     <!-- 要关闭的遮罩层2 -->
@@ -431,7 +443,6 @@
       <!-- <div class="whitePart-zy">
       </div>-->
     </div>
-
   </div>
 </template>
 
@@ -442,40 +453,70 @@ export default {
       current: 0,
       // 遮罩层默认不可见
       newShadow: false,
+      newShadow2: true,
+      itemIndex: 1
 
-      newShadow2: true
+      // 购买数量
+      // num: 1,
     };
   },
 
+  created() {
+    window.addEventListener("scroll", this.handleScroll, true);
+  },
+
   methods: {
+    // 定位
+    zyselect(index) {
+      this.itemIndex = index;
+      if (index == 1) {
+        document.querySelector(".myswiperdiv-zy").scrollIntoView(true);
+        console.log(88);
+      }
+      if (index == 2) {
+        document.querySelector(".pj-table-zy").scrollIntoView(true);
+      }
+      if (index == 3) {
+        document.querySelector(".double-zy").scrollIntoView(true);
+      }
+    },
     productBack() {
       this.$router.go(-1);
-
       this.newShadow = false;
     },
-
     onChange(index) {
       this.current = index;
       console.log(this.currentex);
 
       this.newShadow = false;
     },
-
     addCart() {
       // alert("llllll");
       // 遮罩层可见
       this.newShadow = true;
     },
-
     //遮罩层-取消
     cancelBtn() {
       this.newShadow = false;
     },
-
     //遮罩层-取消2
     cancelBtn2() {
       this.newShadow2 = false;
     }
+
+    // minus(item) {
+    //   if (item.num < 2) {
+    //     let that = this;
+    //     setTimeout(function() {
+    //     }, 1800);
+    //   } else {
+    //     item.num--;
+    //   }
+    // },
+
+    // plus(item) {
+    //   item.num++;
+    // }
   }
 };
 </script>
@@ -523,6 +564,9 @@ export default {
 .top-table-zy .toptext-zy {
   color: #999999;
   margin-left: 28px;
+  font-size: 12px;
+  text-align: center;
+  /* border:1px solid #ff9500; */
 }
 
 .edit-zy {
@@ -989,7 +1033,7 @@ export default {
   /* top: 0;
   left: 0;
   bottom: 0; */
-   height: 50px;
+  height: 50px;
 }
 
 .spaceShadow {
@@ -1032,6 +1076,7 @@ export default {
   margin-top: 10px;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .close2-zy {
@@ -1039,9 +1084,6 @@ export default {
   height: 16px;
   margin-top: -10px;
   margin-left: 20px;
-}
-
-.closediv-zy {
 }
 
 .whitePart-zy {
@@ -1057,6 +1099,7 @@ export default {
   font-size: 15px;
   text-align: center;
   line-height: 50px;
+  cursor: pointer;
 }
 
 .shadowText-zy {
@@ -1091,6 +1134,28 @@ export default {
   height: 30px;
   text-align: center;
   line-height: 30px;
+}
+.numdiv {
+  /* border: 1px solid #f10035; */
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background: #f5f5f5;
+  font-weight: bold;
+}
+
+.numTable-zy {
+  font-size: 13px;
+  margin-left: 10px;
+  margin-top: 10px;
+  /* border: 1px solid #f10035; */
+  width: 90%;
+}
+
+.myActive {
+  border-bottom: 1px solid #f10035;
+  color: #f10035 !important;
 }
 </style>
 
