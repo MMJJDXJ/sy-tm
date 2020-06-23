@@ -1,22 +1,24 @@
 <template>
   <div class="productRouter">
     <!-- 商品 评价 详情 -->
-    <div class="top-table-zy">
+    <div class="top-table-zy" id="top-table-zy">
       <div class="return-zy">
         <img src="../images/return.png" alt @click="productBack" />
       </div>
       <div class="search-zy">
         <img src="../images/searchimg.png" alt />
       </div>
-      <div class="toptext-zy">商品</div>
-      <div class="toptext-zy">评价</div>
-      <div class="toptext-zy">详情</div>
+      <div class="toptext-zy" @click="zyselect(1)" :class="{myActive:itemIndex==1}">商品</div>
+      <div class="toptext-zy" @click="zyselect(2)" :class="{myActive:itemIndex==2}">评价</div>
+      <div class="toptext-zy" @click="zyselect(3)" :class="{myActive:itemIndex==3}">详情</div>
+
       <div class="edit-zy">
         <img src="../images/edit-zy.png" alt />
       </div>
       <div class="shoppingcar-zy">
         <img src="../images/shoppingcar.png" alt />
       </div>
+
     </div>
 
     <!-- 中间的body -->
@@ -106,7 +108,7 @@
       <table class="middle-table3-zy">
         <tr>
           <td style="color: #999999;font-size: 12px;">物流</td>
-          <td style="font-size: 12px;">至沧浪区：30分钟内付款，预计6月21日送达，可选送货时间</td>
+          <td style="font-size: 12px;">至沧浪区：30分钟内付款，预计6月29日送达，可选送货时间</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -310,6 +312,8 @@
       <br />
       <div class="double-zy">"加倍柔韧厚实，足量足分更耐用"</div>
 
+      <!--  -->
+
       <div class="line-beforeimg-zy"></div>
 
       <table>
@@ -358,7 +362,7 @@
 
     <!-- 遮罩层 -->
     <div class="shadow" v-show="newShadow">
-      <div class="spaceShadow"></div>
+      <div class="spaceShadow" @click="cancelBtn"></div>
 
       <div class="whitePart-zy">
         <img src="../images/shadowimg.jpg" alt class="shadowimg-zy" />
@@ -384,29 +388,63 @@
           </tr>
         </table>
 
-        <p style="font-size: 12px;margin-left: 10px;margin-top: 10px;">23:00前付款，预计6月23日送达</p>
+        <p style="font-size: 12px;margin-left: 10px;margin-top: 10px;">23:00前付款，预计6月29日送达</p>
         <div class="shadowline-zy"></div>
 
-        <table style="font-size: 13px;margin-left: 10px;margin-top: 10px;">
-          <tr >
+        <table style class="numTable-zy">
+          <tr>
             <td style="width: 280px;">购买数量</td>
             <td>
-              
-              <span >-</span>
-              1
-              <span >+</span>
+              <div class="numdiv">-</div>
+            </td>
+            <!-- <span class="minus" @click="minus()">-</span>
+              <span>{{item.num}}</span>
+            <span class="plus" @click="plus()">+</span>-->
+
+            <td>
+              <div class="numdiv">1</div>
+            </td>
+            <td>
+              <div class="numdiv">+</div>
             </td>
           </tr>
         </table>
 
         <div class="shadowline-zy"></div>
       </div>
-      <div class="sure—zy">确定</div>
+      <div class="sure—zy" @click="cancelBtn">确定</div>
+    </div>
+
+    <!-- 要关闭的遮罩层2 -->
+    <div class="shadow2" v-show="newShadow2">
+      <div class="spaceShadow2" @click="cancelBtn2">
+        <table>
+          <tr>
+            <td>
+              <img src="../images/close2.png" alt @click="cancelBtn2" class="close2-zy" />
+            </td>
+            <td>
+              <img src="../images/tianmao-zd.png" alt class="shadowimg2-zy" />
+            </td>
+
+            <td>
+              <p style="font-size:14px;color:#333333">送最高99元私房红包</p>
+              <p style="font-size:12px;color:#666666">天猫App下单享</p>
+            </td>
+
+            <td style="width:50px"></td>
+            <td>
+              <div class="hb-zy">享红包</div>
+            </td>
+          </tr>
+        </table>
+        <div class="closediv-zy"></div>
+      </div>
+      <!-- <div class="whitePart-zy">
+      </div>-->
     </div>
   </div>
-
 </template>
-
 
 <script>
 export default {
@@ -414,34 +452,71 @@ export default {
     return {
       current: 0,
       // 遮罩层默认不可见
-      newShadow: false
+      newShadow: false,
+      newShadow2: true,
+      itemIndex: 1
+
+      // 购买数量
+      // num: 1,
     };
   },
 
+  created() {
+    window.addEventListener("scroll", this.handleScroll, true);
+  },
+
   methods: {
+    // 定位
+    zyselect(index) {
+      this.itemIndex = index;
+      if (index == 1) {
+        document.querySelector(".myswiperdiv-zy").scrollIntoView(true);
+        console.log(88);
+      }
+      if (index == 2) {
+        document.querySelector(".pj-table-zy").scrollIntoView(true);
+      }
+      if (index == 3) {
+        document.querySelector(".double-zy").scrollIntoView(true);
+      }
+    },
     productBack() {
       this.$router.go(-1);
-
       this.newShadow = false;
     },
-
     onChange(index) {
       this.current = index;
       console.log(this.currentex);
 
       this.newShadow = false;
     },
-
     addCart() {
       // alert("llllll");
       // 遮罩层可见
       this.newShadow = true;
     },
-
     //遮罩层-取消
     cancelBtn() {
       this.newShadow = false;
+    },
+    //遮罩层-取消2
+    cancelBtn2() {
+      this.newShadow2 = false;
     }
+
+    // minus(item) {
+    //   if (item.num < 2) {
+    //     let that = this;
+    //     setTimeout(function() {
+    //     }, 1800);
+    //   } else {
+    //     item.num--;
+    //   }
+    // },
+
+    // plus(item) {
+    //   item.num++;
+    // }
   }
 };
 </script>
@@ -489,6 +564,9 @@ export default {
 .top-table-zy .toptext-zy {
   color: #999999;
   margin-left: 28px;
+  font-size: 12px;
+  text-align: center;
+  /* border:1px solid #ff9500; */
 }
 
 .edit-zy {
@@ -943,54 +1021,90 @@ export default {
 .shadow {
   position: fixed;
   width: 100%;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
   bottom: 0;
 }
+.shadow2 {
+  position: absolute;
+  width: 100%;
+  /* background: rgba(0, 0, 0, 0.5); */
+  /* top: 0;
+  left: 0;
+  bottom: 0; */
+  height: 50px;
+}
 
-.spaceShadow{
+.spaceShadow {
   width: 100%;
   height: 160px;
-   /* border: 1px solid red; */
+  /* border: 1px solid red; */
   /* background-color: #eee; */
 }
 
-.shadowimg-zy{
-  margin-top: -50px;
-  width: 100px;
-  height:100px;
-   border: 2px solid white;
-   border-radius: 5px;
-   margin-left: 10px;
+.spaceShadow2 {
+  width: 100%;
+  height: 40px;
+  background: white;
+  /* border: 1px solid red; */
+  /* background-color: #eee; */
 }
 
-.cancelBtn-zy{
+.shadowimg-zy {
+  margin-top: -50px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.shadowimg2-zy {
+  /* margin-top: -20px; */
+  width: 35px;
+  height: 35px;
+  /* border: 2px solid white; */
+  border-radius: 5px;
+  margin-left: 20px;
+  /* margin-top: -20px; */
+}
+
+.cancelBtn-zy {
   float: right;
   margin-right: -230px;
   margin-top: 10px;
   width: 20px;
-  height:20px;
+  height: 20px;
+  cursor: pointer;
 }
 
-.whitePart-zy{
-    background-color: #fff;
-    height:600px;
+.close2-zy {
+  width: 16px;
+  height: 16px;
+  margin-top: -10px;
+  margin-left: 20px;
 }
 
-.sure—zy{
-  color:white;
+.whitePart-zy {
+  background-color: #fff;
+  height: 600px;
+}
+
+.sure—zy {
+  color: white;
   border: 1px solid #f10035;
-  background-color:#f10035;
+  background-color: #f10035;
   height: 50px;
   font-size: 15px;
   text-align: center;
   line-height: 50px;
+  cursor: pointer;
 }
 
-.shadowText-zy{
+.shadowText-zy {
   font-size: 15px;
-  color:#051b28;
+  color: #051b28;
   margin-top: 10px;
   float: right;
   margin-right: 180px;
@@ -1009,6 +1123,39 @@ export default {
   margin-top: 10px;
   color: #666666;
   font-size: 13px;
+}
+
+.hb-zy {
+  border: 1px solid #f10035;
+  background: #f10035;
+  color: white;
+  border-radius: 18px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+.numdiv {
+  /* border: 1px solid #f10035; */
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background: #f5f5f5;
+  font-weight: bold;
+}
+
+.numTable-zy {
+  font-size: 13px;
+  margin-left: 10px;
+  margin-top: 10px;
+  /* border: 1px solid #f10035; */
+  width: 90%;
+}
+
+.myActive {
+  border-bottom: 1px solid #f10035;
+  color: #f10035 !important;
 }
 </style>
 
