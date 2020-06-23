@@ -152,6 +152,7 @@ export default {
   methods: {
     classifyBack() {
       this.$router.go(-1);
+      this.$destroy(true);
     }
   }
 };
