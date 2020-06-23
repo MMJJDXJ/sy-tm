@@ -13,6 +13,14 @@ import { Swipe, SwipeItem } from "vant";
 Vue.use(Swipe);
 Vue.use(SwipeItem);
 
+import { SwipeCell } from 'vant';
+
+Vue.use(SwipeCell);
+
+import { Button } from 'vant';
+
+Vue.use(Button);
+
 
 new Vue({
   router,
