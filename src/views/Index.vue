@@ -17,8 +17,17 @@
 
         <!-- 登录切换 -->
         <div @click="loginBtn">
-          <div v-if="login==true" @click="enterBtn" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}">登录</div>
-          <div v-if="login==false" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}"><img src="../images/user-lj.png" alt=""></div>
+          <div
+            v-if="login==true"
+            @click="enterBtn"
+            :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}"
+          >登录</div>
+          <div
+            v-if="login==false"
+            :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}"
+          >
+            <img @click="shadeBtn" src="../images/user-lj.png" alt />
+          </div>
         </div>
       </div>
 
@@ -174,8 +183,8 @@
 
     <!-- 猜老子喜欢 -->
     <p class="guess-i-like-lj">猜你喜欢</p>
-    <ul @click="productBtn" class="guessLike-lj">
-      <li class="guessLike-li1-lj">
+    <ul class="guessLike-lj">
+      <li @click="productBtn" class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/swiper-one.jpg" alt />
         </div>
@@ -207,8 +216,8 @@
     </ul>
 
     <!-- Two -->
-    <ul @click="productBtn2" class="guessLike-lj">
-      <li class="guessLike-li1-lj">
+    <ul class="guessLike-lj">
+      <li @click="productBtn2" class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeTwoLeft-lj.png" alt />
         </div>
@@ -234,7 +243,7 @@
           </div>
         </div>
       </li>
-      <li class="guessLike-li2-lj">
+      <li @click="productBtn3" class="guessLike-li2-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeTwoRight-lj.png" alt />
         </div>
@@ -263,7 +272,7 @@
     </ul>
 
     <!-- Three -->
-    <ul @click="productBtn3" class="guessLike-lj">
+    <ul class="guessLike-lj">
       <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeThreeLeft-lj.png" alt />
@@ -654,9 +663,46 @@
       </div>
     </transition>
 
-    <!-- 甘霖娘鸡掰 -->
-    <button @click="cartBtn">购物车router</button>
-    <button >商品详情router</button>
+    <!-- 遮罩层 -->
+    <div class="shadeShow-lj" v-if="shadeShow">
+      <div class="shadeShow-sanjiaodiv-lj">
+        <div class="shadeShow-sanjiao-lj"></div>
+      </div>
+      <div class="shadeShow-top-lj">
+        <span>我的天猫</span>
+        <img @click="closeShow" src="../images/close-lj.png" alt />
+      </div>
+      <div class="shadeShow-bottom-lj">
+        <ul class="shadeShow-bottom-ul-lj">
+          <li>
+            <img src="../images/TMkehuduan-lj.png" alt />
+            <span>天猫客户</span>
+          </li>
+          <li class="shadeShow-bottom-ul-li-lj">
+            <img src="../images/xinrenyouli-lj.png" alt />
+            <span>新人有礼</span>
+          </li>
+          <li @click="cartBtn" class="shadeShow-bottom-ul-li-lj">
+            <img src="../images/shadow-cart-lj.png" alt />
+            <span>购物车车</span>
+          </li>
+        </ul>
+        <ul class="shadeShow-bottom-ul-lj">
+          <li>
+            <img src="../images/shoucangbaobei-lj.png" alt />
+            <span>收藏宝贝</span>
+          </li>
+          <li class="shadeShow-bottom-ul-li-lj">
+            <img src="../images/shoucangdianpu-lj.png" alt />
+            <span>店铺收藏</span>
+          </li>
+          <li class="shadeShow-bottom-ul-li-lj">
+            <img src="../images/quanbudingdan-lj.png" alt />
+            <span>全部订单</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -671,10 +717,12 @@ export default {
       isTmall: false,
       isSearch: false,
       isInput: false,
-      login: true
+      login: true,
+      shadeShow: false
     };
   },
 
+  // 滚动条
   created() {
     window.addEventListener("scroll", this.handleScroll, true);
   },
@@ -705,8 +753,7 @@ export default {
 
     // 监听滚动条事件
     handleScroll() {
-      let scrollTop =
-        document.documentElement.scrollTop;
+      let scrollTop = document.documentElement.scrollTop;
       if (scrollTop > 18) {
         this.isThreeheng = true;
         this.isEnter = true;
@@ -720,6 +767,8 @@ export default {
         this.isSearch = false;
         this.isInput = false;
       }
+
+      // 控制回到顶部出现
       scrollTop > 288 ? (this.show = true) : (this.show = false);
     },
 
@@ -734,10 +783,19 @@ export default {
       }, 18);
     },
 
-    loginBtn(){
+    // 登录切换
+    loginBtn() {
       this.login = false;
-    }
+    },
 
+    // 遮罩层
+    shadeBtn() {
+      this.shadeShow = true;
+    },
+    
+    closeShow() {
+      this.shadeShow = false;
+    }
   }
 };
 </script>
@@ -1458,5 +1516,86 @@ export default {
   opacity: 0;
 }
 
-/* 登录切换 */
+/* 遮罩层 */
+.shadeShow-lj {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0, 0.58);
+  z-index: 999;
+}
+
+.shadeShow-sanjiaodiv-lj {
+  height: 42px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.shadeShow-sanjiao-lj {
+  width: 10px;
+  height: 10px;
+  background: #e5e5e5;
+  transform: rotate(45deg);
+  margin-top: 37px;
+  margin-right: 18px;
+}
+
+.shadeShow-top-lj {
+  height: 33px;
+  background: #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 9px;
+  padding-right: 15px;
+  align-items: center;
+}
+
+.shadeShow-top-lj span {
+  color: #000;
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+.shadeShow-top-lj img {
+  width: 15px;
+  height: 15px;
+}
+
+.shadeShow-bottom-lj {
+  height: 214px;
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.shadeShow-bottom-ul-lj {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.shadeShow-bottom-ul-lj img {
+  width: 30px;
+  height: 30px;
+}
+
+.shadeShow-bottom-ul-lj li {
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.shadeShow-bottom-ul-li-lj {
+  flex-grow: 1;
+  flex-shrink: 1;
+  border-left: 1px solid #e5e5e5;
+}
 </style>
