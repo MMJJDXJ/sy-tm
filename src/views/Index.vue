@@ -174,16 +174,16 @@
 
     <!-- 猜老子喜欢 -->
     <p class="guess-i-like-lj">猜你喜欢</p>
-    <ul class="guessLike-lj">
+    <ul @click="productBtn" class="guessLike-lj">
       <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
-          <img src="../images/guessLikeOne-lj.png" alt />
+          <img src="../images/swiper-one.jpg" alt />
         </div>
         <div class="guessLike-li1-text1-lj">
           <span>mese/美多丝</span>
         </div>
         <div class="guessLike-li1-text2-lj">
-          <span>护发安瓶干枯毛躁烫后护卷发精华</span>
+          <span>维达卷纸至有分量3层180克10卷卫生纸巾厕纸有芯卷纸新旧混发</span>
         </div>
         <div class="guessLike-li1-text3-lj">
           <div class="guessLike-li1-tuihuo-lj">
@@ -194,7 +194,7 @@
         <div class="guessLike-li1-price-lj">
           <div class="guessLike-li1-price1-lj">
             <span>￥</span>
-            <span>109</span>
+            <span>25.9</span>
           </div>
           <div class="guessLike-li1-price2-lj">
             <span>看相似</span>
@@ -207,7 +207,7 @@
     </ul>
 
     <!-- Two -->
-    <ul class="guessLike-lj">
+    <ul @click="productBtn2" class="guessLike-lj">
       <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeTwoLeft-lj.png" alt />
@@ -263,7 +263,7 @@
     </ul>
 
     <!-- Three -->
-    <ul class="guessLike-lj">
+    <ul @click="productBtn3" class="guessLike-lj">
       <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeThreeLeft-lj.png" alt />
@@ -656,7 +656,7 @@
 
     <!-- 甘霖娘鸡掰 -->
     <button @click="cartBtn">购物车router</button>
-    <button @click="productBtn">商品详情router</button>
+    <button >商品详情router</button>
   </div>
 </template>
 
@@ -686,6 +686,12 @@ export default {
     },
     productBtn() {
       this.$router.push("productPath");
+    },
+    productBtn2() {
+      this.$router.push("productPath2");
+    },
+    productBtn3() {
+      this.$router.push("productPath3");
     },
     classifyBtn() {
       this.$router.push("classifyPath");
