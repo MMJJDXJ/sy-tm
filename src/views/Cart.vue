@@ -455,7 +455,8 @@ input[type="checkbox"]:checked {
 }
 
 .youlike-b {
-  width: 202px;
+  width: 180px;
+  margin-right: 4px;
 }
 
 .youlike-a {
@@ -480,15 +481,17 @@ input[type="checkbox"]:checked {
 }
 
 .youlike-content {
-  width: 180px;
+  width: 170px;
   height: 280px;
   border-radius: 8px;
-  margin: 12px;
+  margin-left: 8px;
+  margin-top: 10px;
+
   background-color: rgb(255, 255, 255);
 }
 
 .youlike-content-img img {
-  width: 180px;
+  width: 170px;
   height: 180px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
@@ -511,6 +514,7 @@ input[type="checkbox"]:checked {
 
 .youlike-text {
   font-size: 14px;
+  margin: 8px;
 }
 
 /* 底部计算部分 */
@@ -672,7 +676,6 @@ input[type="checkbox"]:checked {
   flex-direction: row;
   border-bottom: 20px solid rgb(238, 238, 238);
   justify-content: space-between;
-  flex: 1;
   position: relative;
 }
 
