@@ -1,6 +1,5 @@
 <template>
   <div class="productRouter">
-    <!-- <div class="template"> -->
     <!-- 商品 评价 详情 -->
     <div class="top-table-zy">
       <div class="return-zy">
@@ -20,9 +19,6 @@
       </div>
     </div>
 
-    <!-- middle -->
-    <!-- <div class="swiper-div-zy">
-    <div class="swiper-img-zy">-->
     <!-- 中间的body -->
     <div class="middle-body-zy">
       <!-- 轮播图 -->
@@ -46,7 +42,23 @@
           </template>
         </van-swipe>
       </div>
+      <br />
+      <br />
+      <br />
 
+      <table>
+        <tr>
+          <td>
+            <span style="font-size:18px;color:#FF0036">¥</span>
+          </td>
+          <td>
+            <span style="font-size:24px;color:#FF0036">25.9</span>
+          </td>
+          <td>
+            <div class="price-zy">超市推荐</div>
+          </td>
+        </tr>
+      </table>
       <!-- 标题 -->
       <div class="middle-span-zy">维达卷纸至有分量3层180克10卷卫生纸巾厕纸有芯卷纸新旧混发</div>
       <table class="middle-table-zy">
@@ -105,7 +117,7 @@
         </tr>
       </table>
       <!-- 服务 -->
-       <table class="middle-table4-zy">
+      <table class="middle-table4-zy">
         <tr>
           <td style="font-size: 12px;color: #999999;">服务</td>
           <td style="font-size: 12px;">假一赔四</td>
@@ -115,12 +127,14 @@
           <td style="font-size: 12px;">一站式购齐</td>
           <td>.</td>
           <td style="font-size: 12px;">破损包退</td>
-          <td class="td2-zy">      <div style="color: #999999;" class="right-click2-zy">
-        <img src="../images/clickright.png" alt />
-      </div></td>
+          <td class="td2-zy">
+            <div style="color: #999999;" class="right-click2-zy">
+              <img src="../images/clickright.png" alt />
+            </div>
+          </td>
         </tr>
       </table>
-      <div class="line-zy"></div> 
+      <div class="line-zy"></div>
 
       <!-- 参数 -->
       <table class="middle-table5-zy">
@@ -135,23 +149,21 @@
       </div>
       <div class="line-zy"></div>
       <!-- 商品评价 -->
-      
-        <table class="pj-table-zy">
-          <tr>
-            <td style=" font-size: 14px; color: #666666;">商品评价（39920）</td>
-            <td>
-              <div style=" font-size: 13px;" class="pj-table-div2-zy">查看全部</div>
 
-            </td>
+      <table class="pj-table-zy">
+        <tr>
+          <td style=" font-size: 14px; color: #666666;">商品评价（39920）</td>
+          <td>
+            <div style=" font-size: 13px;" class="pj-table-div2-zy">查看全部</div>
+          </td>
 
-            <td class="pj-table-td3-zy">
-              <div style="width: 25px;">
-                <img src="../images/checkall.png" alt class="checkallimg-zy" />
-              </div>
-            </td>
-          </tr>
-        </table>
-      
+          <td class="pj-table-td3-zy">
+            <div style="width: 25px;">
+              <img src="../images/checkall.png" alt class="checkallimg-zy" />
+            </div>
+          </td>
+        </tr>
+      </table>
 
       <!-- 物流快 ... -->
       <table class="wl-table-zy">
@@ -169,8 +181,7 @@
           <td>
             <div class="wl-table-div2-zy">材质一般(2)</div>
           </td>
-          <td class="wl-table-div0-zy">
-          </td>
+          <td class="wl-table-div0-zy"></td>
         </tr>
       </table>
 
@@ -192,20 +203,20 @@
       <p class="long-line-zy"></p>
 
       <!-- 问大家 -->
-        <table class="pj-table-zy">
-          <tr>
-            <td style=" font-size: 14px; color: #666666;">问大家（5）</td>
-            <td>
-              <div style=" font-size: 13px;" class="pj-table-div2-zy">打开APP查看全部</div>
-            </td>
-            <td class="pj-table-td3-zy">
-              <div style="width: 25px;">
-                <img src="../images/checkall.png" alt class="checkallimg-zy" />
-              </div>
-            </td>
-          </tr>
-        </table>
-      
+      <table class="pj-table-zy">
+        <tr>
+          <td style=" font-size: 14px; color: #666666;">问大家（5）</td>
+          <td>
+            <div style=" font-size: 13px;" class="pj-table-div2-zy">打开APP查看全部</div>
+          </td>
+          <td class="pj-table-td3-zy">
+            <div style="width: 25px;">
+              <img src="../images/checkall.png" alt class="checkallimg-zy" />
+            </div>
+          </td>
+        </tr>
+      </table>
+
       <table class="pj-table-zy">
         <tr>
           <td style=" font-size: 12px; color: #051B28;">
@@ -242,8 +253,7 @@
         </div>
         <div class="shoptext-zy">
           <div>天猫超市</div>
-          <div style="height:30px;border:1px solid transparent;margin-top:6px">
-          </div>
+          <div style="height:30px;border:1px solid transparent;margin-top:6px"></div>
         </div>
       </div>
 
@@ -282,35 +292,43 @@
           <td></td>
         </tr>
       </table>
-<!-- 详情 -->
-<div class="xq-box-zy">
-      <table class="xq-div-zy">
+      <!-- 详情 -->
+      <div class="xq-box-zy">
+        <table class="xq-div-zy">
+          <tr>
+            <td>
+              <div class="xq-line-zy"></div>
+            </td>
+            <td style="font-size: 12px;color: #999999;">详情</td>
+            <td>
+              <div class="xq-line-zy"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <br />
+      <div class="double-zy">"加倍柔韧厚实，足量足分更耐用"</div>
+
+      <div class="line-beforeimg-zy"></div>
+
+      <table>
         <tr>
-          <td >
-            <div class="xq-line-zy"></div>
-          </td>
-          <td style="font-size: 12px;color: #999999;">详情</td>
-          <td>
-            <div class="xq-line-zy"></div>
-          </td>
+          <img src="../images/middle-wd.jpg" alt class="myendimg-zy" />
+        </tr>
+        <tr>
+          <img src="../images/babyimg.jpg" alt class="one-myendimg-zy" />
+        </tr>
+        <tr>
+          <img src="../images/babyimg2.jpg" alt class="one-myendimg-zy" />
+        </tr>
+        <tr>
+          <img src="../images/babyimg3.jpg" alt class="one-myendimg-zy" />
+        </tr>
+        <tr>
+          <img src="../images/babyimg4.jpg" alt class="one-myendimg-zy" />
         </tr>
       </table>
-</div><br>
-
-<div class="double-zy">
-  "加倍柔韧厚实，足量足分更耐用"
-</div>
-
-<div class="line-beforeimg-zy"></div>
-
-<table>
-  <!-- <tr><img src="../images/middle-wd.jpg" alt="" class="myendimg-zy"></tr> -->
-  <tr><img src="../images/babyimg.jpg" alt="" class="one-myendimg-zy"></tr>
-  <tr><img src="../images/babyimg2.jpg" alt="" class="one-myendimg-zy"></tr>
-  <tr><img src="../images/babyimg3.jpg" alt="" class="one-myendimg-zy"></tr>
-  <tr><img src="../images/babyimg4.jpg" alt="" class="one-myendimg-zy"></tr>
-</table>
-
     </div>
 
     <!-- 底部 -->
@@ -332,13 +350,61 @@
 
         <td class="end-table-td3-zy">
           <div class="storediv3">
-            <p>加入购物车</p>
+            <p @click="addCart()">加入购物车</p>
           </div>
         </td>
       </tr>
     </table>
+
+    <!-- 遮罩层 -->
+    <div class="shadow" v-show="newShadow">
+      <div class="spaceShadow"></div>
+
+      <div class="whitePart-zy">
+        <img src="../images/shadowimg.jpg" alt class="shadowimg-zy" />
+        <div class="shadowText-zy">
+          <span style="font-size:15px;color:#FF0036">¥25.9</span>
+          <br />
+          <span>库存286件</span>
+        </div>
+
+        <img src="../images/close-zy.png" alt class="cancelBtn-zy" @click="cancelBtn" />
+
+        <div class="shadowline-zy"></div>
+        <p class="shadow-p-zy">配送区域(配送地可能会影响库存)</p>
+
+        <table style="margin-left: 10px;">
+          <tr>
+            <td>
+              <img src="../images/map-zy.png" alt />
+            </td>
+            <td style="font-size: 12px;">苏州市</td>
+            <td style="font-size: 12px;">沧浪区</td>
+            <td></td>
+          </tr>
+        </table>
+
+        <p style="font-size: 12px;margin-left: 10px;margin-top: 10px;">23:00前付款，预计6月23日送达</p>
+        <div class="shadowline-zy"></div>
+
+        <table style="font-size: 13px;margin-left: 10px;margin-top: 10px;">
+          <tr >
+            <td style="width: 280px;">购买数量</td>
+            <td>
+              
+              <span >-</span>
+              1
+              <span >+</span>
+            </td>
+          </tr>
+        </table>
+
+        <div class="shadowline-zy"></div>
+      </div>
+      <div class="sure—zy">确定</div>
+    </div>
   </div>
-  <!-- </div> -->
+
 </template>
 
 
@@ -346,26 +412,41 @@
 export default {
   data() {
     return {
-      current: 0
+      current: 0,
+      // 遮罩层默认不可见
+      newShadow: false
     };
   },
 
   methods: {
     productBack() {
       this.$router.go(-1);
+
+      this.newShadow = false;
     },
 
     onChange(index) {
       this.current = index;
       console.log(this.currentex);
+
+      this.newShadow = false;
+    },
+
+    addCart() {
+      // alert("llllll");
+      // 遮罩层可见
+      this.newShadow = true;
+    },
+
+    //遮罩层-取消
+    cancelBtn() {
+      this.newShadow = false;
     }
   }
 };
 </script>
 
-
-
-<style >
+<style scoped>
 .productRouter {
   position: fixed;
   top: 0;
@@ -382,8 +463,8 @@ export default {
 }
 
 .top-table-zy {
-  height: 45px;
-  /* border: 1px solid red; */
+  height: 105px;
+  width: 100%;
   display: flex;
   display: -webkit-flex;
   align-items: center;
@@ -437,7 +518,9 @@ export default {
   bottom: 5px;
   padding: 2px 5px;
   font-size: 12px;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(100, 100, 100, 0.6);
+  color: white;
+  border-radius: 8px;
 }
 .myswiperdiv-zy {
   top: 300px;
@@ -447,11 +530,11 @@ export default {
 }
 .my-swiper-zy {
   width: 100%;
-  height: 300px;
+  height: 340px;
 }
 .img-swiper {
   width: 100%;
-  height: 300px;
+  height: 340px;
 }
 .middle-span-zy {
   color: #051b28;
@@ -564,7 +647,6 @@ export default {
 }
 
 .right-click2-zy {
-
   width: 10px;
   /* flex: 1 0 30px; */
   /* border: 1px solid green; */
@@ -636,6 +718,7 @@ export default {
   overflow: auto;
   align-items: stretch;
   /* flex: 1; */
+  /* max-width: 100%; */
 }
 
 /* 商品评价 */
@@ -798,7 +881,7 @@ export default {
 }
 
 /* ------详情----- */
-.xq-div-zy{
+.xq-div-zy {
   width: 60%;
   margin-left: 30px;
   text-align: center;
@@ -818,35 +901,114 @@ export default {
   margin: 0 auto;
 }
 
-.xq-box-zy{
-  border:1px solid transparent; 
+.xq-box-zy {
+  border: 1px solid transparent;
   height: 33px;
   background-color: #eee;
 }
 
-.double-zy{
+.double-zy {
   width: 100%;
   height: 48px;
-  color:#051B28;
+  color: #051b28;
   font-size: 16px;
   text-align: center;
 }
 
-.line-beforeimg-zy{
+.line-beforeimg-zy {
   width: 100%;
   height: 18px;
   background-color: #eee;
 }
 
-.myendimg-zy{
-  margin: 0 auto;
-  width: 484px;
+.myendimg-zy {
+  /* margin: 0 auto; */
+  width: 100%;
   height: 156px;
 }
 
-.one-myendimg-zy{
-  margin: 0 121px;
+.one-myendimg-zy {
+  margin: 0 82px;
+  /* margin: 0 auto; */
+}
 
+.price-zy {
+  color: white;
+  /* border: 1px solid #1b0e0f; */
+  width: 50px;
+  background-color: #fb6878;
+  font-size: 12px;
+}
+
+.shadow {
+  position: fixed;
+  width: 100%;
+  background: rgba(0,0,0,.5);
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.spaceShadow{
+  width: 100%;
+  height: 160px;
+   /* border: 1px solid red; */
+  /* background-color: #eee; */
+}
+
+.shadowimg-zy{
+  margin-top: -50px;
+  width: 100px;
+  height:100px;
+   border: 2px solid white;
+   border-radius: 5px;
+   margin-left: 10px;
+}
+
+.cancelBtn-zy{
+  float: right;
+  margin-right: -230px;
+  margin-top: 10px;
+  width: 20px;
+  height:20px;
+}
+
+.whitePart-zy{
+    background-color: #fff;
+    height:600px;
+}
+
+.sure—zy{
+  color:white;
+  border: 1px solid #f10035;
+  background-color:#f10035;
+  height: 50px;
+  font-size: 15px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.shadowText-zy{
+  font-size: 15px;
+  color:#051b28;
+  margin-top: 10px;
+  float: right;
+  margin-right: 180px;
+}
+
+.shadowline-zy {
+  width: 350px;
+  height: 0.2px;
+  border: 0.2px solid #dad7d7;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.shadow-p-zy {
+  margin-left: 10px;
+  margin-top: 10px;
+  color: #666666;
+  font-size: 13px;
 }
 </style>
 

@@ -19,7 +19,7 @@
           <div class="bottomTable-text-zy">iPhone</div>
         </td>
         <td>
-          <img src="../images/iPhone.jpg" alt class="rightTable-img-zy" />
+          <img src="../images/xiaomi.jpg" alt class="rightTable-img-zy" />
           <div class="bottomTable-text-zy">小米</div>
         </td>
         <td>
@@ -102,7 +102,7 @@
       </tr>
        <tr>
         <td>
-          <img src="../images/iPhone.jpg" alt class="rightTable-img-zy" />
+          <img src="../images/lianx.jpg" alt class="rightTable-img-zy" />
           <div class="bottomTable-text-zy">联想</div>
         </td>
         <td>
@@ -131,7 +131,7 @@ export default {};
   margin-top: -850px;
   width: 80%;
   position: fixed;
-  height: 630px;
+  height: 700px;
   overflow: auto;
 }
 
