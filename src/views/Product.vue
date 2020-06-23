@@ -358,7 +358,7 @@
 
     <!-- 遮罩层 -->
     <div class="shadow" v-show="newShadow">
-      <div class="spaceShadow"></div>
+      <div class="spaceShadow" @click="cancelBtn"></div>
 
       <div class="whitePart-zy">
         <img src="../images/shadowimg.jpg" alt class="shadowimg-zy" />
@@ -388,13 +388,12 @@
         <div class="shadowline-zy"></div>
 
         <table style="font-size: 13px;margin-left: 10px;margin-top: 10px;">
-          <tr >
+          <tr>
             <td style="width: 280px;">购买数量</td>
             <td>
-              
-              <span >-</span>
+              <span>-</span>
               1
-              <span >+</span>
+              <span>+</span>
             </td>
           </tr>
         </table>
@@ -403,10 +402,38 @@
       </div>
       <div class="sure—zy">确定</div>
     </div>
+
+    <!-- 要关闭的遮罩层2 -->
+    <div class="shadow2" v-show="newShadow2">
+      <div class="spaceShadow2" @click="cancelBtn2">
+        <table>
+          <tr>
+            <td>
+              <img src="../images/close2.png" alt @click="cancelBtn2" class="close2-zy" />
+            </td>
+            <td>
+              <img src="../images/tianmao-zd.png" alt class="shadowimg2-zy" />
+            </td>
+
+            <td>
+              <p style="font-size:14px;color:#333333">送最高99元私房红包</p>
+              <p style="font-size:12px;color:#666666">天猫App下单享</p>
+            </td>
+
+            <td style="width:50px"></td>
+            <td>
+              <div class="hb-zy">享红包</div>
+            </td>
+          </tr>
+        </table>
+        <div class="closediv-zy"></div>
+      </div>
+      <!-- <div class="whitePart-zy">
+      </div>-->
+    </div>
+
   </div>
-
 </template>
-
 
 <script>
 export default {
@@ -414,7 +441,9 @@ export default {
     return {
       current: 0,
       // 遮罩层默认不可见
-      newShadow: false
+      newShadow: false,
+
+      newShadow2: true
     };
   },
 
@@ -441,6 +470,11 @@ export default {
     //遮罩层-取消
     cancelBtn() {
       this.newShadow = false;
+    },
+
+    //遮罩层-取消2
+    cancelBtn2() {
+      this.newShadow2 = false;
     }
   }
 };
@@ -943,54 +977,91 @@ export default {
 .shadow {
   position: fixed;
   width: 100%;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
   bottom: 0;
 }
+.shadow2 {
+  position: absolute;
+  width: 100%;
+  /* background: rgba(0, 0, 0, 0.5); */
+  /* top: 0;
+  left: 0;
+  bottom: 0; */
+   height: 50px;
+}
 
-.spaceShadow{
+.spaceShadow {
   width: 100%;
   height: 160px;
-   /* border: 1px solid red; */
+  /* border: 1px solid red; */
   /* background-color: #eee; */
 }
 
-.shadowimg-zy{
-  margin-top: -50px;
-  width: 100px;
-  height:100px;
-   border: 2px solid white;
-   border-radius: 5px;
-   margin-left: 10px;
+.spaceShadow2 {
+  width: 100%;
+  height: 40px;
+  background: white;
+  /* border: 1px solid red; */
+  /* background-color: #eee; */
 }
 
-.cancelBtn-zy{
+.shadowimg-zy {
+  margin-top: -50px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.shadowimg2-zy {
+  /* margin-top: -20px; */
+  width: 35px;
+  height: 35px;
+  /* border: 2px solid white; */
+  border-radius: 5px;
+  margin-left: 20px;
+  /* margin-top: -20px; */
+}
+
+.cancelBtn-zy {
   float: right;
   margin-right: -230px;
   margin-top: 10px;
   width: 20px;
-  height:20px;
+  height: 20px;
 }
 
-.whitePart-zy{
-    background-color: #fff;
-    height:600px;
+.close2-zy {
+  width: 16px;
+  height: 16px;
+  margin-top: -10px;
+  margin-left: 20px;
 }
 
-.sure—zy{
-  color:white;
+.closediv-zy {
+}
+
+.whitePart-zy {
+  background-color: #fff;
+  height: 600px;
+}
+
+.sure—zy {
+  color: white;
   border: 1px solid #f10035;
-  background-color:#f10035;
+  background-color: #f10035;
   height: 50px;
   font-size: 15px;
   text-align: center;
   line-height: 50px;
 }
 
-.shadowText-zy{
+.shadowText-zy {
   font-size: 15px;
-  color:#051b28;
+  color: #051b28;
   margin-top: 10px;
   float: right;
   margin-right: 180px;
@@ -1009,6 +1080,17 @@ export default {
   margin-top: 10px;
   color: #666666;
   font-size: 13px;
+}
+
+.hb-zy {
+  border: 1px solid #f10035;
+  background: #f10035;
+  color: white;
+  border-radius: 18px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
 }
 </style>
 
