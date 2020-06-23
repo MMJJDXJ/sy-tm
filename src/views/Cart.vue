@@ -319,6 +319,7 @@ export default {
   methods: {
     cartBack() {
       this.$router.go(-1);
+      this.$destroy(true);
     },
 
     // 商品数量加减

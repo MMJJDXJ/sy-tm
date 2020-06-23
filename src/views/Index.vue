@@ -15,7 +15,11 @@
           <img src="../images/TMALL-lj.png" alt />
         </div>
 
-        <div @click="enterBtn" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}">登录</div>
+        <!-- 登录切换 -->
+        <div @click="loginBtn">
+          <div v-if="login==true" @click="enterBtn" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}">登录</div>
+          <div v-if="login==false" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}"><img src="../images/user-lj.png" alt=""></div>
+        </div>
       </div>
 
       <div :class="{'tm-search-lj':isSearch , 'tm-search-lj2':!isSearch}">
@@ -170,16 +174,16 @@
 
     <!-- 猜老子喜欢 -->
     <p class="guess-i-like-lj">猜你喜欢</p>
-    <ul class="guessLike-lj">
+    <ul @click="productBtn" class="guessLike-lj">
       <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
-          <img src="../images/guessLikeOne-lj.png" alt />
+          <img src="../images/swiper-one.jpg" alt />
         </div>
         <div class="guessLike-li1-text1-lj">
           <span>mese/美多丝</span>
         </div>
         <div class="guessLike-li1-text2-lj">
-          <span>护发安瓶干枯毛躁烫后护卷发精华</span>
+          <span>维达卷纸至有分量3层180克10卷卫生纸巾厕纸有芯卷纸新旧混发</span>
         </div>
         <div class="guessLike-li1-text3-lj">
           <div class="guessLike-li1-tuihuo-lj">
@@ -190,7 +194,7 @@
         <div class="guessLike-li1-price-lj">
           <div class="guessLike-li1-price1-lj">
             <span>￥</span>
-            <span>109</span>
+            <span>25.9</span>
           </div>
           <div class="guessLike-li1-price2-lj">
             <span>看相似</span>
@@ -203,7 +207,7 @@
     </ul>
 
     <!-- Two -->
-    <ul class="guessLike-lj">
+    <ul @click="productBtn2" class="guessLike-lj">
       <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeTwoLeft-lj.png" alt />
@@ -259,7 +263,7 @@
     </ul>
 
     <!-- Three -->
-    <ul class="guessLike-lj">
+    <ul @click="productBtn3" class="guessLike-lj">
       <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeThreeLeft-lj.png" alt />
@@ -652,7 +656,7 @@
 
     <!-- 甘霖娘鸡掰 -->
     <button @click="cartBtn">购物车router</button>
-    <button @click="productBtn">商品详情router</button>
+    <button >商品详情router</button>
   </div>
 </template>
 
@@ -666,7 +670,8 @@ export default {
       isEnter: false,
       isTmall: false,
       isSearch: false,
-      isInput: false
+      isInput: false,
+      login: true
     };
   },
 
@@ -682,6 +687,12 @@ export default {
     productBtn() {
       this.$router.push("productPath");
     },
+    productBtn2() {
+      this.$router.push("productPath2");
+    },
+    productBtn3() {
+      this.$router.push("productPath3");
+    },
     classifyBtn() {
       this.$router.push("classifyPath");
     },
@@ -694,7 +705,8 @@ export default {
 
     // 监听滚动条事件
     handleScroll() {
-      let scrollTop = document.documentElement.scrollTop;
+      let scrollTop =
+        document.documentElement.scrollTop;
       if (scrollTop > 18) {
         this.isThreeheng = true;
         this.isEnter = true;
@@ -720,7 +732,12 @@ export default {
           clearInterval(timeTop);
         }
       }, 18);
+    },
+
+    loginBtn(){
+      this.login = false;
     }
+
   }
 };
 </script>
@@ -923,7 +940,7 @@ export default {
 .flashSale-top-lj {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: center;
 }
 
@@ -1087,7 +1104,7 @@ export default {
 .flashSale-bottom-lj {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: center;
   margin-top: 6px;
 }
@@ -1264,7 +1281,7 @@ export default {
   margin: 0 10px 0 12px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .guessLike-li1-lj {
@@ -1440,4 +1457,6 @@ export default {
   transform: translate(0px, 44px);
   opacity: 0;
 }
+
+/* 登录切换 */
 </style>
