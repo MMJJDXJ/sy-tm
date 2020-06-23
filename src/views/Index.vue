@@ -189,7 +189,7 @@
           <img src="../images/swiper-one.jpg" alt />
         </div>
         <div class="guessLike-li1-text1-lj">
-          <span>mese/美多丝</span>
+          <span>维达</span>
         </div>
         <div class="guessLike-li1-text2-lj">
           <span>维达卷纸至有分量3层180克10卷卫生纸巾厕纸有芯卷纸新旧混发</span>
@@ -219,13 +219,13 @@
     <ul class="guessLike-lj">
       <li @click="productBtn2" class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
-          <img src="../images/guessLikeTwoLeft-lj.png" alt />
+          <img src="../images/pro31-zy.jpg" alt />
         </div>
         <div class="guessLike-li1-text1-lj">
-          <span>瑞泓祥</span>
+          <span>比比赞</span>
         </div>
         <div class="guessLike-li1-text2-lj">
-          <span>磨砂五角星耳钉s925纯银小星星手工拉丝颗粒简约耳饰百搭气质女</span>
+          <span>比比赞网红日式小圆饼干海盐味麦芽零食充饥小吃夜宵休闲食品100g</span>
         </div>
         <div class="guessLike-li1-text3-lj">
           <div class="guessLike-li1-tuihuo-lj">
@@ -235,8 +235,8 @@
         </div>
         <div class="guessLike-li1-price-lj">
           <div class="guessLike-li1-price1-lj">
-            <span>￥</span>
-            <span>20</span>
+            <span>¥</span>
+            <span>4.9</span>
           </div>
           <div class="guessLike-li1-price2-lj">
             <span>看相似</span>
@@ -245,13 +245,13 @@
       </li>
       <li @click="productBtn3" class="guessLike-li2-lj">
         <div class="guessLike-li1-img-lj">
-          <img src="../images/guessLikeTwoRight-lj.png" alt />
+          <img src="../images/pro21-zy.jpg" alt />
         </div>
         <div class="guessLike-li1-text1-lj">
-          <span>Nike/耐克</span>
+          <span>妙洁</span>
         </div>
         <div class="guessLike-li1-text2-lj">
-          <span>耐克男鞋2020 air max气垫跑步鞋子</span>
+          <span>妙洁一次性保鲜袋食品袋密实袋 抽取式 小号100只装25cm*17cm</span>
         </div>
         <div class="guessLike-li1-text3-lj">
           <div class="guessLike-li1-tuihuo-lj">
@@ -261,8 +261,8 @@
         </div>
         <div class="guessLike-li1-price-lj">
           <div class="guessLike-li1-price1-lj">
-            <span>￥</span>
-            <span>359</span>
+            <span>¥</span>
+            <span>3.5</span>
           </div>
           <div class="guessLike-li1-price2-lj">
             <span>看相似</span>
