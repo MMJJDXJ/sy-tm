@@ -15,7 +15,11 @@
           <img src="../images/TMALL-lj.png" alt />
         </div>
 
-        <div @click="enterBtn" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}">登录</div>
+        <!-- 登录切换 -->
+        <div @click="loginBtn">
+          <div v-if="login==true" @click="enterBtn" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}">登录</div>
+          <div v-if="login==false" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}"><img src="../images/user-lj.png" alt=""></div>
+        </div>
       </div>
 
       <div :class="{'tm-search-lj':isSearch , 'tm-search-lj2':!isSearch}">
@@ -666,7 +670,8 @@ export default {
       isEnter: false,
       isTmall: false,
       isSearch: false,
-      isInput: false
+      isInput: false,
+      login: true
     };
   },
 
@@ -694,7 +699,8 @@ export default {
 
     // 监听滚动条事件
     handleScroll() {
-      let scrollTop = document.documentElement.scrollTop;
+      let scrollTop =
+        document.documentElement.scrollTop;
       if (scrollTop > 18) {
         this.isThreeheng = true;
         this.isEnter = true;
@@ -720,7 +726,12 @@ export default {
           clearInterval(timeTop);
         }
       }, 18);
+    },
+
+    loginBtn(){
+      this.login = false;
     }
+
   }
 };
 </script>
@@ -923,7 +934,7 @@ export default {
 .flashSale-top-lj {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: center;
 }
 
@@ -1087,7 +1098,7 @@ export default {
 .flashSale-bottom-lj {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: center;
   margin-top: 6px;
 }
@@ -1264,7 +1275,7 @@ export default {
   margin: 0 10px 0 12px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .guessLike-li1-lj {
@@ -1440,4 +1451,6 @@ export default {
   transform: translate(0px, 44px);
   opacity: 0;
 }
+
+/* 登录切换 */
 </style>
