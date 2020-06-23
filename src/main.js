@@ -22,7 +22,6 @@ import { Button } from 'vant';
 Vue.use(Button);
 
 
-
 new Vue({
   router,
   store,
