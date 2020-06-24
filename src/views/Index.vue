@@ -750,7 +750,9 @@ export default {
       console.log(index)
       this.$router.push({
         path:"productPath",
-        query: index
+        query: {
+          num:index
+        }
         });
     },
     // productBtn2() {

@@ -27,16 +27,16 @@
       <div class="myswiperdiv-zy">
         <van-swipe @change="onChange" class="my-swiper-zy">
           <van-swipe-item>
-            <img class="img-swiper" src="../images/swiper-one.jpg" alt />
+            <img class="img-swiper" :src="productList[0].images1" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" src="../images/swiper-two.jpg" alt />
+            <img class="img-swiper" :src="productList[0].images2" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" src="../images/swiper-three.jpg" alt />
+            <img class="img-swiper" :src="productList[0].images3" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" src="../images/swiper-four.jpg" alt />
+            <img class="img-swiper" :src="productList[0].images1" alt />
           </van-swipe-item>
 
           <template #indicator>
@@ -54,7 +54,7 @@
             <span style="font-size:18px;color:#FF0036">¥</span>
           </td>
           <td>
-            <span style="font-size:24px;color:#FF0036">25.9</span>
+            <span style="font-size:24px;color:#FF0036">{{productList[1].price}}</span>
           </td>
           <td>
             <div class="price-zy">超市推荐</div>
@@ -62,7 +62,7 @@
         </tr>
       </table>
       <!-- 标题 -->
-      <div class="middle-span-zy">维达卷纸至有分量3层180克10卷卫生纸巾厕纸有芯卷纸新旧混发</div>
+      <div class="middle-span-zy">{{productList[1].text}}</div>
       <table class="middle-table-zy">
         <tr>
           <td>满88包邮(21kg内)</td>
@@ -318,19 +318,19 @@
 
       <table>
         <tr>
-          <img src="../images/middle-wd.jpg" alt class="myendimg-zy" />
+          <img :src="productList[0].images21" alt class="myendimg-zy" />
         </tr>
         <tr>
-          <img src="../images/babyimg.jpg" alt class="one-myendimg-zy" />
+          <img :src="productList[0].images22" alt class="one-myendimg-zy" />
         </tr>
         <tr>
-          <img src="../images/babyimg2.jpg" alt class="one-myendimg-zy" />
+          <img :src="productList[0].images23" alt class="one-myendimg-zy" />
         </tr>
         <tr>
-          <img src="../images/babyimg3.jpg" alt class="one-myendimg-zy" />
+          <img :src="productList[0].images24" alt class="one-myendimg-zy" />
         </tr>
         <tr>
-          <img src="../images/babyimg4.jpg" alt class="one-myendimg-zy" />
+          <img :src="productList[0].images25" alt class="one-myendimg-zy" />
         </tr>
       </table>
     </div>
@@ -466,8 +466,8 @@ export default {
   },
 
   computed:{
-    orderList1(){
-      return this.$store.state.orderList1
+    productList(){
+      return this.$store.state.productList
     }
   },
 
@@ -501,11 +501,11 @@ export default {
       // 遮罩层可见
       this.newShadow = true;
 
-      this.$store.commit("addCartstore",{
-        price: this.orderList1[0].price,
-        text: this.orderList1[0].text,
-        images: this.orderList1[0].images
-      })
+      // this.$store.commit("addCartstore",{
+      //   price: this.orderList1[0].price,
+      //   text: this.orderList1[0].text,
+      //   images: this.orderList1[0].images
+      // })
     },
     //遮罩层-取消
     cancelBtn() {

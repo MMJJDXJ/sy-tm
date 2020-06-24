@@ -13,7 +13,12 @@ export default new Vuex.Store({
         images3: require("../images/swiper-three.jpg"),
         images4: require("../images/swiper-four.jpg"),
         text:"维达卷纸至有分量3层180克10卷卫生纸巾厕纸有芯卷纸新旧混发",
-        price: 25.9
+        price: 25.9,
+        images21: require("../images/middle-wd.jpg"),
+        images22: require("../images/babyimg.jpg"),
+        images23: require("../images/babyimg2.jpg"),
+        images24: require("../images/babyimg3.jpg"),
+        images25: require("../images/babyimg4.jpg")
       },
 
       {
@@ -22,7 +27,10 @@ export default new Vuex.Store({
         images3: require("../images/pro33-zy.jpg"),
         images4: require("../images/pro34-zy.jpg"),
         text:"比比赞网红日式小圆饼干海盐味麦芽零食充饥小吃夜宵休闲食品100g",
-        price: 4.9
+        price: 4.9,
+        images21: require("../images/pro6-zy.jpg"),
+        images22: require("../images/pro7-zy.jpg"),
+        images23: require("../images/pro8-zy.jpg"),
       },
 
       {
