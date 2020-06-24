@@ -14,9 +14,9 @@ export default new Vuex.Store({
         images2: require("../images/swiper-two.jpg"),
         images3: require("../images/swiper-three.jpg"),
         images4: require("../images/swiper-four.jpg"),
-        text: "维达卷纸至有分量3层180克10卷卫生纸巾厕纸有芯卷纸新旧混发",
+        text:"维达卷纸至有分量3层180克10卷卫生纸巾厕纸有芯卷纸新旧混发",
         price: 25,
-        num: 1,
+        num:1,
         supermarket: "天猫超市",
         images21: require("../images/xqimg0.jpg"),
         images22: require("../images/xqimg1.jpg"),
@@ -30,9 +30,9 @@ export default new Vuex.Store({
         images2: require("../images/pro32-zy.jpg"),
         images3: require("../images/pro33-zy.jpg"),
         images4: require("../images/pro34-zy.jpg"),
-        text: "比比赞网红日式小圆饼干海盐味麦芽零食充饥小吃夜宵休闲食品100g",
+        text:"比比赞网红日式小圆饼干海盐味麦芽零食充饥小吃夜宵休闲食品100g",
         price: 5,
-        num: 1,
+        num:1,
         supermarket: "天猫超市",
         images21: require("../images/progif.gif"),
         images22: require("../images/pro6-zy.jpg"),
@@ -44,9 +44,9 @@ export default new Vuex.Store({
         images2: require("../images/pro22-zy.jpg"),
         images3: require("../images/pro23-zy.jpg"),
         images4: require("../images/pro24-zy.jpg"),
-        text: "妙洁一次性保鲜袋食品袋密实袋 抽取式 小号100只装25cm*17cm",
+        text:"妙洁一次性保鲜袋食品袋密实袋 抽取式 小号100只装25cm*17cm",
         price: 4,
-        num: 1,
+        num:1,
         supermarket: "天猫超市",
         images21: require("../images/pro66.gif"),
         images22: require("../images/pro77.gif"),
@@ -267,13 +267,13 @@ export default new Vuex.Store({
 
   },
   mutations: {
-    addCartstore(state, payload) {
+    addCartstore(state,payload){
       state.cartList.push({
         price: payload.price,
         text: payload.text,
         images: payload.images,
         num: payload.num,
-        supermarket: payload.supermarket
+        supermarket: payload.supermarket,
       })
     },
 

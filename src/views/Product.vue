@@ -11,15 +11,15 @@
         <img src="../images/searchimg.png" alt style="width: 24px;height: 24px;" />
       </div>
       <!-- 商品 评价 详情 -->
-        <div class="toptext-zy" @click="zyselect(1)" :class="{myActive:itemIndex==1}">商品</div>
-        <div class="toptext-zy" @click="zyselect(2)" :class="{myActive:itemIndex==2}">评价</div>
-        <div class="toptext-zy" @click="zyselect(3)" :class="{myActive:itemIndex==3}">详情</div>
+      <div class="toptext-zy" @click="zyselect(1)" :class="{myActive:itemIndex==1}">商品</div>
+      <div class="toptext-zy" @click="zyselect(2)" :class="{myActive:itemIndex==2}">评价</div>
+      <div class="toptext-zy" @click="zyselect(3)" :class="{myActive:itemIndex==3}">详情</div>
       <!-- 分类 -->
       <div class="edit-zy">
         <img src="../images/edit-zy.png" alt />
       </div>
       <!-- 购物车 -->
-      <div class="shoppingcar-zy">
+      <div @click="cartBtn" class="shoppingcar-zy">
         <img src="../images/shoppingcar.png" alt />
       </div>
     </div>
@@ -71,7 +71,7 @@
               </div>
             </td>
           </tr>
-        </table> -->
+        </table>-->
       </div>
       <br />
       <br />
@@ -338,9 +338,6 @@
         </table>
       </div>
 
-      <!-- <br />
-      <div class="double-zy">"加倍柔韧厚实，足量足分更耐用"</div>-->
-
       <!--  -->
       <div class="line-beforeimg-zy"></div>
 
@@ -425,10 +422,6 @@
             <td>
               <div class="numdiv" @click="proPlus(page)">+</div>
             </td>
-
-            <!-- <span class="minus" @click="minus()">-</span>
-              <span>{{item.num}}</span>
-            <span >+</span>-->
           </tr>
         </table>
 
@@ -437,32 +430,14 @@
       <div class="sure—zy" @click="addCartlist(page)">确定</div>
     </div>
 
-    <!-- 要关闭的遮罩层2 -->
-    <!-- <div class="shadow2" v-show="newShadow2">
-      <div class="spaceShadow2" @click="cancelBtn2">
-        <table>
-          <tr>
-            <td>
-              <img src="../images/close2.png" alt @click="cancelBtn2" class="close2-zy" />
-            </td>
-            <td>
-              <img src="../images/tianmao-zd.png" alt class="shadowimg2-zy" />
-            </td>
-
-            <td>
-              <p style="font-size:14px;color:#333333">送最高99元私房红包</p>
-              <p style="font-size:12px;color:#666666">天猫App下单享</p>
-            </td>
-
-            <td style="width:50px"></td>
-            <td>
-              <div class="hb-zy">享红包</div>
-            </td>
-          </tr>
-        </table>
-        <div class="closediv-zy"></div>
+    <!-- 加入购物车成功遮罩层2 -->
+    <div class="shadow2" v-show="newShadow2">
+      <div class="shadow2-div">
+        <!-- <button  @click="cancelBtn2">X</button> -->
+        <img src="../images/cancel4-zy.png" alt @click="cancelBtn2" class="close2-zy" />
+        <div class="shadow2-text2">加入成功！</div>
       </div>
-    </div>-->
+    </div>
   </div>
 </template>
 
@@ -474,94 +449,106 @@ export default {
       current: 0,
       // 遮罩层默认不可见
       newShadow: false,
-      // newShadow2: true,
+      newShadow2: false,
       itemIndex: 1,
       showTop: true
-
-      // 购买数量
-      // num: 1,
     };
   },
+
   computed: {
     productList() {
       return this.$store.state.productList;
     },
-    cartList(){
+    cartList() {
       return this.$store.state.cartList;
-
     }
   },
+
   created() {
     window.addEventListener("scroll", this.handleScroll, true);
     this.page = this.$route.query.num;
-    // console.log(this.page)
   },
 
   methods: {
     // 定位
     zyselect(index) {
       this.itemIndex = index;
+
       if (index == 1) {
         document.querySelector(".myswiperdiv-zy").scrollIntoView(true);
-        // console.log(88);
       }
+
       if (index == 2) {
         document.querySelector(".pj-table-zy").scrollIntoView(true);
       }
+
       if (index == 3) {
         document.querySelector(".xq-box-zy").scrollIntoView(true);
       }
     },
+
+    cartBtn() {
+      this.$router.push("cartPath");
+    },
+
     productBack() {
       this.$router.go(-1);
       this.$destroy(true);
       this.newShadow = false;
     },
+
     onChange(index) {
       this.current = index;
-      // console.log(this.currentex);
-
       this.newShadow = false;
     },
-    addCart() {
-      // alert("llllll");
-      // 遮罩层可见
-      this.newShadow = true;
 
-      // this.$store.commit("addCartstore",{
-      //   price: this.orderList1[0].price,
-      //   text: this.orderList1[0].text,
-      //   images: this.orderList1[0].images
-      // })
+    addCart() {
+      this.newShadow = true;
     },
+
     //遮罩层-取消
     cancelBtn() {
       this.newShadow = false;
     },
-    //遮罩层-取消2
-    // cancelBtn2() {
-    //   this.newShadow2 = false;
-    // }
+
     addCartlist(page){
       this.$store.commit("addCartstore",{
-        price:this.productList[page].price,
+        price: this.productList[page].price,
         text: this.productList[page].text,
         images:this.productList[page].images1,
         num:this.productList[page].num,
         supermarket:this.productList[page].supermarket
       })
-      console.log(this.cartList)
+    },
+      // console.log(this.cartList);
+    //遮罩层-取消2
+    cancelBtn2() {
+      this.newShadow2 = false;
+    },
+
+    // 确定
+    addCartlist(page) {
+      this.$store.commit("addCartstore", {
+        price: this.productList[page].price,
+        text: this.productList[page].text,
+        images: this.productList[page].images1,
+        num: this.productList[page].num
+      });
+      // console.log(this.cartList);
+      // alert("添加成功！");
+      this.newShadow = false;
+      this.newShadow2 = true;
     },
     proMinus(page) {
-      if (this.productList[page].num>0) {
+      if (this.productList[page].num > 0) {
         this.productList[page].num--;
-        if(this.productList[page].num ==0){
-          this.productList[page].num =1;
+        if (this.productList[page].num == 0) {
+          this.productList[page].num = 1;
         }
-      } 
+      }
     },
     proPlus(page) {
-     this.productList[page].num++;
+      this.productList[page].num++;
     }
   }
 };
@@ -1104,13 +1091,30 @@ export default {
   transition: all 3s;
 }
 .shadow2 {
+  background: rgba(0, 0, 0, 0.5);
   position: absolute;
   width: 100%;
+  color: #f10035;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
   /* background: rgba(0, 0, 0, 0.5); */
-  /* top: 0;
+  top: 0;
   left: 0;
-  bottom: 0; */
-  height: 50px;
+  /* bottom: 0; */
+  height: 100%;
+}
+
+.shadow2-div {
+  /* border: 1px solid rgb(237, 237, 243); */
+  width: 90%;
+  height: 200px;
+  text-align: center;
+  line-height: 100px;
+  margin-top: 200px;
+  margin-left: 18px;
+  border-radius: 18px;
+  background-color: #eee;
 }
 
 .spaceShadow {
@@ -1124,7 +1128,7 @@ export default {
 .spaceShadow2 {
   width: 100%;
   height: 40px;
-  background: white;
+  background: #f10035;
   /* border: 1px solid red; */
   /* background-color: #eee; */
 }
@@ -1148,6 +1152,10 @@ export default {
   /* margin-top: -20px; */
 }
 
+.shadow2-text2 {
+  margin-top: -50px;
+}
+
 .cancelBtn-zy {
   float: right;
   margin-right: -230px;
@@ -1158,10 +1166,10 @@ export default {
 }
 
 .close2-zy {
-  width: 16px;
-  height: 16px;
-  margin-top: -10px;
-  margin-left: 20px;
+  width: 34px;
+  height: 34px;
+  margin-top: -15px;
+  margin-left: 240px;
 }
 
 .whitePart-zy {
