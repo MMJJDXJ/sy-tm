@@ -1,32 +1,30 @@
 <template>
   <div class="cartRouter">
-    {{cartList}}
-
     <div class="shop-cart">
       <div class="top">
         <div>
           <img src="../images/arrow-left-zd.png" alt @click="cartBack" />
         </div>
         <div class="shopping-car">
-          <span>购物车({{carList.length}})</span>
+          <span>购物车({{cartList.length}})</span>
         </div>
         <div></div>
       </div>
     </div>
 
-    <div v-for="(item,index) in carList" :key="index">
+    <div v-for="(item,index) in cartList" :key="index">
       <div class="car-top">
         <div class="car-top-left">
           <label class="checkBox">
             <input
               type="checkbox"
-              :id="item.shopName"
+              :id="item.supermarket"
               :checked="item.checked"
               @change="checkMe(index)"
             />
           </label>
           <img src="../images/tianmao-zd.png" alt class="tm-logo" />
-          <div class="shop-name">{{item.shopName}}</div>
+          <div class="shop-name">{{item.supermarket}}</div>
           <img src="../images/arrow-right-zd.png" alt class="arrow-right" />
         </div>
         <div class="edit" @click="edit(item,index)" v-if="item.show">编辑</div>
@@ -36,7 +34,7 @@
         <div class="car-bottom-l">
           <input
             type="checkbox"
-            :id="item.shopName"
+            :id="item.supermarket"
             :checked="item.checked"
             @change="checkMe(index)"
           />
@@ -47,11 +45,11 @@
           <div class="car-bottom-r">
             <div class="car-bottom-r-b">
               <div>
-                <img :src="item.img" alt class="image" />
+                <img :src="item.images" alt class="image" />
               </div>
               <div>
                 <div class="disc">
-                  <span>{{item.disc}}</span>
+                  <span>{{item.text}}</span>
                 </div>
 
                 <div class="baojia">15天保价</div>
@@ -87,8 +85,8 @@
       <div class="overlay2-content">
         <div class="overlay2-content-sure">确定要删除这个宝贝吗?</div>
         <div class="cancel-sure">
-          <div class="overlay2-content-cancel" @click="cancel2">取消</div>
-          <div class="overlay2-content-cancel" @click="sure">确定</div>
+          <div class="overlay2-content-cancel" @click="cancel2(index)">取消</div>
+          <div class="overlay2-content-cancel" @click="sure(index)">确定</div>
         </div>
       </div>
     </div>
@@ -96,7 +94,7 @@
     <!-- 底部计算部分 -->
     <div class="count-wrap">
       <div class="count-l">
-        <input type="checkbox" name="checkall" id="checkall2" :checked="isCheck" @change="allCheck" />
+        <input type="checkbox" name="checkall" id="checkall2" :checked="isCheck" @change="allCheck(index)" />
         <label for="checkall2"></label>
         <span>全选</span>
       </div>
@@ -111,6 +109,8 @@
       </div>
     </div>
 
+    <!-- {{cartList}} -->
+
     <!-- 你可能还喜欢 -->
     <div class="youlike-wrap">
       <div class="youlike">
@@ -124,7 +124,7 @@
           <div class="youlike-content-img">
             <img :src="item2.img" />
           </div>
-          <div class="youlike-text">{{item2.disc}}</div>
+          <div class="youlike-text">{{item2.text}}</div>
           <div class="youlike-price-people">
             <span class="youlike-price">¥ {{item2.price}}</span>
             <span class="youlike-people">{{item2.people}}人已购买</span>
@@ -142,30 +142,35 @@ export default {
   computed: {
     total() {
       var totalNum = 0;
-      for (let i = 0; i < this.carList.length; i++) {
-        if (this.carList[i].checked == true) {
-          totalNum = totalNum + this.carList[i].price * this.carList[i].num;
-        }
+      for (let i = 0; i < this.$store.state.cartList.length; i++) {
+        totalNum +=this.$store.state.cartList[i].price;
+        // if (this.$store.state.cartList[i].checked == true) {
+        //   totalNum = totalNum + this.$store.state.cartList[i].price * this.$store.state.cartList[i].num;
+        // }
       }
-      if (totalNum == 0) {
-        return 0.0;
-      } else {
-        return totalNum;
-      }
+      return totalNum;
+
+      // if (totalNum == 0) {
+      //   return 0.0;
+      // } else {
+      //   return totalNum;
+      // }
     },
 
     count() {
       var count = 0;
-      for (let i = 0; i < this.carList.length; i++) {
-        if (this.carList[i].checked == true) {
+      for (let i = 0; i < this.cartList.length; i++) {
+        if (this.cartList[i].checked == true) {
           count++;
         }
       }
       return count;
     },
-    cartList(){
-      return this.$store.state.cartList
-    }
+
+    cartList() {
+      return this.$store.state.cartList;
+    },
+
   },
 
   data() {
@@ -174,11 +179,12 @@ export default {
       overlayShow2: false,
       isCheck: false,
       checked: "",
+   
       carList: [
         {
           num: 1,
-          shopName: "嘉兴童车正品店",
-          disc: "兰博基尼儿童电动车四轮遥控汽车男女宝宝超大玩具",
+          supermarket: "嘉兴童车正品店",
+          text: "兰博基尼儿童电动车四轮遥控汽车男女宝宝超大玩具",
           img: require("../images/1-zd.png"),
           price: 1238,
           people: 41,
@@ -327,69 +333,109 @@ export default {
       this.$destroy(true);
     },
 
+    minus(state, index){
+      this.$store.commit("minusStore")
+    },
+
+     plus(state, index){
+      this.$store.commit("plusStore");
+     },
+
+     edit(){
+      this.$store.commit("editStore");
+     },
+
+     del(){
+      this.$store.commit("delStore");
+     },
+
+     cancel2(){
+      this.$store.commit("cancel2Store");
+     },
+
+     sure(state, index){
+      this.$store.commit("sureStore");
+     },
+
+    //  total(state, index){
+    //   this.$store.commit("totalStore");
+    //  },
+
+    //  count(state, index){
+    //   this.$store.commit("countStore");
+    //  },
+
+     checkMe(state, index){
+      this.$store.commit("checkMeStore");
+     },
+
+     allCheck(state, index){
+      this.$store.commit("allCheckStore");
+     },
+
     // 商品数量加减
-    minus(item, index) {
-      if (item.num < 2) {
-        let that = this;
-        this.overlayShow = true;
-        setTimeout(function() {
-          that.overlayShow = false;
-        }, 1800);
-      } else {
-        item.num--;
-      }
-    },
+    // minus(item, index) {
+    //   if (item.num < 2) {
+    //     let that = this;
+    //     this.overlayShow = true;
+    //     setTimeout(function() {
+    //       that.overlayShow = false;
+    //     }, 1800);
+    //   } else {
+    //     item.num--;
+    //   }
+    // },
 
-    plus(item, index) {
-      item.num++;
-    },
+    // plus(item, index) {
+    //   item.num++;
+    // },
 
-    edit(item, index) {
-      item.show = !item.show;
-      item.cancel = !item.cancel;
-    },
+    // edit(item, index) {
+    //   item.show = !item.show;
+    //   item.cancel = !item.cancel;
+    // },
 
-    del(item, index) {
-      this.overlayShow2 = true;
-    },
+    // del(item, index) {
+    //   this.overlayShow2 = true;
+    // },
 
-    cancel2() {
-      this.overlayShow2 = false;
-    },
+    // cancel2() {
+    //   this.overlayShow2 = false;
+    // },
 
-    sure(item, index) {
-      this.carList.splice(index, 1);
-      this.overlayShow2 = false;
-    },
+    // sure(item, index) {
+    //   this.carList.splice(index, 1);
+    //   this.overlayShow2 = false;
+    // },
 
     // 单选与全选
-    checkMe(index) {
-      if (event.target.checked) {
-        this.carList[index].checked = true;
-      } else {
-        this.carList[index].checked = false;
-      }
-      for (let i = 0; i < this.carList.length; i++) {
-        if (this.carList[i].checked == false) {
-          return (this.isCheck = false);
-        }
-      }
-      this.isCheck = true;
-    },
+    // checkMe(index) {
+    //   if (event.target.checked) {
+    //     this.carList[index].checked = true;
+    //   } else {
+    //     this.carList[index].checked = false;
+    //   }
+    //   for (let i = 0; i < this.carList.length; i++) {
+    //     if (this.carList[i].checked == false) {
+    //       return (this.isCheck = false);
+    //     }
+    //   }
+    //   this.isCheck = true;
+    // },
 
-    allCheck(e) {
-      if (e.target.checked) {
-        this.isCheck = true;
-        for (let i = 0; i < this.carList.length; i++) {
-          this.carList[i].checked = true;
-        }
-      } else {
-        this.isCheck = false;
-        for (let i = 0; i < this.carList.length; i++) {
-          this.carList[i].checked = false;
-        }
-      }
-    }
+    // allCheck(e) {
+    //   if (e.target.checked) {
+    //     this.isCheck = true;
+    //     for (let i = 0; i < this.carList.length; i++) {
+    //       this.carList[i].checked = true;
+    //     }
+    //   } else {
+    //     this.isCheck = false;
+    //     for (let i = 0; i < this.carList.length; i++) {
+    //       this.carList[i].checked = false;
+    //     }
+    //   }
+    // }
   }
 };
 </script>
@@ -489,7 +535,7 @@ input[type="checkbox"]:checked {
 .youlike-content {
   width: 170px;
   height: 280px;
-  border-radius:8px;
+  border-radius: 8px;
   margin-left: 7px;
   margin-top: 10px;
 

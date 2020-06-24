@@ -548,6 +548,7 @@ export default {
         text: this.productList[page].text,
         images:this.productList[page].images1,
         num:this.productList[page].num,
+        supermarket:this.productList[page].supermarket
       })
       console.log(this.cartList)
     },
