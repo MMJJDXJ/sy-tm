@@ -20,7 +20,7 @@
         <img src="../images/edit-zy.png" alt />
       </div>
       <!-- 购物车 -->
-      <div class="shoppingcar-zy">
+      <div @click="cartBtn" class="shoppingcar-zy">
         <img src="../images/shoppingcar.png" alt />
       </div>
     </div>
@@ -31,16 +31,16 @@
       <div class="myswiperdiv-zy">
         <van-swipe @change="onChange" class="my-swiper-zy">
           <van-swipe-item>
-            <img class="img-swiper" :src="productList[0].images1" alt />
+            <img class="img-swiper" :src="productList.images1" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" :src="productList[0].images2" alt />
+            <img class="img-swiper" :src="productList.images2" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" :src="productList[0].images3" alt />
+            <img class="img-swiper" :src="productList.images3" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" :src="productList[0].images4" alt />
+            <img class="img-swiper" :src="productList.images4" alt />
           </van-swipe-item>
 
           <template #indicator>
@@ -66,7 +66,7 @@
         </tr>
       </table>
       <!-- 标题 -->
-      <div class="middle-span-zy">{{productList[0].text}}</div>
+      <div class="middle-span-zy">{{productList.text}}</div>
       <table class="middle-table-zy">
         <tr>
           <td>满88包邮(21kg内)</td>
@@ -321,19 +321,19 @@
 
       <table>
         <tr>
-          <img :src="productList[0].images21" alt class="myendimg-zy" />
+          <img :src="productList.images21" alt class="myendimg-zy" />
         </tr>
         <tr>
-          <img :src="productList[0].images22" alt class="one-myendimg-zy" />
+          <img :src="productList.images22" alt class="one-myendimg-zy" />
         </tr>
         <tr>
-          <img :src="productList[0].images23" alt class="one-myendimg-zy" />
+          <img :src="productList.images23" alt class="one-myendimg-zy" />
         </tr>
         <tr>
-          <img :src="productList[0].images24" alt class="one-myendimg-zy" />
+          <img :src="productList.images24" alt class="one-myendimg-zy" />
         </tr>
         <tr>
-          <img :src="productList[0].images25" alt class="one-myendimg-zy" />
+          <img :src="productList.images25" alt class="one-myendimg-zy" />
         </tr>
       </table>
     </div>
@@ -493,6 +493,11 @@ export default {
         document.querySelector(".double-zy").scrollIntoView(true);
       }
     },
+
+    cartBtn() {
+      this.$router.push("cartPath");
+    },
+
     productBack() {
       this.$router.go(-1);
       this.newShadow = false;

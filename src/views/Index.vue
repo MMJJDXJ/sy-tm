@@ -755,16 +755,7 @@ export default {
         }
         });
     },
-    // productBtn2() {
-    //   this.$router.push("productPath2");
-    // },
-    // productBtn3(index) {
-    //   console.log(index)
-    //   this.$router.push({
-    //     path:"productPath3",
-    //     query: index
-    //     });
-    // },
+   
     classifyBtn() {
       this.$router.push("classifyPath");
     },
