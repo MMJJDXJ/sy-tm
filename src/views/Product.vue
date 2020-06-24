@@ -465,6 +465,12 @@ export default {
     window.addEventListener("scroll", this.handleScroll, true);
   },
 
+  computed:{
+    orderList1(){
+      return this.$store.state.orderList1
+    }
+  },
+
   methods: {
     // 定位
     zyselect(index) {
@@ -494,6 +500,12 @@ export default {
       // alert("llllll");
       // 遮罩层可见
       this.newShadow = true;
+
+      this.$store.commit("addCartstore",{
+        price: this.orderList1[0].price,
+        text: this.orderList1[0].text,
+        images: this.orderList1[0].images
+      })
     },
     //遮罩层-取消
     cancelBtn() {
@@ -741,9 +753,9 @@ export default {
   text-align: center;
 }
 
-.end-table-zy tr td {
-  /* border: 1px solid #ff9500; */
-}
+/* .end-table-zy tr td {
+  border: 1px solid #ff9500;
+} */
 
 .end-table-zy {
   /* border: 1px solid #ff9500; */
@@ -804,10 +816,10 @@ export default {
   width: 100%;
 }
 
-.pj-table-zy tr td {
-  /* border: 1px solid #156df0; */
-  /* background-color: gray; */
-}
+/* .pj-table-zy tr td {
+  border: 1px solid #156df0;
+  background-color: gray;
+} */
 
 .checkallimg-zy {
   width: 10px;
@@ -862,10 +874,10 @@ export default {
   width: 78px;
 }
 
-.wl-table-div0-zy {
-  /* width: 10px; */
-  /* border: 1px solid #ff9500; */
-}
+/* .wl-table-div0-zy {
+  width: 10px;
+  border: 1px solid #ff9500;
+} */
 
 .name-zy {
   margin-top: -25px;
@@ -874,12 +886,12 @@ export default {
   color: #999999;
 }
 
-.leave-img-zy {
-  /* border:1px solid rgb(247, 141, 141);
+/* .leave-img-zy {
+  border:1px solid rgb(247, 141, 141);
   width: 25px;
-  height: 25px; */
-  /* margin-left: 15px; */
-}
+  height: 25px;
+  margin-left: 15px;
+} */
 
 .leave-span2-zy {
   color: #051b28;

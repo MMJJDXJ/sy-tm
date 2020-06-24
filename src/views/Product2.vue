@@ -452,7 +452,6 @@ export default {
   methods: {
     productBack() {
       this.$router.go(-1);
-
       this.newShadow = false;
     },
 
