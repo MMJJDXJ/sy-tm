@@ -41,7 +41,6 @@
           </van-swipe-item>
           <van-swipe-item>
             <img class="img-swiper" :src="productList[0].images4" alt />
-            <img class="img-swiper" :src="productList[0].images1" alt />
           </van-swipe-item>
 
           <template #indicator>
