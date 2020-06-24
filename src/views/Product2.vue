@@ -1,47 +1,46 @@
 <template>
   <div class="productRouter">
     <!-- 商品 评价 详情 -->
-    <div class="top-table-zy">
+    <div class="top-table-zy" id="top-table-zy">
       <div class="return-zy">
         <img src="../images/return.png" alt @click="productBack" />
       </div>
       <div class="search-zy">
         <img src="../images/searchimg.png" alt />
       </div>
-      <div class="toptext-zy">商品</div>
-      <div class="toptext-zy">评价</div>
-      <div class="toptext-zy">详情</div>
+      <div class="toptext-zy" @click="zyselect(1)" :class="{myActive:itemIndex==1}">商品</div>
+      <div class="toptext-zy" @click="zyselect(2)" :class="{myActive:itemIndex==2}">评价</div>
+      <div class="toptext-zy" @click="zyselect(3)" :class="{myActive:itemIndex==3}">详情</div>
+
       <div class="edit-zy">
         <img src="../images/edit-zy.png" alt />
       </div>
       <div class="shoppingcar-zy">
         <img src="../images/shoppingcar.png" alt />
       </div>
+
     </div>
-<!-- 小圆饼 -->
+
     <!-- 中间的body -->
     <div class="middle-body-zy">
       <!-- 轮播图 -->
       <div class="myswiperdiv-zy">
         <van-swipe @change="onChange" class="my-swiper-zy">
           <van-swipe-item>
-            <img class="img-swiper" src="../images/pro31-zy.jpg" alt />
+            <img class="img-swiper" :src="productList[1].images1" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" src="../images/pro32-zy.jpg" alt />
+            <img class="img-swiper" :src="productList[1].images2" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" src="../images/pro33-zy.jpg" alt />
+            <img class="img-swiper" :src="productList[1].images3" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" src="../images/pro34-zy.jpg" alt />
-          </van-swipe-item>
-          <van-swipe-item>
-            <img class="img-swiper" src="../images/pro35-zy.jpg" alt />
+            <img class="img-swiper" :src="productList[1].images1" alt />
           </van-swipe-item>
 
           <template #indicator>
-            <div class="custom-indicator">{{ current + 1 }}/5</div>
+            <div class="custom-indicator">{{ current + 1 }}/4</div>
           </template>
         </van-swipe>
       </div>
@@ -55,7 +54,7 @@
             <span style="font-size:18px;color:#FF0036">¥</span>
           </td>
           <td>
-            <span style="font-size:24px;color:#FF0036">4.9</span>
+            <span style="font-size:24px;color:#FF0036">{{productList[1].price}}</span>
           </td>
           <td>
             <div class="price-zy">超市推荐</div>
@@ -63,9 +62,7 @@
         </tr>
       </table>
       <!-- 标题 -->
-      <div class="middle-span-zy">
-        比比赞网红日式小圆饼干海盐味麦芽零食充饥小吃夜宵休闲食品100g
-        </div>
+      <div class="middle-span-zy">{{productList[1].text}}</div>
       <table class="middle-table-zy">
         <tr>
           <td>满88包邮(21kg内)</td>
@@ -226,7 +223,7 @@
         <tr>
           <td style=" font-size: 12px; color: #051B28;">
             <span class="ask-zy">问</span>
-            味道怎么样？
+            质量怎么样？
           </td>
           <td>
             <div style="font-size: 12px;color: #999999;" class="pj-table-div2-zy">3个回答</div>
@@ -239,7 +236,7 @@
         <tr>
           <td style="font-size: 12px; color: #051B28;">
             <span class="ask-zy">问</span>
-            好吃吗？
+            加芯重180g吗？
           </td>
           <td>
             <div style="font-size: 12px;color: #999999;" class="pj-table-div2-zy">3个回答</div>
@@ -313,24 +310,23 @@
       </div>
 
       <br />
+      <div class="double-zy">"加倍柔韧厚实，足量足分更耐用"</div>
 
+      <!--  -->
+
+      <div class="line-beforeimg-zy"></div>
 
       <table>
         <tr>
-          <!-- <img src="../images/progif.gif" alt class="myendimg-zy" style="height:210px"/> -->
+          <img :src="productList[1].images21" alt class="myendimg-zy" />
         </tr>
         <tr>
-          <img style="width: 200px; height:300px" src="../images/pro6-zy.jpg" alt class="one-myendimg-zy" />
+          <img :src="productList[1].images22" alt class="one-myendimg-zy" />
         </tr>
         <tr>
-          <img style="width: 200px; height:300px" src="../images/pro7-zy.jpg" alt class="one-myendimg-zy" />
+          <img :src="productList[1].images23" alt class="one-myendimg-zy" />
         </tr>
-        <tr>
-          <img style="width: 200px; height:300px" src="../images/pro8-zy.jpg" alt class="one-myendimg-zy" />
-        </tr>
-
       </table>
-      
     </div>
 
     <!-- 底部 -->
@@ -363,11 +359,11 @@
       <div class="spaceShadow" @click="cancelBtn"></div>
 
       <div class="whitePart-zy">
-        <img src="../images/pro31-zy.jpg" alt class="shadowimg-zy" />
+        <img src="../images/shadowimg.jpg" alt class="shadowimg-zy" />
         <div class="shadowText-zy">
-          <span style="font-size:15px;color:#FF0036">¥4.9</span>
+          <span style="font-size:15px;color:#FF0036">¥25.9</span>
           <br />
-          <span>库存266件</span>
+          <span>库存286件</span>
         </div>
 
         <img src="../images/close-zy.png" alt class="cancelBtn-zy" @click="cancelBtn" />
@@ -380,8 +376,8 @@
             <td>
               <img src="../images/map-zy.png" alt />
             </td>
-            <td style="font-size: 12px;">常州市</td>
-            <td style="font-size: 12px;">新北区</td>
+            <td style="font-size: 12px;">苏州市</td>
+            <td style="font-size: 12px;">沧浪区</td>
             <td></td>
           </tr>
         </table>
@@ -389,13 +385,21 @@
         <p style="font-size: 12px;margin-left: 10px;margin-top: 10px;">23:00前付款，预计6月29日送达</p>
         <div class="shadowline-zy"></div>
 
-        <table style="font-size: 13px;margin-left: 10px;margin-top: 10px;">
+        <table style class="numTable-zy">
           <tr>
             <td style="width: 280px;">购买数量</td>
             <td>
-              <span>-</span>
-              1
-              <span>+</span>
+              <div class="numdiv">-</div>
+            </td>
+            <!-- <span class="minus" @click="minus()">-</span>
+              <span>{{item.num}}</span>
+            <span class="plus" @click="plus()">+</span>-->
+
+            <td>
+              <div class="numdiv">1</div>
+            </td>
+            <td>
+              <div class="numdiv">+</div>
             </td>
           </tr>
         </table>
@@ -433,7 +437,6 @@
       <!-- <div class="whitePart-zy">
       </div>-->
     </div>
-
   </div>
 </template>
 
@@ -444,40 +447,82 @@ export default {
       current: 0,
       // 遮罩层默认不可见
       newShadow: false,
+      newShadow2: true,
+      itemIndex: 1
 
-      newShadow2: true
+      // 购买数量
+      // num: 1,
     };
   },
 
+  created() {
+    window.addEventListener("scroll", this.handleScroll, true);
+  },
+
+  computed:{
+    productList(){
+      return this.$store.state.productList
+    }
+  },
+
   methods: {
+    // 定位
+    zyselect(index) {
+      this.itemIndex = index;
+      if (index == 1) {
+        document.querySelector(".myswiperdiv-zy").scrollIntoView(true);
+        console.log(88);
+      }
+      if (index == 2) {
+        document.querySelector(".pj-table-zy").scrollIntoView(true);
+      }
+      if (index == 3) {
+        document.querySelector(".double-zy").scrollIntoView(true);
+      }
+    },
     productBack() {
       this.$router.go(-1);
-
       this.newShadow = false;
     },
-
     onChange(index) {
       this.current = index;
       console.log(this.currentex);
 
       this.newShadow = false;
     },
-
     addCart() {
       // alert("llllll");
       // 遮罩层可见
       this.newShadow = true;
-    },
 
+      // this.$store.commit("addCartstore",{
+      //   price: this.orderList1[0].price,
+      //   text: this.orderList1[0].text,
+      //   images: this.orderList1[0].images
+      // })
+    },
     //遮罩层-取消
     cancelBtn() {
       this.newShadow = false;
     },
-
     //遮罩层-取消2
     cancelBtn2() {
       this.newShadow2 = false;
     }
+
+    // minus(item) {
+    //   if (item.num < 2) {
+    //     let that = this;
+    //     setTimeout(function() {
+    //     }, 1800);
+    //   } else {
+    //     item.num--;
+    //   }
+    // },
+
+    // plus(item) {
+    //   item.num++;
+    // }
   }
 };
 </script>
@@ -525,6 +570,9 @@ export default {
 .top-table-zy .toptext-zy {
   color: #999999;
   margin-left: 28px;
+  font-size: 12px;
+  text-align: center;
+  /* border:1px solid #ff9500; */
 }
 
 .edit-zy {
@@ -699,9 +747,9 @@ export default {
   text-align: center;
 }
 
-.end-table-zy tr td {
-  /* border: 1px solid #ff9500; */
-}
+/* .end-table-zy tr td {
+  border: 1px solid #ff9500;
+} */
 
 .end-table-zy {
   /* border: 1px solid #ff9500; */
@@ -762,10 +810,10 @@ export default {
   width: 100%;
 }
 
-.pj-table-zy tr td {
-  /* border: 1px solid #156df0; */
-  /* background-color: gray; */
-}
+/* .pj-table-zy tr td {
+  border: 1px solid #156df0;
+  background-color: gray;
+} */
 
 .checkallimg-zy {
   width: 10px;
@@ -820,10 +868,10 @@ export default {
   width: 78px;
 }
 
-.wl-table-div0-zy {
-  /* width: 10px; */
-  /* border: 1px solid #ff9500; */
-}
+/* .wl-table-div0-zy {
+  width: 10px;
+  border: 1px solid #ff9500;
+} */
 
 .name-zy {
   margin-top: -25px;
@@ -832,12 +880,12 @@ export default {
   color: #999999;
 }
 
-.leave-img-zy {
-  /* border:1px solid rgb(247, 141, 141);
+/* .leave-img-zy {
+  border:1px solid rgb(247, 141, 141);
   width: 25px;
-  height: 25px; */
-  /* margin-left: 15px; */
-}
+  height: 25px;
+  margin-left: 15px;
+} */
 
 .leave-span2-zy {
   color: #051b28;
@@ -991,7 +1039,7 @@ export default {
   /* top: 0;
   left: 0;
   bottom: 0; */
-   height: 50px;
+  height: 50px;
 }
 
 .spaceShadow {
@@ -1034,6 +1082,7 @@ export default {
   margin-top: 10px;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .close2-zy {
@@ -1041,9 +1090,6 @@ export default {
   height: 16px;
   margin-top: -10px;
   margin-left: 20px;
-}
-
-.closediv-zy {
 }
 
 .whitePart-zy {
@@ -1059,6 +1105,7 @@ export default {
   font-size: 15px;
   text-align: center;
   line-height: 50px;
+  cursor: pointer;
 }
 
 .shadowText-zy {
@@ -1093,6 +1140,28 @@ export default {
   height: 30px;
   text-align: center;
   line-height: 30px;
+}
+.numdiv {
+  /* border: 1px solid #f10035; */
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background: #f5f5f5;
+  font-weight: bold;
+}
+
+.numTable-zy {
+  font-size: 13px;
+  margin-left: 10px;
+  margin-top: 10px;
+  /* border: 1px solid #f10035; */
+  width: 90%;
+}
+
+.myActive {
+  border-bottom: 1px solid #f10035;
+  color: #f10035 !important;
 }
 </style>
 

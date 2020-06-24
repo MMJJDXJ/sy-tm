@@ -41,6 +41,7 @@
           </van-swipe-item>
           <van-swipe-item>
             <img class="img-swiper" :src="productList[0].images4" alt />
+            <img class="img-swiper" :src="productList[0].images1" alt />
           </van-swipe-item>
 
           <template #indicator>
@@ -321,19 +322,19 @@
 
       <table>
         <tr>
-          <img src="../images/middle-wd.jpg" alt class="myendimg-zy" />
+          <img :src="productList[0].images21" alt class="myendimg-zy" />
         </tr>
         <tr>
-          <img src="../images/babyimg.jpg" alt class="one-myendimg-zy" />
+          <img :src="productList[0].images22" alt class="one-myendimg-zy" />
         </tr>
         <tr>
-          <img src="../images/babyimg2.jpg" alt class="one-myendimg-zy" />
+          <img :src="productList[0].images23" alt class="one-myendimg-zy" />
         </tr>
         <tr>
-          <img src="../images/babyimg3.jpg" alt class="one-myendimg-zy" />
+          <img :src="productList[0].images24" alt class="one-myendimg-zy" />
         </tr>
         <tr>
-          <img src="../images/babyimg4.jpg" alt class="one-myendimg-zy" />
+          <img :src="productList[0].images25" alt class="one-myendimg-zy" />
         </tr>
       </table>
     </div>
@@ -472,6 +473,12 @@ export default {
     window.addEventListener("scroll", this.handleScroll, true);
   },
 
+  computed:{
+    productList(){
+      return this.$store.state.productList
+    }
+  },
+
   methods: {
     // 定位
     zyselect(index) {
@@ -501,6 +508,12 @@ export default {
       // alert("llllll");
       // 遮罩层可见
       this.newShadow = true;
+
+      // this.$store.commit("addCartstore",{
+      //   price: this.orderList1[0].price,
+      //   text: this.orderList1[0].text,
+      //   images: this.orderList1[0].images
+      // })
     },
     //遮罩层-取消
     cancelBtn() {
@@ -751,9 +764,9 @@ export default {
   text-align: center;
 }
 
-.end-table-zy tr td {
-  /* border: 1px solid #ff9500; */
-}
+/* .end-table-zy tr td {
+  border: 1px solid #ff9500;
+} */
 
 .end-table-zy {
   /* border: 1px solid #ff9500; */
@@ -814,10 +827,10 @@ export default {
   width: 100%;
 }
 
-.pj-table-zy tr td {
-  /* border: 1px solid #156df0; */
-  /* background-color: gray; */
-}
+/* .pj-table-zy tr td {
+  border: 1px solid #156df0;
+  background-color: gray;
+} */
 
 .checkallimg-zy {
   width: 10px;
@@ -872,10 +885,10 @@ export default {
   width: 78px;
 }
 
-.wl-table-div0-zy {
-  /* width: 10px; */
-  /* border: 1px solid #ff9500; */
-}
+/* .wl-table-div0-zy {
+  width: 10px;
+  border: 1px solid #ff9500;
+} */
 
 .name-zy {
   margin-top: -25px;
@@ -884,12 +897,12 @@ export default {
   color: #999999;
 }
 
-.leave-img-zy {
-  /* border:1px solid rgb(247, 141, 141);
+/* .leave-img-zy {
+  border:1px solid rgb(247, 141, 141);
   width: 25px;
-  height: 25px; */
-  /* margin-left: 15px; */
-}
+  height: 25px;
+  margin-left: 15px;
+} */
 
 .leave-span2-zy {
   color: #051b28;

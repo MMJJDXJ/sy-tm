@@ -17,8 +17,17 @@
 
         <!-- 登录切换 -->
         <div @click="loginBtn">
-          <div v-if="login==true" @click="enterBtn" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}">登录</div>
-          <div v-if="login==false" :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}"><img src="../images/user-lj.png" alt=""></div>
+          <div
+            v-if="login==true"
+            @click="enterBtn"
+            :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}"
+          >登录</div>
+          <div
+            v-if="login==false"
+            :class="{'header-enter-lj':isEnter , 'header-enter-lj2':!isEnter}"
+          >
+            <img @click="shadeBtn" src="../images/user-lj.png" alt />
+          </div>
         </div>
       </div>
 
@@ -174,16 +183,16 @@
 
     <!-- 猜老子喜欢 -->
     <p class="guess-i-like-lj">猜你喜欢</p>
-    <ul class="guessLike-lj">
-      <li @click="productBtn" class="guessLike-li1-lj">
+    <ul  class="guessLike-lj" >
+      <li v-for="(item,index) in productList" @click="productBtn(index)" :key="index" class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
-          <img src="../images/swiper-one.jpg" alt />
+          <img :src="item.images1" alt />
         </div>
         <div class="guessLike-li1-text1-lj">
-          <span>维达</span>
+          <span>陌筱熙</span>
         </div>
         <div class="guessLike-li1-text2-lj">
-          <span>维达卷纸至有分量3层180克10卷卫生纸巾厕纸有芯卷纸新旧混发</span>
+          <span>{{item.text}}</span>
         </div>
         <div class="guessLike-li1-text3-lj">
           <div class="guessLike-li1-tuihuo-lj">
@@ -194,21 +203,43 @@
         <div class="guessLike-li1-price-lj">
           <div class="guessLike-li1-price1-lj">
             <span>￥</span>
-            <span>25.9</span>
+            <span>{{item.price}}</span>
           </div>
           <div class="guessLike-li1-price2-lj">
             <span>看相似</span>
           </div>
         </div>
       </li>
-      <li class="guessLike-li2-lj">
-        <img src="../images/guessLike-big-lj.png" alt />
-      </li>
-    </ul>
+      
+      <!-- <li @click="productBtn(index)" class="guessLike-li1-lj">
+        <div class="guessLike-li1-img-lj">
+          <img src="../images/pro31-zy.jpg" alt />
+        </div>
+        <div class="guessLike-li1-text1-lj">
+          <span>比比赞</span>
+        </div>
+        <div class="guessLike-li1-text2-lj">
+          <span>比比赞网红日式小圆饼干海盐味麦芽零食充饥小吃夜宵休闲食品100g</span>
+        </div>
+        <div class="guessLike-li1-text3-lj">
+          <div class="guessLike-li1-tuihuo-lj">
+            <img src="../images/tuihuo-lj.png" alt />
+          </div>
+          <span class="guessLike-li1-juan-lj">3元券</span>
+        </div>
+        <div class="guessLike-li1-price-lj">
+          <div class="guessLike-li1-price1-lj">
+            <span>¥</span>
+            <span>4.9</span>
+          </div>
+          <div class="guessLike-li1-price2-lj">
+            <span>看相似</span>
+          </div>
+        </div>
+      </li> -->
 
     <!-- Two -->
-    <ul class="guessLike-lj">
-      <li @click="productBtn2" class="guessLike-li1-lj">
+      <!-- <li @click="productBtn(index)" class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/pro31-zy.jpg" alt />
         </div>
@@ -234,7 +265,7 @@
           </div>
         </div>
       </li>
-      <li @click="productBtn3" class="guessLike-li2-lj">
+      <li @click="productBtn(index)" class="guessLike-li2-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/pro21-zy.jpg" alt />
         </div>
@@ -259,12 +290,10 @@
             <span>看相似</span>
           </div>
         </div>
-      </li>
-    </ul>
+      </li> -->
 
     <!-- Three -->
-    <ul class="guessLike-lj">
-      <li class="guessLike-li1-lj">
+      <!-- <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeThreeLeft-lj.png" alt />
         </div>
@@ -314,12 +343,10 @@
             <span>看相似</span>
           </div>
         </div>
-      </li>
-    </ul>
+      </li> -->
 
     <!-- Four -->
-    <ul class="guessLike-lj">
-      <li class="guessLike-li1-lj">
+      <!-- <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeFourLeft-lj.png" alt />
         </div>
@@ -367,12 +394,10 @@
             <span>看相似</span>
           </div>
         </div>
-      </li>
-    </ul>
+      </li> -->
 
     <!-- Five -->
-    <ul class="guessLike-lj">
-      <li class="guessLike-li1-lj">
+      <!-- <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeFiveLeft-lj.png" alt />
         </div>
@@ -420,12 +445,10 @@
             <span>看相似</span>
           </div>
         </div>
-      </li>
-    </ul>
+      </li> -->
 
     <!-- Six -->
-    <ul class="guessLike-lj">
-      <li class="guessLike-li1-lj">
+      <!-- <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeSixLeft-lj.png" alt />
         </div>
@@ -475,12 +498,10 @@
             <span>看相似</span>
           </div>
         </div>
-      </li>
-    </ul>
+      </li> -->
 
     <!-- Seven -->
-    <ul class="guessLike-lj">
-      <li class="guessLike-li1-lj">
+      <!-- <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeSevenLeft-lj.png" alt />
         </div>
@@ -530,12 +551,10 @@
             <span>看相似</span>
           </div>
         </div>
-      </li>
-    </ul>
+      </li> -->
 
     <!-- Eight -->
-    <ul class="guessLike-lj">
-      <li class="guessLike-li1-lj">
+      <!-- <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeEightLeft-lj.png" alt />
         </div>
@@ -586,12 +605,10 @@
             <span>看相似</span>
           </div>
         </div>
-      </li>
-    </ul>
+      </li> -->
 
     <!-- Nine -->
-    <ul class="guessLike-lj">
-      <li class="guessLike-li1-lj">
+      <!-- <li class="guessLike-li1-lj">
         <div class="guessLike-li1-img-lj">
           <img src="../images/guessLikeNineLeft-lj.png" alt />
         </div>
@@ -641,7 +658,7 @@
             <span>看相似</span>
           </div>
         </div>
-      </li>
+      </li> -->
     </ul>
 
     <!-- 点击回到TMD顶部 -->
@@ -654,9 +671,46 @@
       </div>
     </transition>
 
-    <!-- 甘霖娘鸡掰 -->
-    <button @click="cartBtn">购物车router</button>
-    <button >商品详情router</button>
+    <!-- 遮罩层 -->
+    <div class="shadeShow-lj" v-if="shadeShow">
+      <div class="shadeShow-sanjiaodiv-lj">
+        <div class="shadeShow-sanjiao-lj"></div>
+      </div>
+      <div class="shadeShow-top-lj">
+        <span>我的天猫</span>
+        <img @click="closeShow" src="../images/close-lj.png" alt />
+      </div>
+      <div class="shadeShow-bottom-lj">
+        <ul class="shadeShow-bottom-ul-lj">
+          <li>
+            <img src="../images/TMkehuduan-lj.png" alt />
+            <span>天猫客户</span>
+          </li>
+          <li class="shadeShow-bottom-ul-li-lj">
+            <img src="../images/xinrenyouli-lj.png" alt />
+            <span>新人有礼</span>
+          </li>
+          <li @click="cartBtn" class="shadeShow-bottom-ul-li-lj">
+            <img src="../images/shadow-cart-lj.png" alt />
+            <span>购物车车</span>
+          </li>
+        </ul>
+        <ul class="shadeShow-bottom-ul-lj">
+          <li>
+            <img src="../images/shoucangbaobei-lj.png" alt />
+            <span>收藏宝贝</span>
+          </li>
+          <li class="shadeShow-bottom-ul-li-lj">
+            <img src="../images/shoucangdianpu-lj.png" alt />
+            <span>店铺收藏</span>
+          </li>
+          <li class="shadeShow-bottom-ul-li-lj">
+            <img src="../images/quanbudingdan-lj.png" alt />
+            <span>全部订单</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -671,12 +725,20 @@ export default {
       isTmall: false,
       isSearch: false,
       isInput: false,
-      login: true
+      login: true,
+      shadeShow: false
     };
   },
 
+  // 滚动条
   created() {
     window.addEventListener("scroll", this.handleScroll, true);
+  },
+
+  computed:{
+    productList(){
+      return this.$store.state.productList
+    }
   },
 
   methods: {
@@ -684,15 +746,25 @@ export default {
     cartBtn() {
       this.$router.push("cartPath");
     },
-    productBtn() {
-      this.$router.push("productPath");
+    productBtn(index) {
+      console.log(index)
+      this.$router.push({
+        path:"productPath",
+        query: {
+          num:index
+        }
+        });
     },
-    productBtn2() {
-      this.$router.push("productPath2");
-    },
-    productBtn3() {
-      this.$router.push("productPath3");
-    },
+    // productBtn2() {
+    //   this.$router.push("productPath2");
+    // },
+    // productBtn3(index) {
+    //   console.log(index)
+    //   this.$router.push({
+    //     path:"productPath3",
+    //     query: index
+    //     });
+    // },
     classifyBtn() {
       this.$router.push("classifyPath");
     },
@@ -705,8 +777,7 @@ export default {
 
     // 监听滚动条事件
     handleScroll() {
-      let scrollTop =
-        document.documentElement.scrollTop;
+      let scrollTop = document.documentElement.scrollTop;
       if (scrollTop > 18) {
         this.isThreeheng = true;
         this.isEnter = true;
@@ -720,6 +791,8 @@ export default {
         this.isSearch = false;
         this.isInput = false;
       }
+
+      // 控制回到顶部出现
       scrollTop > 288 ? (this.show = true) : (this.show = false);
     },
 
@@ -734,10 +807,19 @@ export default {
       }, 18);
     },
 
-    loginBtn(){
+    // 登录切换
+    loginBtn() {
       this.login = false;
-    }
+    },
 
+    // 遮罩层
+    shadeBtn() {
+      this.shadeShow = true;
+    },
+    
+    closeShow() {
+      this.shadeShow = false;
+    }
   }
 };
 </script>
@@ -1273,23 +1355,24 @@ export default {
   color: #333333;
   height: 30px;
   margin-top: 12px;
-  padding: 0 12px;
+  padding: 0 13px;
 }
 
+/*  */
 .guessLike-lj {
-  height: 277px;
-  margin: 0 10px 0 12px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 10px;
+  width: 100%;
+  margin-left: 3px;
 }
 
 .guessLike-li1-lj {
   width: 170px;
   height: 265px;
+  margin-top: 5px;
+  margin-right: 5px;
   border: 1px solid rgb(237, 237, 237);
-  display: flex;
-  flex-direction: column;
 }
 
 .guessLike-li1-img-lj {
@@ -1458,5 +1541,86 @@ export default {
   opacity: 0;
 }
 
-/* 登录切换 */
+/* 遮罩层 */
+.shadeShow-lj {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0, 0.58);
+  z-index: 999;
+}
+
+.shadeShow-sanjiaodiv-lj {
+  height: 42px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.shadeShow-sanjiao-lj {
+  width: 10px;
+  height: 10px;
+  background: #e5e5e5;
+  transform: rotate(45deg);
+  margin-top: 37px;
+  margin-right: 18px;
+}
+
+.shadeShow-top-lj {
+  height: 33px;
+  background: #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 9px;
+  padding-right: 15px;
+  align-items: center;
+}
+
+.shadeShow-top-lj span {
+  color: #000;
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+.shadeShow-top-lj img {
+  width: 15px;
+  height: 15px;
+}
+
+.shadeShow-bottom-lj {
+  height: 214px;
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.shadeShow-bottom-ul-lj {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.shadeShow-bottom-ul-lj img {
+  width: 30px;
+  height: 30px;
+}
+
+.shadeShow-bottom-ul-lj li {
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.shadeShow-bottom-ul-li-lj {
+  flex-grow: 1;
+  flex-shrink: 1;
+  border-left: 1px solid #e5e5e5;
+}
 </style>
