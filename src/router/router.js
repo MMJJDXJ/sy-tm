@@ -4,8 +4,6 @@ Vue.use(VueRouter)
 
 import Cart from '../views/Cart.vue'
 import Product from '../views/Product.vue'
-import Product2 from '../views/Product2.vue'
-import Product3 from '../views/Product3.vue'
 import Classify from '../views/Classify.vue'
 import Enter from '../views/Enter.vue'
 import Search from '../views/Search.vue'
@@ -24,16 +22,6 @@ const routes = [{
   {
     path: '/productPath',
     component: Product
-  },
-
-  {
-    path: '/productPath2',
-    component: Product2
-  },
-
-  {
-    path: '/productPath3',
-    component: Product3
   },
 
   {

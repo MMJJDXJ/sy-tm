@@ -8,13 +8,12 @@
       </div>
       <!-- 搜索 -->
       <div class="search-zy">
-        <img src="../images/searchimg.png" alt 
-        style="width: 24px;height: 24px;" />
+        <img src="../images/searchimg.png" alt style="width: 24px;height: 24px;" />
       </div>
       <!-- 商品 评价 详情 -->
-      <div class="toptext-zy" @click="zyselect(1)" :class="{myActive:itemIndex==1}">商品</div>
-      <div class="toptext-zy" @click="zyselect(2)" :class="{myActive:itemIndex==2}">评价</div>
-      <div class="toptext-zy" @click="zyselect(3)" :class="{myActive:itemIndex==3}">详情</div>
+        <div class="toptext-zy" @click="zyselect(1)" :class="{myActive:itemIndex==1}">商品</div>
+        <div class="toptext-zy" @click="zyselect(2)" :class="{myActive:itemIndex==2}">评价</div>
+        <div class="toptext-zy" @click="zyselect(3)" :class="{myActive:itemIndex==3}">详情</div>
       <!-- 分类 -->
       <div class="edit-zy">
         <img src="../images/edit-zy.png" alt />
@@ -31,22 +30,48 @@
       <div class="myswiperdiv-zy">
         <van-swipe @change="onChange" class="my-swiper-zy">
           <van-swipe-item>
-            <img class="img-swiper" :src="productList[0].images1" alt />
+            <img class="img-swiper" :src="productList[page].images1" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" :src="productList[0].images2" alt />
+            <img class="img-swiper" :src="productList[page].images2" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" :src="productList[0].images3" alt />
+            <img class="img-swiper" :src="productList[page].images3" alt />
           </van-swipe-item>
           <van-swipe-item>
-            <img class="img-swiper" :src="productList[0].images4" alt />
+            <img class="img-swiper" :src="productList[page].images4" alt />
           </van-swipe-item>
 
           <template #indicator>
             <div class="custom-indicator">{{ current + 1 }}/4</div>
           </template>
         </van-swipe>
+        <!-- 动画 -->
+        <!-- <table class="trans-zy">
+          <tr>
+            <td>
+              <div class="transreturn-zy">
+                <img src="../images/transreturn.png" alt class="transreturnImg" />
+              </div>
+            </td>
+            <td>
+              <div class="transreturn-zy">
+                <img src="../images/transreturn.png" alt class="transreturnImg" />
+              </div>
+            </td>
+            <td class="spacetrans-zy"></td>
+            <td>
+              <div class="transreturn-zy">
+                <img src="../images/transreturn.png" alt class="transreturnImg" />
+              </div>
+            </td>
+            <td>
+              <div class="transreturn-zy">
+                <img src="../images/transreturn.png" alt class="transreturnImg" />
+              </div>
+            </td>
+          </tr>
+        </table> -->
       </div>
       <br />
       <br />
@@ -58,7 +83,7 @@
             <span style="font-size:18px;color:#FF0036">¥</span>
           </td>
           <td>
-            <span style="font-size:24px;color:#FF0036">{{productList[0].price}}</span>
+            <span style="font-size:24px;color:#FF0036">{{productList[page].price}}</span>
           </td>
           <td>
             <div class="price-zy">超市推荐</div>
@@ -66,7 +91,7 @@
         </tr>
       </table>
       <!-- 标题 -->
-      <div class="middle-span-zy">{{productList[0].text}}</div>
+      <div class="middle-span-zy">{{productList[page].text}}</div>
       <table class="middle-table-zy">
         <tr>
           <td>满88包邮(21kg内)</td>
@@ -203,7 +228,7 @@
       </div>
       <br />
 
-      <div class="leave-span2-zy">618促销囤货的，物品发货真的快，包装保护的很好，天猫值得信赖。</div>
+      <div class="leave-span2-zy">618促销囤货的，物品发货真的快，天猫值得信赖。</div>
       <div class="leave-date-zy">2020-06-17</div>
 
       <p class="long-line-zy"></p>
@@ -227,7 +252,7 @@
         <tr>
           <td style=" font-size: 12px; color: #051B28;">
             <span class="ask-zy">问</span>
-            质量怎么样？
+            值得买吗？
           </td>
           <td>
             <div style="font-size: 12px;color: #999999;" class="pj-table-div2-zy">3个回答</div>
@@ -240,7 +265,7 @@
         <tr>
           <td style="font-size: 12px; color: #051B28;">
             <span class="ask-zy">问</span>
-            加芯重180g吗？
+            质量怎么样啊小伙伴们？
           </td>
           <td>
             <div style="font-size: 12px;color: #999999;" class="pj-table-div2-zy">3个回答</div>
@@ -258,7 +283,7 @@
           <img src="../images/tmhead.jpg" alt style="width:45px;height:45px" />
         </div>
         <div class="shoptext-zy">
-          <div>天猫超市</div>
+          <div>{{productList[page].supermarket}}</div>
           <div style="height:30px;border:1px solid transparent;margin-top:6px"></div>
         </div>
       </div>
@@ -313,27 +338,21 @@
         </table>
       </div>
 
-      <br />
-      <div class="double-zy">"加倍柔韧厚实，足量足分更耐用"</div>
+      <!-- <br />
+      <div class="double-zy">"加倍柔韧厚实，足量足分更耐用"</div>-->
 
       <!--  -->
       <div class="line-beforeimg-zy"></div>
 
       <table>
         <tr>
-          <img :src="productList[0].images21" alt class="myendimg-zy" />
+          <img :src="productList[page].images21" alt class="myendimg-zy" />
         </tr>
         <tr>
-          <img :src="productList[0].images22" alt class="one-myendimg-zy" />
+          <img :src="productList[page].images22" alt class="myendimg1-zy" />
         </tr>
         <tr>
-          <img :src="productList[0].images23" alt class="one-myendimg-zy" />
-        </tr>
-        <tr>
-          <img :src="productList[0].images24" alt class="one-myendimg-zy" />
-        </tr>
-        <tr>
-          <img :src="productList[0].images25" alt class="one-myendimg-zy" />
+          <img :src="productList[page].images23" alt class="myendimg2-zy" />
         </tr>
       </table>
     </div>
@@ -398,28 +417,28 @@
           <tr>
             <td style="width: 280px;">购买数量</td>
             <td>
-              <div class="numdiv">-</div>
+              <div class="numdiv" @click="proMinus(page)">-</div>
             </td>
+            <td>
+              <div class="numdiv">{{productList[page].num}}</div>
+            </td>
+            <td>
+              <div class="numdiv" @click="proPlus(page)">+</div>
+            </td>
+
             <!-- <span class="minus" @click="minus()">-</span>
               <span>{{item.num}}</span>
-            <span class="plus" @click="plus()">+</span>-->
-
-            <td>
-              <div class="numdiv">1</div>
-            </td>
-            <td>
-              <div class="numdiv">+</div>
-            </td>
+            <span >+</span>-->
           </tr>
         </table>
 
         <div class="shadowline-zy"></div>
       </div>
-      <div class="sure—zy" @click="cancelBtn">确定</div>
+      <div class="sure—zy" @click="addCartlist(page)">确定</div>
     </div>
 
     <!-- 要关闭的遮罩层2 -->
-    <div class="shadow2" v-show="newShadow2">
+    <!-- <div class="shadow2" v-show="newShadow2">
       <div class="spaceShadow2" @click="cancelBtn2">
         <table>
           <tr>
@@ -443,9 +462,7 @@
         </table>
         <div class="closediv-zy"></div>
       </div>
-      <!-- <div class="whitePart-zy">
-      </div>-->
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -453,29 +470,31 @@
 export default {
   data() {
     return {
+      page: "",
       current: 0,
       // 遮罩层默认不可见
       newShadow: false,
-      newShadow2: true,
-      itemIndex: 1
+      // newShadow2: true,
+      itemIndex: 1,
+      showTop: true
 
       // 购买数量
       // num: 1,
     };
   },
-  computed:{
-    productList(){
+  computed: {
+    productList() {
       return this.$store.state.productList;
+    },
+    cartList(){
+      return this.$store.state.cartList;
+
     }
   },
   created() {
     window.addEventListener("scroll", this.handleScroll, true);
-  },
-
-  computed:{
-    productList(){
-      return this.$store.state.productList
-    }
+    this.page = this.$route.query.num;
+    // console.log(this.page)
   },
 
   methods: {
@@ -484,22 +503,23 @@ export default {
       this.itemIndex = index;
       if (index == 1) {
         document.querySelector(".myswiperdiv-zy").scrollIntoView(true);
-        console.log(88);
+        // console.log(88);
       }
       if (index == 2) {
         document.querySelector(".pj-table-zy").scrollIntoView(true);
       }
       if (index == 3) {
-        document.querySelector(".double-zy").scrollIntoView(true);
+        document.querySelector(".xq-box-zy").scrollIntoView(true);
       }
     },
     productBack() {
       this.$router.go(-1);
+      this.$destroy(true);
       this.newShadow = false;
     },
     onChange(index) {
       this.current = index;
-      console.log(this.currentex);
+      // console.log(this.currentex);
 
       this.newShadow = false;
     },
@@ -519,23 +539,29 @@ export default {
       this.newShadow = false;
     },
     //遮罩层-取消2
-    cancelBtn2() {
-      this.newShadow2 = false;
-    }
-
-    // minus(item) {
-    //   if (item.num < 2) {
-    //     let that = this;
-    //     setTimeout(function() {
-    //     }, 1800);
-    //   } else {
-    //     item.num--;
-    //   }
-    // },
-
-    // plus(item) {
-    //   item.num++;
+    // cancelBtn2() {
+    //   this.newShadow2 = false;
     // }
+    addCartlist(page){
+      this.$store.commit("addCartstore",{
+        price:this.productList[page].price,
+        text: this.productList[page].text,
+        images:this.productList[page].images1,
+        num:this.productList[page].num,
+      })
+      console.log(this.cartList)
+    },
+    proMinus(page) {
+      if (this.productList[page].num>0) {
+        this.productList[page].num--;
+        if(this.productList[page].num ==0){
+          this.productList[page].num =1;
+        }
+      } 
+    },
+    proPlus(page) {
+     this.productList[page].num++;
+    }
   }
 };
 </script>
@@ -560,7 +586,8 @@ export default {
   height: 95px;
   width: 95%;
   display: flex;
-  display: -webkit-flex;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   background-color: #fff;
   /* border:1px solid #ff9500; */
@@ -581,6 +608,7 @@ export default {
   width: 25px;
   margin-left: 10px;
 }
+
 .top-table-zy .toptext-zy {
   color: #999999;
   margin-left: 28px;
@@ -622,19 +650,32 @@ export default {
   color: white;
   border-radius: 8px;
 }
+
+.custom-indicator2 {
+  position: absolute;
+  right: 5px;
+  bottom: 35px;
+  padding: 2px 5px;
+  font-size: 12px;
+  background: rgba(100, 100, 100, 0.6);
+  color: white;
+  border-radius: 8px;
+}
 .myswiperdiv-zy {
-  top: 300px;
+  /* top: 300px; */
   /* border: 1px solid red; */
   width: 100%;
-  height: 300px;
+  height: 320px;
+  position: relative;
 }
+
 .my-swiper-zy {
   width: 100%;
-  height: 340px;
+  height: 360px;
 }
 .img-swiper {
   width: 100%;
-  height: 340px;
+  height: 360px;
 }
 .middle-span-zy {
   color: #051b28;
@@ -1024,7 +1065,19 @@ export default {
 .myendimg-zy {
   /* margin: 0 auto; */
   width: 100%;
-  height: 156px;
+  height: 280px;
+}
+
+.myendimg1-zy {
+  /* margin: 0 auto; */
+  width: 100%;
+  height: 290px;
+}
+
+.myendimg2-zy {
+  /* margin: 0 auto; */
+  width: 100%;
+  height: 380px;
 }
 
 .one-myendimg-zy {
@@ -1047,6 +1100,7 @@ export default {
   top: 0;
   left: 0;
   bottom: 0;
+  transition: all 3s;
 }
 .shadow2 {
   position: absolute;
@@ -1063,6 +1117,7 @@ export default {
   height: 160px;
   /* border: 1px solid red; */
   /* background-color: #eee; */
+  transition: all 3s;
 }
 
 .spaceShadow2 {
@@ -1178,6 +1233,33 @@ export default {
 .myActive {
   border-bottom: 1px solid #f10035;
   color: #f10035 !important;
+}
+
+.trans-zy {
+  width: 100%;
+  position: absolute;
+  z-index: 9999;
+  text-align: center;
+  border: 1px solid rgb(243, 52, 179);
+  top: 0;
+}
+
+.transreturn-zy {
+  border: 1px solid transparent;
+  background: rgba(0, 0, 0, 0.5);
+  width: 30px;
+  height: 30px;
+  border-radius: 18px;
+}
+
+.transreturnImg {
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
+}
+
+.spacetrans-zy {
+  width: 230px;
 }
 </style>
 
