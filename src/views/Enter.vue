@@ -61,11 +61,9 @@ export default {
       if(this.msgName.trim() == ""){
         alert("用户名不能为空");
         this.msgName = "";
-        this.msgPassword = "";
       }else if(this.msgName.trim() != "admin"){
         alert("用户名不正确");
         this.msgName = "";
-        this.msgPassword = "";
       }else if(this.msgPassword.trim() == ""){
         alert("密码不能为空");
         this.msgPassword = "";

@@ -1,5 +1,7 @@
 <template>
   <div class="cartRouter">
+    {{cartList}}
+
     <div class="shop-cart">
       <div class="top">
         <div>
@@ -160,6 +162,9 @@ export default {
         }
       }
       return count;
+    },
+    cartList(){
+      return this.$store.state.cartList
     }
   },
 
