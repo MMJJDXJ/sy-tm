@@ -418,10 +418,6 @@
             <td>
               <div class="numdiv" @click="proPlus(page)">+</div>
             </td>
-
-            <!-- <span class="minus" @click="minus()">-</span>
-              <span>{{item.num}}</span>
-            <span >+</span>-->
           </tr>
         </table>
 
@@ -455,6 +451,7 @@ export default {
       // num: 1,
     };
   },
+
   computed: {
     productList() {
       return this.$store.state.productList;
@@ -463,6 +460,7 @@ export default {
       return this.$store.state.cartList;
     }
   },
+
   created() {
     window.addEventListener("scroll", this.handleScroll, true);
     this.page = this.$route.query.num;
@@ -472,13 +470,15 @@ export default {
     // 定位
     zyselect(index) {
       this.itemIndex = index;
+
       if (index == 1) {
         document.querySelector(".myswiperdiv-zy").scrollIntoView(true);
-        // console.log(88);
       }
+
       if (index == 2) {
         document.querySelector(".pj-table-zy").scrollIntoView(true);
       }
+
       if (index == 3) {
         document.querySelector(".xq-box-zy").scrollIntoView(true);
       }
@@ -507,15 +507,7 @@ export default {
     },
 
     addCart() {
-      // alert("llllll");
-      // 遮罩层可见
       this.newShadow = true;
-
-      // this.$store.commit("addCartstore",{
-      //   price: this.orderList1[0].price,
-      //   text: this.orderList1[0].text,
-      //   images: this.orderList1[0].images
-      // })
     },
 
     //遮罩层-取消

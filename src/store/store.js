@@ -4,10 +4,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    cartList:[],
+    cartList: [],
+    show: true,
+    cancel: true,
+    checked: false,
 
-    productList:[
-      {
+    productList: [{
         images1: require("../images/swiper-one.jpg"),
         images2: require("../images/swiper-two.jpg"),
         images3: require("../images/swiper-three.jpg"),
@@ -20,7 +22,7 @@ export default new Vuex.Store({
         images22: require("../images/xqimg1.jpg"),
         images23: require("../images/xqimg2.jpg"),
 
-        
+
       },
 
       {
@@ -56,9 +58,9 @@ export default new Vuex.Store({
         images2: require("../images/pro22-zy.jpg"),
         images3: require("../images/pro23-zy.jpg"),
         images4: require("../images/pro24-zy.jpg"),
-        text:"李宁男鞋空袭珀之心高帮音速篮球鞋",
+        text: "李宁男鞋空袭珀之心高帮音速篮球鞋",
         price: 399,
-        num:1,
+        num: 1,
         supermarket: "李宁",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -70,9 +72,9 @@ export default new Vuex.Store({
         images2: require("../images/pro22-zy.jpg"),
         images3: require("../images/pro23-zy.jpg"),
         images4: require("../images/pro24-zy.jpg"),
-        text:"rjkk男cargo宽松w九分裤牛仔裤",
+        text: "rjkk男cargo宽松w九分裤牛仔裤",
         price: 359,
-        num:1,
+        num: 1,
         supermarket: "rjkk",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -84,9 +86,9 @@ export default new Vuex.Store({
         images2: require("../images/pro22-zy.jpg"),
         images3: require("../images/pro23-zy.jpg"),
         images4: require("../images/pro24-zy.jpg"),
-        text:"办公室家用便携简易出租屋折叠床",
+        text: "办公室家用便携简易出租屋折叠床",
         price: 249,
-        num:1,
+        num: 1,
         supermarket: "办公用品",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -98,9 +100,9 @@ export default new Vuex.Store({
         images2: require("../images/pro22-zy.jpg"),
         images3: require("../images/pro23-zy.jpg"),
         images4: require("../images/pro24-zy.jpg"),
-        text:"ck 2020小宽带斜挎包小方包真皮包包",
+        text: "ck 2020小宽带斜挎包小方包真皮包包",
         price: 189,
-        num:1,
+        num: 1,
         supermarket: "ck",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -112,9 +114,9 @@ export default new Vuex.Store({
         images2: require("../images/pro22-zy.jpg"),
         images3: require("../images/pro23-zy.jpg"),
         images4: require("../images/pro24-zy.jpg"),
-        text:"春秋薄款短款卫衣女圆领2020年新款长袖韩版宽松春季上衣潮ins",
+        text: "春秋薄款短款卫衣女圆领2020年新款长袖韩版宽松春季上衣潮ins",
         price: 44,
-        num:1,
+        num: 1,
         supermarket: "春秋薄款",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -126,9 +128,9 @@ export default new Vuex.Store({
         images2: require("../images/pro22-zy.jpg"),
         images3: require("../images/pro23-zy.jpg"),
         images4: require("../images/pro24-zy.jpg"),
-        text:"胡桃木沙发新中式贵妃农村全实木沙发组合客厅成套经济型家具套装",
+        text: "胡桃木沙发新中式贵妃农村全实木沙发组合客厅成套经济型家具套装",
         price: 2180,
-        num:1,
+        num: 1,
         supermarket: "胡桃木",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -142,7 +144,7 @@ export default new Vuex.Store({
         images4: require("../images/pro24-zy.jpg"),
         text: "超强淋浴大出水日本高压加压花洒",
         price: 18,
-        num:1,
+        num: 1,
         supermarket: "日本花洒",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -156,7 +158,7 @@ export default new Vuex.Store({
         images4: require("../images/pro24-zy.jpg"),
         text: "法式轻婚纱2020新款气质新娘主纱抹胸拖尾星空女简约森系超仙梦幻",
         price: 501,
-        num:1,
+        num: 1,
         supermarket: "轻婚纱",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -170,7 +172,7 @@ export default new Vuex.Store({
         images4: require("../images/pro24-zy.jpg"),
         text: "ins宽松重工钉珠露肩黑色短袖t恤",
         price: 74,
-        num:1,
+        num: 1,
         supermarket: "abc",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -184,7 +186,7 @@ export default new Vuex.Store({
         images4: require("../images/pro24-zy.jpg"),
         text: "李宁男2020 aban027音速低帮篮球鞋",
         price: 268,
-        num:1,
+        num: 1,
         supermarket: "李宁",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -198,7 +200,7 @@ export default new Vuex.Store({
         images4: require("../images/pro24-zy.jpg"),
         text: "阶梯架娃娃手办柜架陈列盲盒收纳盒",
         price: 28,
-        num:1,
+        num: 1,
         supermarket: "收纳",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -212,7 +214,7 @@ export default new Vuex.Store({
         images4: require("../images/pro24-zy.jpg"),
         text: "罗蒙2020夏季修身直筒西裤休闲裤",
         price: 149,
-        num:1,
+        num: 1,
         supermarket: "罗蒙",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -226,7 +228,7 @@ export default new Vuex.Store({
         images4: require("../images/pro24-zy.jpg"),
         text: "s925纯银蝴蝶结甜美可爱小清新耳钉",
         price: 25.7,
-        num:1,
+        num: 1,
         supermarket: "s925",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -240,7 +242,7 @@ export default new Vuex.Store({
         images4: require("../images/pro24-zy.jpg"),
         text: "蕾彩黑色长袖宽松大码连衣裙女中长款春季2020新款钉珠裙子31502",
         price: 388,
-        num:1,
+        num: 1,
         supermarket: "蕾彩",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -252,9 +254,9 @@ export default new Vuex.Store({
         images2: require("../images/pro22-zy.jpg"),
         images3: require("../images/pro23-zy.jpg"),
         images4: require("../images/pro24-zy.jpg"),
-        text:"春秋薄款短款卫衣女圆领2020年新款长袖韩版宽松春季上衣潮ins",
+        text: "春秋薄款短款卫衣女圆领2020年新款长袖韩版宽松春季上衣潮ins",
         price: 44,
-        num:1,
+        num: 1,
         supermarket: "韩版T恤",
         images21: require("../images/pro999.jpg"),
         images22: require("../images/pro111.png"),
@@ -262,22 +264,110 @@ export default new Vuex.Store({
       }
     ],
 
-    
+
   },
   mutations: {
-    addCartstore(state,product){
+    addCartstore(state,payload){
       state.cartList.push({
-        price: product.price,
-        text: product.text,
-        images: product.images,
-        num:product.num
+        price: payload.price,
+        text: payload.text,
+        images: payload.images,
+        num: payload.num,
+        supermarket: payload.supermarket,
       })
-    }
+    },
 
-  
+  // 商品数量加减
+    minusStore(state, index) {
+      if (state.cartList[index].num < 2) {
+        state.overlayShow = true;
+        setTimeout(function () {
+          state.overlayShow = false;
+        }, 1800);
+      } else {
+        state.cartList[index].num--;
+      }
+    },
+
+    plusStore(state, index) {
+      state.cartList[index].num++;
+    },
+
+    editStore(state) {
+      state.show = !state.show;
+      state.cancel = !state.cancel;
+    },
+
+    delStore(state) {
+      state.overlayShow2 = true;
+    },
+
+    cancel2Store() {
+      state.overlayShow2 = false;
+    },
+
+    sureStore(state, index) {
+      state.cartList.splice(index, 1);
+      state.overlayShow2 = false;
+    },
+
+    // 单选与全选
+    checkMeStore(state,index) {
+      if (event.target.checked) {
+        state.cartList[index].checked = true;
+      } else {
+        state.cartList[index].checked = false;
+      }
+      for (let i = 0; i < state.cartList.length; i++) {
+        if (state.cartList[i].checked == false) {
+          return (state.isCheck = false);
+        }
+      }
+      state.isCheck = true;
+    },
+
+    allCheckStore(state,index) {
+      if (e.target.checked) {
+        state.isCheck = true;
+        for (let i = 0; i < state.cartList[index].length; i++) {
+          state.cartList[i].checked = true;
+        }
+      } else {
+        state.isCheck = false;
+        for (let i = 0; i < state.cartList[index].length; i++) {
+          state.cartList[i].checked = false;
+        }
+      }
+    },
+
+    // total
+    // totalStore(state,index) {
+    //   var totalNum = 0;
+    //   for (let i = 0; i < state.cartList[index].length; i++) {
+    //     if (state.cartList[i].checked == true) {
+    //       totalNum = totalNum + state.cartList[i].price * this.cartList[i].num;
+    //     }
+    //   }
+
+    //   if (totalNum == 0) {
+    //     return 0.0;
+    //   } else {
+    //     return totalNum;
+    //   }
+    // },
+
+    // count
+    // countStore(state,index) {
+    //   var count = 0;
+    //   for (let i = 0; i < state.cartList[index].length; i++) {
+    //     if (state.cartList[i].checked == true) {
+    //       count++;
+    //     }
+    //   }
+    //   return count;
+    // },
+
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
+  modules: {}
 })
