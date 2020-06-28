@@ -18,13 +18,19 @@
           <label class="checkBox">
             <input
               type="checkbox"
+              v-model="item.checked"
+              @change="checkMe(index)"
+            />
+            <!-- <input
+              type="checkbox"
               :id="item.supermarket"
               :checked="item.checked"
               @change="checkMe(index)"
-            />
+            /> -->
           </label>
           <img src="../images/tianmao-zd.png" alt class="tm-logo" />
           <div class="shop-name">{{item.supermarket}}</div>
+          
           <img src="../images/arrow-right-zd.png" alt class="arrow-right" />
         </div>
         <div class="edit" @click="edit(item,index)" v-if="item.show">编辑</div>
@@ -32,12 +38,17 @@
       </div>
       <div class="car-bottom">
         <div class="car-bottom-l">
-          <input
+          <!-- <input
             type="checkbox"
             :id="item.supermarket"
             :checked="item.checked"
             @change="checkMe(index)"
-          />
+          /> -->
+          <input
+              type="checkbox"
+              v-model="item.checked"
+              @change="checkMe(index)"
+            />
         </div>
 
         <!-- 左移删除 -->
@@ -55,10 +66,10 @@
                 <div class="baojia">15天保价</div>
                 <div class="price-wrap">
                   <div class="price">¥{{item.price}}</div>
-                  <div class="count">
-                    <span class="minus" @click="minus(item,index)">-</span>
+                  <div class="count" >
+                    <span class="minus" @click="minus(index)">-</span>
                     <span>{{item.num}}</span>
-                    <span class="plus" @click="plus(item,index)">+</span>
+                    <span class="plus" @click="plus(index)">+</span>
                   </div>
                 </div>
               </div>
@@ -70,7 +81,7 @@
         </van-swipe-cell>
 
         <div v-if="item.cancel"></div>
-        <div class="cancel" @click="del" v-else>删除</div>
+        <div class="cancel" @click="del(index)" v-else>删除</div>
       </div>
     </div>
 
@@ -85,8 +96,8 @@
       <div class="overlay2-content">
         <div class="overlay2-content-sure">确定要删除这个宝贝吗?</div>
         <div class="cancel-sure">
-          <div class="overlay2-content-cancel" @click="cancel2(index)">取消</div>
-          <div class="overlay2-content-cancel" @click="sure(index)">确定</div>
+          <div class="overlay2-content-cancel" @click="cancel2">取消</div>
+          <div class="overlay2-content-cancel" @click="sure">确定</div>
         </div>
       </div>
     </div>
@@ -94,7 +105,8 @@
     <!-- 底部计算部分 -->
     <div class="count-wrap">
       <div class="count-l">
-        <input type="checkbox" name="checkall" id="checkall2" :checked="isCheck" @change="allCheck(index)" />
+        <input type="checkbox" name="checkall"
+         id="checkall2" :checked="isCheck" @change="allCheck()" />
         <label for="checkall2"></label>
         <span>全选</span>
       </div>
@@ -124,7 +136,7 @@
           <div class="youlike-content-img">
             <img :src="item2.img" />
           </div>
-          <div class="youlike-text">{{item2.text}}</div>
+          <div class="youlike-text">{{item2.disc}}</div>
           <div class="youlike-price-people">
             <span class="youlike-price">¥ {{item2.price}}</span>
             <span class="youlike-people">{{item2.people}}人已购买</span>
@@ -140,13 +152,39 @@
 export default {
   //  商品结算
   computed: {
+    overlayShow(){
+      return this.$store.state.overlayShow
+    },
+    show(){
+      return this.$store.state.show
+    },
+
+    cancel(){
+       return this.$store.state.cancel
+    },
+
+    checked(){
+      //  return this.$store.state.checked
+      console.log(this.$store.state.cartList[0].checked)
+      return this.$store.state.cartList[0].checked
+    },
+
+    overlayShow2(){
+       return this.$store.state.overlayShow2
+    },
+
+     isCheck(){
+       return this.$store.state.isCheck
+     },
+
+
     total() {
       var totalNum = 0;
       for (let i = 0; i < this.$store.state.cartList.length; i++) {
-        totalNum +=this.$store.state.cartList[i].price;
-        // if (this.$store.state.cartList[i].checked == true) {
-        //   totalNum = totalNum + this.$store.state.cartList[i].price * this.$store.state.cartList[i].num;
-        // }
+        // totalNum +=this.$store.state.cartList[i].price;
+        if (this.$store.state.cartList[i].checked == true) {
+          totalNum = totalNum + this.$store.state.cartList[i].price * this.$store.state.cartList[i].num;
+        }
       }
       return totalNum;
 
@@ -175,16 +213,16 @@ export default {
 
   data() {
     return {
-      overlayShow: false,
-      overlayShow2: false,
-      isCheck: false,
-      checked: "",
-   
+      // overlayShow: false,
+      // overlayShow2: false,
+      // isCheck: false,
+      // checked: "",
+       index:0,
       carList: [
         {
           num: 1,
           supermarket: "嘉兴童车正品店",
-          text: "兰博基尼儿童电动车四轮遥控汽车男女宝宝超大玩具",
+          disc: "兰博基尼儿童电动车四轮遥控汽车男女宝宝超大玩具",
           img: require("../images/1-zd.png"),
           price: 1238,
           people: 41,
@@ -324,7 +362,9 @@ export default {
           cancel: true,
           checked: false
         }
-      ]
+      ],
+      // show:true,
+    
     };
   },
   methods: {
@@ -333,28 +373,34 @@ export default {
       this.$destroy(true);
     },
 
-    minus(state, index){
-      this.$store.commit("minusStore")
+    minus(index){
+      this.$store.commit("minusStore",index)
     },
 
-     plus(state, index){
-      this.$store.commit("plusStore");
+    plus(index){
+       
+      this.$store.commit("plusStore",index);
      },
 
-     edit(){
-      this.$store.commit("editStore");
+     edit(item,index){
+        item.show = !item.show;
+        item.cancel=!item.cancel
+        console.log (index)
+       
+      // this.$store.commit("editStore",index);
      },
 
-     del(){
+     del(index){
       this.$store.commit("delStore");
+      this.index = index;
      },
 
      cancel2(){
       this.$store.commit("cancel2Store");
      },
 
-     sure(state, index){
-      this.$store.commit("sureStore");
+     sure(state){
+      this.$store.commit("sureStore",this.index);
      },
 
     //  total(state, index){
@@ -365,12 +411,13 @@ export default {
     //   this.$store.commit("countStore");
     //  },
 
-     checkMe(state, index){
-      this.$store.commit("checkMeStore");
+     checkMe(index){
+       console.log (index)
+      this.$store.commit("checkMeStore",index);
      },
 
      allCheck(state, index){
-      this.$store.commit("allCheckStore");
+      this.$store.commit("allCheckStore",index);
      },
 
     // 商品数量加减
@@ -423,19 +470,20 @@ export default {
     //   this.isCheck = true;
     // },
 
-    // allCheck(e) {
-    //   if (e.target.checked) {
-    //     this.isCheck = true;
-    //     for (let i = 0; i < this.carList.length; i++) {
-    //       this.carList[i].checked = true;
-    //     }
-    //   } else {
-    //     this.isCheck = false;
-    //     for (let i = 0; i < this.carList.length; i++) {
-    //       this.carList[i].checked = false;
-    //     }
-    //   }
-    // }
+    allCheck() {
+      // if (e.target.checked) {
+      //   this.isCheck = true;
+      //   for (let i = 0; i < this.carList.length; i++) {
+      //     this.carList[i].checked = true;
+      //   }
+      // } else {
+      //   this.isCheck = false;
+      //   for (let i = 0; i < this.carList.length; i++) {
+      //     this.carList[i].checked = false;
+      //   }
+      // }
+      this.$store.commit("allCheckStore",event)
+    }
   }
 };
 </script>

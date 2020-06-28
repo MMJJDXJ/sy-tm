@@ -5,9 +5,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cartList: [],
-    show: true,
-    cancel: true,
-    checked: false,
+    // show: true,
+    // cancel: true,
+    // checked: false,
+    overlayShow: false,
+    overlayShow2:false,
+    isCheck: false,
+    show:true,
+
 
     productList: [{
         images1: require("../images/swiper-one.jpg"),
@@ -271,9 +276,12 @@ export default new Vuex.Store({
       state.cartList.push({
         price: payload.price,
         text: payload.text,
-        images: payload.images,
+        images: payload.images, 
         num: payload.num,
         supermarket: payload.supermarket,
+        checked:payload.checked,
+        show:true,
+        cancel: true,
       })
     },
 
@@ -290,19 +298,23 @@ export default new Vuex.Store({
     },
 
     plusStore(state, index) {
+     
       state.cartList[index].num++;
     },
 
-    editStore(state) {
-      state.show = !state.show;
-      state.cancel = !state.cancel;
-    },
+    // editStore(state,index) {
+      
+    //   state.cartList[index].show = !state.cartList[index].show;
+    //   console.log(state.cartList[index].show)
+    //   // state.cartList[index].cancel = !state.cartList[index].cancel;
+    //   // console.log(state.cartList[index].show)
+    // },
 
     delStore(state) {
       state.overlayShow2 = true;
     },
 
-    cancel2Store() {
+    cancel2Store(state) {
       state.overlayShow2 = false;
     },
 
@@ -312,29 +324,30 @@ export default new Vuex.Store({
     },
 
     // 单选与全选
-    checkMeStore(state,index) {
+    checkMeStore(state,id) {
+
       if (event.target.checked) {
-        state.cartList[index].checked = true;
+        state.cartList[id].checked = true;
       } else {
-        state.cartList[index].checked = false;
+        state.cartList[id].checked = false;
       }
       for (let i = 0; i < state.cartList.length; i++) {
         if (state.cartList[i].checked == false) {
           return (state.isCheck = false);
         }
       }
-      state.isCheck = true;
+      state.isCheck = true
     },
 
-    allCheckStore(state,index) {
+    allCheckStore(state,e) {
       if (e.target.checked) {
         state.isCheck = true;
-        for (let i = 0; i < state.cartList[index].length; i++) {
+        for (let i = 0; i < state.cartList.length; i++) {
           state.cartList[i].checked = true;
         }
       } else {
         state.isCheck = false;
-        for (let i = 0; i < state.cartList[index].length; i++) {
+        for (let i = 0; i < state.cartList.length; i++) {
           state.cartList[i].checked = false;
         }
       }

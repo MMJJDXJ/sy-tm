@@ -451,7 +451,8 @@ export default {
       newShadow: false,
       newShadow2: false,
       itemIndex: 1,
-      showTop: true
+      showTop: true,
+      checked:false
     };
   },
 
@@ -511,15 +512,15 @@ export default {
       this.newShadow = false;
     },
 
-    addCartlist(page){
-      this.$store.commit("addCartstore",{
-        price: this.productList[page].price,
-        text: this.productList[page].text,
-        images:this.productList[page].images1,
-        num:this.productList[page].num,
-        supermarket:this.productList[page].supermarket
-      })
-    },
+    // addCartlist(page){
+    //   this.$store.commit("addCartstore",{
+    //     price: this.productList[page].price,
+    //     text: this.productList[page].text,
+    //     images:this.productList[page].images1,
+    //     num:this.productList[page].num,
+    //     supermarket:this.productList[page].supermarket
+    //   })
+    // },
       // console.log(this.cartList);
     //遮罩层-取消2
     cancelBtn2() {
@@ -532,7 +533,9 @@ export default {
         price: this.productList[page].price,
         text: this.productList[page].text,
         images: this.productList[page].images1,
-        num: this.productList[page].num
+        num: this.productList[page].num,
+        supermarket:this.productList[page].supermarket,
+        checked:this.checked
       });
       // console.log(this.cartList);
       // alert("添加成功！");
