@@ -17,7 +17,7 @@
             <td class="toptext-zy" @click="zyselect(1)" :class="{myActive:itemIndex==1}">商品</td>
             <td class="toptext-zy" @click="zyselect(2)" :class="{myActive:itemIndex==2}">评价</td>
             <td class="toptext-zy" @click="zyselect(3)" :class="{myActive:itemIndex==3}">详情</td>
-            <td>
+            <td @click="cartBtn">
               <div>
                 <img src="../images/cartgrey.png" style="width: 20px;height: 20px;" alt />
               </div>
@@ -429,7 +429,7 @@
     <!-- 加入购物车成功遮罩层2 -->
     <div class="shadow2" v-show="newShadow2">
       <div class="shadow2-div">
-        <img src="../images/cancel4-zy.png" alt @click="cancelBtn2" class="close2-zy" />
+        <!-- <img src="../images/cancel4-zy.png" alt @click="cancelBtn2" class="close2-zy" /> -->
         <div class="shadow2-text2">加入成功！</div>
       </div>
     </div>
@@ -531,12 +531,13 @@ export default {
     // },
       // console.log(this.cartList);
     //遮罩层-取消2
-    cancelBtn2() {
-      this.newShadow2 = false;
-    },
+    // cancelBtn2() {
+    //   this.newShadow2 = false;
+    // },
 
     // 确定
     addCartlist(page) {
+      let that =this;
       this.$store.commit("addCartstore", {
         price: this.productList[page].price,
         text: this.productList[page].text,
@@ -549,6 +550,10 @@ export default {
       // alert("添加成功！");
       this.newShadow = false;
       this.newShadow2 = true;
+      
+      setTimeout(function () {
+          that.newShadow2 = false;
+        }, 1000);
     },
 
     proMinus(page) {
@@ -1230,7 +1235,7 @@ export default {
   height: 200px;
   text-align: center;
   line-height: 100px;
-  margin-top: 200px;
+  margin-top: -200px;
   margin-left: 18px;
   border-radius: 18px;
   background-color: #eee;
@@ -1272,7 +1277,8 @@ export default {
 }
 
 .shadow2-text2 {
-  margin-top: -50px;
+  margin-top: 400px;
+  line-height: 200px;
 }
 
 .cancelBtn-zy {
