@@ -42,7 +42,7 @@
               </div>
             </td>
 
-            <td class="cart-td">
+            <td class="cart-td" @click="cartBtn">
               <!-- 购物车 -->
               <div class="cart-zy">
                 <img
@@ -467,6 +467,9 @@ export default {
   },
 
   methods: {
+    cartBtn() {
+      this.$router.push("cartPath");
+    },
     // 定位
     zyselect(index) {
       this.itemIndex = index;
