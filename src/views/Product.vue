@@ -1,360 +1,61 @@
 <template>
   <div class="productRouter">
-    <!-- 商品 评价 详情 -->
-    <div class="top-table-zy" id="top-table-zy">
-      <div class="return-zy">
-        <!-- 返回 -->
-        <img src="../images/return.png" alt @click="productBack" />
-      </div>
-      <!-- 搜索 -->
-      <div class="search-zy">
-        <img src="../images/searchimg.png" alt style="width: 24px;height: 24px;" />
-      </div>
-      <!-- 商品 评价 详情 -->
-      <div class="toptext-zy" @click="zyselect(1)" :class="{myActive:itemIndex==1}">商品</div>
-      <div class="toptext-zy" @click="zyselect(2)" :class="{myActive:itemIndex==2}">评价</div>
-      <div class="toptext-zy" @click="zyselect(3)" :class="{myActive:itemIndex==3}">详情</div>
-      <!-- 分类 -->
-      <div class="edit-zy">
-        <img src="../images/edit-zy.png" alt />
-      </div>
-      <!-- 购物车 -->
-      <div class="shoppingcar-zy">
-        <img src="../images/shoppingcar.png" alt />
-      </div>
-    </div>
-
-    <!-- 中间的body -->
-    <div class="middle-body-zy">
-      <!-- 轮播图 -->
-      <div class="myswiperdiv-zy">
-        <van-swipe @change="onChange" class="my-swiper-zy">
-          <van-swipe-item>
-            <img class="img-swiper" :src="productList[page].images1" alt />
-          </van-swipe-item>
-          <van-swipe-item>
-            <img class="img-swiper" :src="productList[page].images2" alt />
-          </van-swipe-item>
-          <van-swipe-item>
-            <img class="img-swiper" :src="productList[page].images3" alt />
-          </van-swipe-item>
-          <van-swipe-item>
-            <img class="img-swiper" :src="productList[page].images4" alt />
-          </van-swipe-item>
-
-          <template #indicator>
-            <div class="custom-indicator">{{ current + 1 }}/4</div>
-          </template>
-        </van-swipe>
-        <!-- 动画 -->
-        <!-- <table class="trans-zy">
+    <div class="top">
+      <div v-if="show==true" class="white-zy">
+        <table class="white-table">
           <tr>
             <td>
-              <div class="transreturn-zy">
-                <img src="../images/transreturn.png" alt class="transreturnImg" />
+              <div>
+                <img
+                  src="../images/leftgrey.png"
+                  style="width: 20px;height: 20px;"
+                  alt
+                  @click="productBack"
+                />
               </div>
             </td>
+            <td class="toptext-zy" @click="zyselect(1)" :class="{myActive:itemIndex==1}">商品</td>
+            <td class="toptext-zy" @click="zyselect(2)" :class="{myActive:itemIndex==2}">评价</td>
+            <td class="toptext-zy" @click="zyselect(3)" :class="{myActive:itemIndex==3}">详情</td>
             <td>
-              <div class="transreturn-zy">
-                <img src="../images/transreturn.png" alt class="transreturnImg" />
+              <div>
+                <img src="../images/cartgrey.png" style="width: 20px;height: 20px;" alt />
               </div>
-            </td>
-            <td class="spacetrans-zy"></td>
-            <td>
-              <div class="transreturn-zy">
-                <img src="../images/transreturn.png" alt class="transreturnImg" />
-              </div>
-            </td>
-            <td>
-              <div class="transreturn-zy">
-                <img src="../images/transreturn.png" alt class="transreturnImg" />
-              </div>
-            </td>
-          </tr>
-        </table>-->
-      </div>
-      <br />
-      <br />
-      <br />
-
-      <table>
-        <tr>
-          <td>
-            <span style="font-size:18px;color:#FF0036">¥</span>
-          </td>
-          <td>
-            <span style="font-size:24px;color:#FF0036">{{productList[page].price}}</span>
-          </td>
-          <td>
-            <div class="price-zy">超市推荐</div>
-          </td>
-        </tr>
-      </table>
-      <!-- 标题 -->
-      <div class="middle-span-zy">{{productList[page].text}}</div>
-      <table class="middle-table-zy">
-        <tr>
-          <td>满88包邮(21kg内)</td>
-          <td>&nbsp;</td>
-          <td>月销量2万+件</td>
-          <td>&nbsp;</td>
-          <td>江苏无锡</td>
-        </tr>
-      </table>
-
-      <!-- 头像区域 -->
-      <div class="tmheaddiv-zy">
-        <div class="tmheaddiv-div">
-          <div class="pinkimg-zy">
-            <img src="../images/pink.jpg" alt class="tmheadimg" />
-          </div>
-
-          <div class="tmhead-span-div">
-            <span class="tmhead-span">此商品活动中，请尽快购买！</span>
-          </div>
-        </div>
-      </div>
-      <!-- 促销 -->
-      <table class="middle-table2-zy">
-        <tr>
-          <td style="color: #999999;font-size: 12px;">促销</td>
-          <td style="color: #ff0036;font-size: 12px;">&nbsp;促销</td>
-          <td style="font-size: 12px;">满2件，打9折</td>
-          <td class="td-zy"></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td style="color: #ff0036;font-size: 12px;">&nbsp;积分</td>
-          <td style="font-size: 12px;">购买可得2积分</td>
-        </tr>
-      </table>
-
-      <div style="color: #999999;" class="right-click1-zy">
-        <img src="../images/clickright.png" alt />
-      </div>
-
-      <!-- 物流 -->
-      <table class="middle-table3-zy">
-        <tr>
-          <td style="color: #999999;font-size: 12px;">物流</td>
-          <td style="font-size: 12px;">至沧浪区：30分钟内付款，预计6月29日送达，可选送货时间</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>
-            <img src="../images/tmzs.jpg" alt style="width:73px;height:14px" />
-            <span style="color: #999999;font-size: 12px; ">&nbsp;天猫保障的配送服务</span>
-          </td>
-        </tr>
-      </table>
-      <!-- 服务 -->
-      <table class="middle-table4-zy">
-        <tr>
-          <td style="font-size: 12px;color: #999999;">服务</td>
-          <td style="font-size: 12px;">假一赔四</td>
-          <td>.</td>
-          <td style="font-size: 12px;">满88包邮</td>
-          <td>.</td>
-          <td style="font-size: 12px;">一站式购齐</td>
-          <td>.</td>
-          <td style="font-size: 12px;">破损包退</td>
-          <td class="td2-zy">
-            <div style="color: #999999;" class="right-click2-zy">
-              <img src="../images/clickright.png" alt />
-            </div>
-          </td>
-        </tr>
-      </table>
-      <div class="line-zy"></div>
-
-      <!-- 参数 -->
-      <table class="middle-table5-zy">
-        <tr>
-          <td style="font-size: 12px;color: #999999;">参数</td>
-          <td style="font-size: 12px;">品牌</td>
-          <td style="font-size: 12px;">型号...</td>
-        </tr>
-      </table>
-      <div style="color: #999999;" class="right-click-zy">
-        <img src="../images/clickright.png" alt />
-      </div>
-      <div class="line-zy"></div>
-      <!-- 商品评价 -->
-
-      <table class="pj-table-zy">
-        <tr>
-          <td style=" font-size: 14px; color: #666666;">商品评价（39920）</td>
-          <td>
-            <div style=" font-size: 13px;" class="pj-table-div2-zy">查看全部</div>
-          </td>
-
-          <td class="pj-table-td3-zy">
-            <div style="width: 25px;">
-              <img src="../images/checkall.png" alt class="checkallimg-zy" />
-            </div>
-          </td>
-        </tr>
-      </table>
-
-      <!-- 物流快 ... -->
-      <table class="wl-table-zy">
-        <tr>
-          <td class="wl-table-div0-zy"></td>
-          <td>
-            <div class="wl-table-div1-zy">物流快(90)</div>
-          </td>
-          <td>
-            <div class="wl-table-div1-zy">性价比高(5)</div>
-          </td>
-          <td>
-            <div class="wl-table-div1-zy">材质不错(5)</div>
-          </td>
-          <td>
-            <div class="wl-table-div2-zy">材质一般(2)</div>
-          </td>
-          <td class="wl-table-div0-zy"></td>
-        </tr>
-      </table>
-
-      <!-- 留言 -->
-      <div>
-        <div class="leave-img-zy">
-          <img
-            src="../images/orangehead.jpg"
-            style="width: 25px; height: 25px; border-radius: 16px;"
-          />
-        </div>
-        <div class="name-zy">t***6</div>
-      </div>
-      <br />
-
-      <div class="leave-span2-zy">618促销囤货的，物品发货真的快，天猫值得信赖。</div>
-      <div class="leave-date-zy">2020-06-17</div>
-
-      <p class="long-line-zy"></p>
-
-      <!-- 问大家 -->
-      <table class="pj-table-zy">
-        <tr>
-          <td style=" font-size: 14px; color: #666666;">问大家（5）</td>
-          <td>
-            <div style=" font-size: 13px;" class="pj-table-div2-zy">打开APP查看全部</div>
-          </td>
-          <td class="pj-table-td3-zy">
-            <div style="width: 25px;">
-              <img src="../images/checkall.png" alt class="checkallimg-zy" />
-            </div>
-          </td>
-        </tr>
-      </table>
-
-      <table class="pj-table-zy">
-        <tr>
-          <td style=" font-size: 12px; color: #051B28;">
-            <span class="ask-zy">问</span>
-            值得买吗？
-          </td>
-          <td>
-            <div style="font-size: 12px;color: #999999;" class="pj-table-div2-zy">3个回答</div>
-          </td>
-          <td class="pj-table-td3-zy">
-            <div style="width: 16px;"></div>
-          </td>
-        </tr>
-
-        <tr>
-          <td style="font-size: 12px; color: #051B28;">
-            <span class="ask-zy">问</span>
-            质量怎么样啊小伙伴们？
-          </td>
-          <td>
-            <div style="font-size: 12px;color: #999999;" class="pj-table-div2-zy">3个回答</div>
-          </td>
-          <td class="pj-table-td3-zy">
-            <div style="width: 16px;"></div>
-          </td>
-        </tr>
-      </table>
-      <div class="line-zy"></div>
-
-      <!-- 天猫超市头像部分 -->
-      <div class="shop-imgtext-zy">
-        <div>
-          <img src="../images/tmhead.jpg" alt style="width:45px;height:45px" />
-        </div>
-        <div class="shoptext-zy">
-          <div>{{productList[page].supermarket}}</div>
-          <div style="height:30px;border:1px solid transparent;margin-top:6px"></div>
-        </div>
-      </div>
-
-      <table class="descripte-div-zy">
-        <tr>
-          <td>
-            <span style=" font-size: 12px;color: #999999;">宝贝描述</span>
-            <span style="font-size: 12px;color:#E13E4C">4.9</span>
-            <div class="redtopimg-div-zy">
-              <img src="../images/redtopimg-zy.png" alt style="width: 18px; height:15px" />
-            </div>
-          </td>
-
-          <td>
-            <span style=" font-size: 12px;color: #999999;">卖家服务</span>
-            <span style="font-size: 12px;color:#E13E4C">4.9</span>
-            <div class="redtopimg-div-zy">
-              <img src="../images/redtopimg-zy.png" alt style="width: 18px; height:15px" />
-            </div>
-          </td>
-
-          <td>
-            <span style=" font-size: 12px;color: #999999;">物流服务</span>
-            <span style="font-size: 12px;color:#E13E4C">4.9</span>
-            <div class="redtopimg-div-zy">
-              <img src="../images/redtopimg-zy.png" alt style="width: 18px; height:15px" />
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td></td>
-          <td>
-            <div class="enterstore-zy">进入店铺</div>
-          </td>
-          <td></td>
-        </tr>
-      </table>
-      <!-- 详情 -->
-      <div class="xq-box-zy">
-        <table class="xq-div-zy">
-          <tr>
-            <td>
-              <div class="xq-line-zy"></div>
-            </td>
-            <td style="font-size: 12px;color: #999999;">详情</td>
-            <td>
-              <div class="xq-line-zy"></div>
             </td>
           </tr>
         </table>
       </div>
 
-      <!-- <br />
-      <div class="double-zy">"加倍柔韧厚实，足量足分更耐用"</div>-->
+      <div v-if="show==false" class="grey-zy">
+        <table class="grey-div">
+          <tr>
+            <td>
+              <div class="return-zy">
+                <!-- 返回 -->
+                <img
+                  src="../images/transreturn.png"
+                  alt
+                  style="width: 20px;height: 24px;"
+                  class="transreturn-img"
+                  @click="productBack"
+                />
+              </div>
+            </td>
 
-      <!--  -->
-      <div class="line-beforeimg-zy"></div>
-
-      <table>
-        <tr>
-          <img :src="productList[page].images21" alt class="myendimg-zy" />
-        </tr>
-        <tr>
-          <img :src="productList[page].images22" alt class="myendimg1-zy" />
-        </tr>
-        <tr>
-          <img :src="productList[page].images23" alt class="myendimg2-zy" />
-        </tr>
-      </table>
+            <td class="cart-td">
+              <!-- 购物车 -->
+              <div class="cart-zy">
+                <img
+                  src="../images/cart-zy.png"
+                  alt
+                  style="width: 22px;height: 22px;"
+                  class="cart-img"
+                />
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
 
     <!-- 底部 -->
@@ -381,6 +82,298 @@
         </td>
       </tr>
     </table>
+
+    <!-- 中间 -->
+    <div class="middle-body-zy">
+      <!-- 轮播图 -->
+      <div class="myswiperdiv-zy">
+        <van-swipe @change="onChange" class="my-swiper-zy">
+          <van-swipe-item>
+            <img class="img-swiper" :src="productList[page].images1" alt />
+          </van-swipe-item>
+          <van-swipe-item>
+            <img class="img-swiper" :src="productList[page].images2" alt />
+          </van-swipe-item>
+          <van-swipe-item>
+            <img class="img-swiper" :src="productList[page].images3" alt />
+          </van-swipe-item>
+          <van-swipe-item>
+            <img class="img-swiper" :src="productList[page].images4" alt />
+          </van-swipe-item>
+
+          <template #indicator>
+            <div class="custom-indicator">{{ current + 1 }}/4</div>
+          </template>
+        </van-swipe>
+      </div>
+      <br />
+      <br />
+      <br />
+
+      <!-- ///// -->
+      <div class="border">
+        <table>
+          <tr>
+            <td>
+              <span style="font-size:18px;color:#FF0036">¥</span>
+            </td>
+            <td>
+              <span style="font-size:24px;color:#FF0036">{{productList[page].price}}</span>
+            </td>
+            <td>
+              <div class="price-zy">超市推荐</div>
+            </td>
+          </tr>
+        </table>
+        <!-- 标题 -->
+        <div class="middle-span-zy">{{productList[page].text}}</div>
+        <table class="middle-table-zy">
+          <tr>
+            <td>满88包邮(21kg内)</td>
+            <td>&nbsp;</td>
+            <td>月销量2万+件</td>
+            <td>&nbsp;</td>
+            <td>江苏无锡</td>
+          </tr>
+        </table>
+        <!-- 头像区域 -->
+        <div class="tmheaddiv-zy">
+          <div class="tmheaddiv-div">
+            <div class="pinkimg-zy">
+              <img src="../images/pink.jpg" alt class="tmheadimg" />
+            </div>
+
+            <div class="tmhead-span-div">
+              <span class="tmhead-span">此商品活动中，请尽快购买！</span>
+            </div>
+          </div>
+        </div>
+        <!-- 促销 -->
+        <table class="middle-table2-zy">
+          <tr>
+            <td style="color: #999999;font-size: 12px;">促销</td>
+            <td style="color: #ff0036;font-size: 12px;">&nbsp;促销</td>
+            <td style="font-size: 12px;">满2件，打9折</td>
+            <td class="td-zy"></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td style="color: #ff0036;font-size: 12px;">&nbsp;积分</td>
+            <td style="font-size: 12px;">购买可得2积分</td>
+          </tr>
+        </table>
+        <div style="color: #999999;" class="right-click1-zy">
+          <img src="../images/clickright.png" alt />
+        </div>
+        <!-- 物流 -->
+        <table class="middle-table3-zy">
+          <tr>
+            <td style="color: #999999;font-size: 12px;">物流</td>
+            <td style="font-size: 12px;">至沧浪区：30分钟内付款，预计6月29日送达，可选时间</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>
+              <img src="../images/tmzs.jpg" alt style="width:73px;height:14px" />
+              <span style="color: #999999;font-size: 12px; ">&nbsp;天猫保障的配送服务</span>
+            </td>
+          </tr>
+        </table>
+        <!-- 服务 -->
+        <table class="middle-table4-zy">
+          <tr>
+            <td style="font-size: 12px;color: #999999;">服务</td>
+            <td style="font-size: 12px;">假一赔四</td>
+            <td>.</td>
+            <td style="font-size: 12px;">满88包邮</td>
+            <td>.</td>
+            <td style="font-size: 12px;">一站式购齐</td>
+            <td>.</td>
+            <td style="font-size: 12px;">破损包退</td>
+            <td class="td2-zy">
+              <div style="color: #999999;" class="right-click2-zy">
+                <img src="../images/clickright.png" alt />
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div class="line-zy"></div>
+        <!-- 参数 -->
+        <table class="middle-table5-zy">
+          <tr>
+            <td style="font-size: 12px;color: #999999;">参数</td>
+            <td style="font-size: 12px;">品牌</td>
+            <td style="font-size: 12px;">型号...</td>
+          </tr>
+        </table>
+        <div style="color: #999999;" class="right-click-zy">
+          <img src="../images/clickright.png" alt />
+        </div>
+        <div class="line-zy"></div>
+        <!-- 商品评价 -->
+        <table class="pj-table-zy">
+          <tr>
+            <td style=" font-size: 14px; color: #666666;">商品评价（39920）</td>
+            <td>
+              <div style=" font-size: 13px;" class="pj-table-div2-zy">查看全部</div>
+            </td>
+
+            <td class="pj-table-td3-zy">
+              <div style="width: 25px;">
+                <img src="../images/checkall.png" alt class="checkallimg-zy" />
+              </div>
+            </td>
+          </tr>
+        </table>
+        <!-- 物流快 ... -->
+        <table class="wl-table-zy">
+          <tr>
+            <td class="wl-table-div0-zy"></td>
+            <td>
+              <div class="wl-table-div1-zy">物流快(90)</div>
+            </td>
+            <td>
+              <div class="wl-table-div1-zy">性价比高(5)</div>
+            </td>
+            <td>
+              <div class="wl-table-div1-zy">材质不错(5)</div>
+            </td>
+            <td>
+              <div class="wl-table-div2-zy">材质一般(2)</div>
+            </td>
+            <td class="wl-table-div0-zy"></td>
+          </tr>
+        </table>
+        <!-- 留言 -->
+        <div>
+          <div class="leave-img-zy">
+            <img
+              src="../images/orangehead.jpg"
+              style="width: 25px; height: 25px; border-radius: 16px;"
+            />
+          </div>
+          <div class="name-zy">t***6</div>
+        </div>
+        <br />
+        <div class="leave-span2-zy">618促销囤货的，物品发货真的快，天猫值得信赖。</div>
+        <div class="leave-date-zy">2020-06-17</div>
+        <p class="long-line-zy"></p>
+        <!-- 问大家 -->
+        <table class="pj-table-zy">
+          <tr>
+            <td style=" font-size: 14px; color: #666666;">问大家（5）</td>
+            <td>
+              <div style=" font-size: 13px;" class="pj-table-div2-zy">打开APP查看全部</div>
+            </td>
+            <td class="pj-table-td3-zy">
+              <div style="width: 25px;">
+                <img src="../images/checkall.png" alt class="checkallimg-zy" />
+              </div>
+            </td>
+          </tr>
+        </table>
+        <table class="pj-table-zy">
+          <tr>
+            <td style=" font-size: 12px; color: #051B28;">
+              <span class="ask-zy">问</span>
+              值得买吗？
+            </td>
+            <td>
+              <div style="font-size: 12px;color: #999999;" class="pj-table-div2-zy">3个回答</div>
+            </td>
+            <td class="pj-table-td3-zy">
+              <div style="width: 16px;"></div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="font-size: 12px; color: #051B28;">
+              <span class="ask-zy">问</span>
+              质量怎么样啊小伙伴们？
+            </td>
+            <td>
+              <div style="font-size: 12px;color: #999999;" class="pj-table-div2-zy">3个回答</div>
+            </td>
+            <td class="pj-table-td3-zy">
+              <div style="width: 16px;"></div>
+            </td>
+          </tr>
+        </table>
+        <div class="line-zy"></div>
+        <!-- 天猫超市头像部分 -->
+        <div class="shop-imgtext-zy">
+          <div>
+            <img src="../images/tmhead.jpg" alt style="width:45px;height:45px" />
+          </div>
+          <div class="shoptext-zy">
+            <div>{{productList[page].supermarket}}</div>
+            <div style="height:30px;border:1px solid transparent;margin-top:6px"></div>
+          </div>
+        </div>
+        <table class="descripte-div-zy">
+          <tr>
+            <td>
+              <span style=" font-size: 12px;color: #999999;">宝贝描述</span>
+              <span style="font-size: 12px;color:#E13E4C">4.9</span>
+              <div class="redtopimg-div-zy">
+                <img src="../images/redtopimg-zy.png" alt style="width: 18px; height:15px" />
+              </div>
+            </td>
+
+            <td>
+              <span style=" font-size: 12px;color: #999999;">卖家服务</span>
+              <span style="font-size: 12px;color:#E13E4C">4.9</span>
+              <div class="redtopimg-div-zy">
+                <img src="../images/redtopimg-zy.png" alt style="width: 18px; height:15px" />
+              </div>
+            </td>
+
+            <td>
+              <span style=" font-size: 12px;color: #999999;">物流服务</span>
+              <span style="font-size: 12px;color:#E13E4C">4.9</span>
+              <div class="redtopimg-div-zy">
+                <img src="images/redtopimg-zy.png" alt style="width: 18px; height:15px" />
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td>
+              <div class="enterstore-zy">进入店铺</div>
+            </td>
+            <td></td>
+          </tr>
+        </table>
+        <!-- 详情 -->
+        <div class="xq-box-zy">
+          <table class="xq-div-zy">
+            <tr>
+              <td>
+                <div class="xq-line-zy"></div>
+              </td>
+              <td style="font-size: 12px;color: #999999;">详情</td>
+              <td>
+                <div class="xq-line-zy"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="line-beforeimg-zy"></div>
+        <!-- 详情图 -->
+        <table>
+          <tr>
+            <img :src="productList[page].images21" alt class="myendimg-zy" />
+          </tr>
+          <tr>
+            <img :src="productList[page].images22" alt class="myendimg1-zy" />
+          </tr>
+          <tr>
+            <img :src="productList[page].images23" alt class="myendimg2-zy" />
+          </tr>
+        </table>
+      </div>
+    </div>
 
     <!-- 遮罩层 -->
     <div class="shadow" v-show="newShadow">
@@ -440,7 +433,6 @@
     <!-- 加入购物车成功遮罩层2 -->
     <div class="shadow2" v-show="newShadow2">
       <div class="shadow2-div">
-        <!-- <button  @click="cancelBtn2">X</button> -->
         <img src="../images/cancel4-zy.png" alt @click="cancelBtn2" class="close2-zy" />
         <div class="shadow2-text2">加入成功！</div>
       </div>
@@ -458,8 +450,7 @@ export default {
       newShadow: false,
       newShadow2: false,
       itemIndex: 1,
-      showTop: true
-
+      show: true
       // 购买数量
       // num: 1,
     };
@@ -475,7 +466,6 @@ export default {
   created() {
     window.addEventListener("scroll", this.handleScroll, true);
     this.page = this.$route.query.num;
-    // console.log(this.page)
   },
 
   methods: {
@@ -493,17 +483,29 @@ export default {
         document.querySelector(".xq-box-zy").scrollIntoView(true);
       }
     },
+    // 返回 按钮
     productBack() {
       this.$router.go(-1);
       this.$destroy(true);
       this.newShadow = false;
     },
+
+    handleScroll() {
+      let scrollTop = document.documentElement.scrollTop;
+      if (scrollTop > 120) {
+        this.show = true;
+        // console.log(111);
+      } else {
+        this.show = false;
+      }
+    },
+
     onChange(index) {
       this.current = index;
       // console.log(this.currentex);
-
       this.newShadow = false;
     },
+
     addCart() {
       // alert("llllll");
       // 遮罩层可见
@@ -515,10 +517,12 @@ export default {
       //   images: this.orderList1[0].images
       // })
     },
+
     //遮罩层-取消
     cancelBtn() {
       this.newShadow = false;
     },
+
     //遮罩层-取消2
     cancelBtn2() {
       this.newShadow2 = false;
@@ -537,6 +541,7 @@ export default {
       this.newShadow = false;
       this.newShadow2 = true;
     },
+
     proMinus(page) {
       if (this.productList[page].num > 0) {
         this.productList[page].num--;
@@ -552,21 +557,71 @@ export default {
 };
 </script>
 
+
+
 <style scoped>
-.productRouter {
+.top {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  background-color: white;
+  height: 50px;
   z-index: 999;
-  /* 000 */
-  justify-content: space-between;
-
-  display: flex;
-  flex-direction: column;
 }
+
+.border{
+  border:6px solid transparent;
+}
+
+.white-zy {
+  height: 44px;
+  width: 100%;
+  background: white;
+  /* transition: all 3s; */
+  color: #999999;
+}
+
+.white-table {
+  /* border:5px solid rgb(235, 107, 107); */
+  background: white;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  height: 48px;
+}
+
+.grey-zy {
+  height: 50px;
+  /* background: rgba(224, 223, 223, 0.6); */
+  /* transition: all 3s; */
+}
+
+.grey-div {
+  width: 95%;
+}
+
+.end {
+  position: fixed;
+  top: 762px;
+  width: 100%;
+  height: 50px;
+  z-index: 999;
+  background-color: rgb(253, 174, 27);
+}
+
+.mi {
+  width: 100%;
+  height: 750px;
+  background-color: rgb(203, 243, 243);
+  overflow: auto;
+}
+
+.mi2 {
+  width: 90%;
+  height: 950px;
+  background-color: rgb(131, 243, 243);
+  overflow: auto;
+}
+
 /* 头部块 */
 .top-table-zy {
   height: 95px;
@@ -578,6 +633,7 @@ export default {
   background-color: #fff;
   /* border:1px solid #ff9500; */
 }
+
 .top-table-zy img {
   width: 20px;
   height: 25px;
@@ -586,8 +642,45 @@ export default {
 .top-table-zy div {
   width: 300px;
 }
-.top-table-zy .return-zy img {
+
+/* .top-table-zy .return-zy img {
   margin-left: 20px;
+} */
+
+/* 返回 */
+.return-zy {
+  /* border:1px solid rgba(100, 100, 100, 0.6);  */
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.4);
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 3px;
+}
+/* 购物车块 */
+.cart-zy {
+  /* border:1px solid rgba(100, 100, 100, 0.6);  */
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.4);
+  width: 32px;
+  height: 32px;
+  margin-left: 40px;
+  margin-top: 3px;
+}
+
+.cart-td {
+  /* border:1px solid rgba(100, 100, 100, 0.6);  */
+  width: 70px;
+}
+
+.transreturn-img {
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+.cart-img {
+  margin-top: 5px;
+  margin-left: 4px;
 }
 
 .top-table-zy .search-zy img {
@@ -608,12 +701,15 @@ export default {
 .edit-zy {
   margin-left: 50px;
 }
+
 .edit-zy img {
   width: 32px;
 }
+
 .shoppingcar-zy img {
   width: 28px;
 }
+
 /* .swiper-div-zy {
   height: 690px;
   overflow: auto;
@@ -647,22 +743,26 @@ export default {
   color: white;
   border-radius: 8px;
 }
+
 .myswiperdiv-zy {
   /* top: 300px; */
   /* border: 1px solid red; */
   width: 100%;
   height: 320px;
   position: relative;
+  /* margin-top: 49px; */
 }
 
 .my-swiper-zy {
   width: 100%;
   height: 360px;
 }
+
 .img-swiper {
   width: 100%;
   height: 360px;
 }
+
 .middle-span-zy {
   color: #051b28;
   width: 95%;
@@ -672,6 +772,7 @@ export default {
   display: flex;
   display: -webkit-flex;
 }
+
 /* 满88包邮 */
 .middle-table-zy {
   width: 100%;
@@ -692,11 +793,13 @@ export default {
   background-color: rgb(252, 226, 226);
   margin-top: 5px;
 }
+
 .tmhead-span {
   color: #f10035;
   margin-left: 25px;
   margin-top: -10px;
 }
+
 .tmhead-span-div {
   margin-top: -28px;
   margin-left: 25px;
@@ -715,10 +818,12 @@ export default {
 .td-zy {
   width: 180px;
 }
+
 /* 物流 */
 .middle-table3-zy tr td {
   border: 3px solid transparent;
 }
+
 /* 服务 */
 .middle-table4-zy {
   /* border: 1px solid red; */
@@ -726,9 +831,11 @@ export default {
   /* text-align: center; */
   /* margin-left: 3px; */
 }
+
 .td2-zy {
   width: 30px;
 }
+
 .line-zy {
   width: 100%;
   height: 10px;
@@ -791,16 +898,19 @@ export default {
 }
 
 /* .end-table-zy tr td {
-  border: 1px solid #ff9500;
-} */
+            border: 1px solid #ff9500;
+        } */
 
 .end-table-zy {
   /* border: 1px solid #ff9500; */
   width: 100%;
   /* ================================ */
-  display: fixed;
+  position: fixed;
   height: 50px;
   /* display: flex; */
+  bottom: 0;
+  z-index: 999;
+  background-color: #fff;
 }
 
 .end-table-td1-zy {
@@ -833,14 +943,10 @@ export default {
   text-align: center;
   color: #ffffff;
 }
-.end-table-zy {
-  display: fixed;
-}
 
 /* 中间可滚动部分 */
 .middle-body-zy {
   /* border: 1px solid #156df0; */
-  /* ======================================== */
   /* height: 713px; */
   overflow: auto;
   align-items: stretch;
@@ -889,6 +995,7 @@ export default {
   text-align: center;
   /* height: 23px; */
 }
+
 .wl-table-zy td {
   border: 3px solid transparent;
 }
@@ -901,6 +1008,7 @@ export default {
   width: 76px;
   /* line-height: 1px; */
 }
+
 .wl-table-div2-zy {
   /* width: 10px; */
   /* border: 1px solid #ff9500; */
@@ -1083,15 +1191,19 @@ export default {
   position: fixed;
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
+  /* background-color: grey; */
   top: 0;
   left: 0;
   bottom: 0;
   transition: all 3s;
+  z-index: 1000;
 }
+
 .shadow2 {
   background: rgba(0, 0, 0, 0.5);
-  position: absolute;
+  position: fixed;
   width: 100%;
+  height: 100%;
   color: #f10035;
   font-size: 20px;
   font-weight: bold;
@@ -1219,6 +1331,7 @@ export default {
   text-align: center;
   line-height: 30px;
 }
+
 .numdiv {
   /* border: 1px solid #f10035; */
   width: 30px;
@@ -1247,7 +1360,7 @@ export default {
   position: absolute;
   z-index: 9999;
   text-align: center;
-  border: 1px solid rgb(243, 52, 179);
+  border: 1px solid rgb(185, 160, 177);
   top: 0;
 }
 
@@ -1260,13 +1373,17 @@ export default {
 }
 
 .transreturnImg {
-  width: 20px;
+  width: 30px;
   height: 20px;
   margin-top: 5px;
+}
+
+.qqq {
+  width: 300px;
+  height: 200px;
 }
 
 .spacetrans-zy {
   width: 230px;
 }
 </style>
-
